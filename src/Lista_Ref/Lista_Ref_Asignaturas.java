@@ -5,6 +5,7 @@
  */
 package Lista_Ref;
 
+import Asignatura.Asignatura;
 import Interfaz.InterfazLista;
 
 /**
@@ -13,4 +14,25 @@ import Interfaz.InterfazLista;
  */
 public class Lista_Ref_Asignaturas implements InterfazLista {
     
+    private Nodo nodo;
+    
+    public Lista_Ref_Asignaturas() {
+        this.nodo = null;
+    }
+    
+    public void addAsignatura(Nodo asignatura) {
+        
+    }
+    
+    public void removeAsignatura() {
+        
+    }
+    
+    public Asignatura getInfoAsignatura() {
+        return null;
+    }
+    
+    public int getSize() {
+        return 0;
+    }
 }

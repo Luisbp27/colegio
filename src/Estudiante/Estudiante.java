@@ -22,4 +22,26 @@ public class Estudiante implements InterfazDatos {
         this.nombre = nombre;
         this.dni = dni;
     }
+    
+    public void add() {
+        
+    }
+
+    /**
+     * Método que devuelve el valor del atributo nombre
+     * 
+     * @return 
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * Método que devuelve el valor del atributo dni
+     * 
+     * @return 
+     */
+    public int getDni() {
+        return dni;
+    }
 }
