@@ -34,9 +34,9 @@ public abstract class Asignatura implements InterfazDatos {
     
     public abstract void setCodigo(int cod);
 
-    public abstract void setCurso(String x);
+    public abstract void setStringCurso(String x);
 
-    public abstract String getCurso();
+    public abstract String getStringCurso();
     
     public abstract Estudiante getRefEstudiante(int i);
 

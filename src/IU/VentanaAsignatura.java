@@ -17,12 +17,12 @@ import javax.swing.JTextArea;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
-import Clases.Bachiller;
-import Clases.FP;
 import Asignatura.Obligatoria;
 import Asignatura.Optativa;
-import Lista.Lista_Alumnos;
-import Lista.Lista_Asignaturas;
+import Curso.Bachiller;
+import Curso.FP;
+import Lista.ListaEstudiantes;
+import Lista.ListaAsignaturas;
 
 
 public class VentanaAsignatura extends JFrame {
@@ -226,7 +226,7 @@ public class VentanaAsignatura extends JFrame {
         if (!panelTipoAsignatura.isEmpty()) {
             listaAsignaturas.removeAllItems();
             listaAsignaturas.addItem(listaAsig);
-            Lista_Asignaturas lista_auxiliar = new Lista_Asignaturas();
+            ListaAsignaturas lista_auxiliar = new ListaAsignaturas();
             switch (panelTipoAsignatura.getSelect()) {
                 // FP - Obligatoria
                 case 1:
@@ -328,7 +328,7 @@ public class VentanaAsignatura extends JFrame {
      */
     private void accionListarCurso() {
         //Lista auxiliar de alumnos
-        Lista_Alumnos lista_auxiliar = new Lista_Alumnos();
+        ListaEstudiantes lista_auxiliar = new ListaEstudiantes();
         //Si el tipo de asignatura seleccionado no esta vacio
         if (!panelTipoAsignatura.isEmpty()) {
             //Y si el elemento seleccionado del Jbox no es la cabecera
@@ -342,17 +342,17 @@ public class VentanaAsignatura extends JFrame {
                 //Si hay alguno matriculado
                 if (size != 0) {
                     for (int i = 0; i < size; i++) {
-                        lista_auxiliar.addObject(vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getAlumnoRef(i));
+                        lista_auxiliar.addObject(vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
                     }
                     lista_auxiliar.ordenarLista();
-                    String listado = "CURSO: " + vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getCursoPerteneciente() + "\n\n" + "ESTUDIANTES" + "\n\n";
+                    String listado = "CURSO: " + vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
                     for (int i = 0; i < lista_auxiliar.getSize(); i++) {
-                        listado = listado + lista_auxiliar.getAlumno(i).toString() + "\n\n";
+                        listado = listado + lista_auxiliar.getEstudiante(i).toString() + "\n\n";
 
                     }
                     this.pantalla.setText(listado);
                 } else {
-                    this.pantalla.setText("CURSO: "+vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getCursoPerteneciente()+"\nEn esta asigantura \nno hay ningún alumno matriculado");
+                    this.pantalla.setText("CURSO: "+vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso()+"\nEn esta asigantura \nno hay ningún alumno matriculado");
                 }
             } else {
                 this.pantalla.setText("Selecciona una asignatura");

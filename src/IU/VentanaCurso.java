@@ -2,9 +2,11 @@ package IU;
 
 import Asignatura.Asignatura;
 import Curso.Bachiller;
+import Curso.Bachiller.Año;
 import Curso.Curso;
 import Curso.FP;
 import Curso.FP.Especialidad;
+import Estudiante.Estudiante;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -38,10 +40,9 @@ public class VentanaCurso extends JFrame {
     private VentanaEstudiante vEstudiante;
 
     // Especialidades de un curso FP:
-    private final FP.Especialidad especialidades[] = {Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA,
-        Especialidad.INFORMÁTICA};
+    private final FP.Especialidad especialidades[] = {Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA, Especialidad.INFORMÁTICA};
     // Tipos de cursos de Bachiller: tBach
-    private final Año tBach[] = {Año.PRIMERO, Año.SEGUNDO};
+    private final Bachiller.Año tBach[] = {Año.PRIMERO, Año.SEGUNDO};
 
     private VentanaCursoAsign vCrsAsg;
 
@@ -314,8 +315,7 @@ public class VentanaCurso extends JFrame {
                 // vemos que especialidad es y la añadimos acordemente
                 for (int j = 0; j < especialidades.length; j++) {
                     if (seleccionado.getSelectedItem().equals(especialidades[j])) {
-                        listaCursoAux.addObject(fp = new FP(Integer.parseInt(areaCodigo.getText()), areaNombre.getText(),
-                                especialidades[j]));
+                        listaCursoAux.addObject(fp = new FP(Integer.parseInt(areaCodigo.getText()), areaNombre.getText(), especialidades[j]));
                         listaCursosJBox.addItem(fp);
                         this.pantalla.setText(fp.toString());
                     }
@@ -329,8 +329,7 @@ public class VentanaCurso extends JFrame {
                 // vemos que año es y la añadimos acordemente
                 for (int j = 0; j < tBach.length; j++) {
                     if (seleccionado.getSelectedItem().equals(tBach[j])) {
-                        listaCursoAux.addObject(bch = new Bachiller(Integer.parseInt(areaCodigo.getText()),
-                                areaNombre.getText(), tBach[j]));
+                        listaCursoAux.addObject(bch = new Bachiller(Integer.parseInt(areaCodigo.getText()), areaNombre.getText(), tBach[j]));
                         listaCursosJBox.addItem(bch);
                         this.pantalla.setText(bch.toString());
                     }
@@ -350,14 +349,14 @@ public class VentanaCurso extends JFrame {
      */
     private void removeEstudiantes(Asignatura ass, Curso aux) {
         int size = ass.getSizeRef();
-        Estudiante al;
+        Estudiante es;
 
         for (int k = 0; k < size; k++) {
-            if (ass.getAlumnoRef(k) != null) {
-                al = ass.getAlumnoRef(k);
-                listaAuxAlumnos.removeObject(al);
-                al.remove(ass);
-                listaAuxAlumnos.addObject(al);
+            if (ass.getRefEstudiante(k) != null) {
+                es = ass.getRefEstudiante(k);
+                listaAuxAlumnos.removeObject(es);
+                es.remove(ass);
+                listaAuxAlumnos.addObject(es);
             }
 
         }
@@ -426,7 +425,7 @@ public class VentanaCurso extends JFrame {
 
         listaCursoAux = vInicio.getListaGlobalCursos();
         listaAuxiliarAsignatura = vInicio.getListaGlobalAsignaturas();
-        listaAuxAlumnos = vInicio.getListaGlobalAlumnos();
+        listaAuxAlumnos = vInicio.getListaGlobalEstudiantes();
     }
 
     public VentanaCurso getVentanaCurso() {

@@ -5,6 +5,7 @@
  */
 package Lista_Ref;
 
+import Asignatura.Asignatura;
 import Interfaz.InterfazLista;
 
 /**
@@ -14,68 +15,134 @@ import Interfaz.InterfazLista;
 public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
     
     private Nodo cabecera;
+    private Nodo vacia;
     
     public Lista_Ref_Estudiantes_Asignaturas() {
         this.cabecera = null;
     }
     
-    public void crearLista(int[] datos) {
-        for (int i = datos.length - 1; i > -1; i--) {
-            Nodo nodo = new Nodo(datos[i]);
+    public void addAsignatura(Asignatura asignatura) {
+        Nodo nuevo = new Nodo(asignatura);
+        
+        if (cabecera != null) {
+            Nodo index = cabecera;
             
-            nodo.setNodo(this.cabecera);
-            // El nuevo nodo creado es siempre la cabecera de la lista i esta tiene
-            // siempre el valor seg apuntando a null. Entonces en antiguo nodo 
-            // apuntará a la antigua cabecera entrelazando los nodos
-            this.cabecera = nodo;
+            while (index.getNodo() != null) {
+                index = index.getNodo();
+            }
+            
+            index.setNodo(nuevo);
+        } else {
+            cabecera = nuevo;
         }
     }
     
-    /**
-     * Método que inserta un nodo al final de la lista
-     * 
-     * @param nodo 
-     */
-    public void addNodo(Nodo nodo) {
+    public void removeNodo(Asignatura asignatura) {
+        if (cabecera != null) {
+            if (cabecera.getInfo().equals(asignatura)) {
+                Nodo nodoBorrado = cabecera;
+                if (cabecera.getNodo() == null) {
+                    cabecera = null;
+                    nodoBorrado.setNodo(null);
+                    Nodo index2 = vacia;
+                    if (index2 != null) {
+                        while (index2.getNodo() != null) {
+                            index2 = index2.getNodo();
+                        }
+                        index2.setNodo(nodoBorrado);
+                    } else {
+                        vacia = nodoBorrado;
+                    }
+                } else {
+                    cabecera = cabecera.getNodo();
+                    nodoBorrado.setNodo(null);
+                    Nodo index2 = vacia;
+                    if (index2 != null) {
+                        while (index2.getNodo() != null) {
+                            index2 = index2.getNodo();
+                        }
+                        index2.setNodo(nodoBorrado);
+                    } else {
+                        vacia = nodoBorrado;
+                    }
+                }
+            } else {
+                boolean encontrado = false;
+                Nodo index = cabecera;
+                while (!encontrado && index.getNodo() != null) {
+                    if (index.getNodo().getInfo().equals(asignatura)) {
+                        encontrado = true;
+                    } else {
+                        index = index.getNodo();
+                    }
+                }
+                Nodo nodoBorrado = index.getNodo();
+                if (encontrado) {
+                    index.setNodo(nodoBorrado.getNodo());
+                    nodoBorrado.setNodo(null);
+                    Nodo index2 = vacia;
+                    if (index2 != null) {
+                        while (index2.getNodo() != null) {
+                            index2 = index2.getNodo();
+                        }
+                        index2.setNodo(nodoBorrado);
+                    } else {
+                        vacia = nodoBorrado;
+                    }
+                } else {
+                    System.out.println("Elemento no encontrado");
+                }
+            }
+        } else {
+            System.out.println("Lista vacía\n");
+        }
+    }
+    
+    public Object getInfo(int i) {
+        Nodo aux = cabecera;
+        int j = 0;
+        
+        if (aux != null){
+            while(!aux.isEmpty() && j < i ){
+                j++;
+                if(aux.getNodo() != null) {
+                    aux = aux.getNodo();
+                }
+            }
+            
+            return aux.getInfo();
+        } else {
+            return null;
+        } 
+    }
+    
+    public void visualizarLista() {
         Nodo aux = cabecera;
         
-        while (aux.getNodo() != null) {
-            aux = aux.getNodo();
+        if (!aux.isEmpty()){
+            System.out.println(aux.getInfo().toString());
+            
+            while(aux.getNodo() != null){
+                aux = aux.getNodo();
+                System.out.println(aux.getInfo().toString());
+            }
+        } else {
+            System.out.println("Vacía");
         }
-        
-        aux.setNodo(nodo);
     }
     
-    /**
-     * Método que elimina un nodo en la posición n de la lista de nodos
-     * 
-     * @param n
-     * @return 
-     */
-    public Nodo removeNodo(int n) {
-        Nodo nodoApuntado;
-        Nodo nodoApuntado2;
-        Nodo aux = new Nodo();
-
-        nodoApuntado = cabecera;
-        nodoApuntado2 = cabecera;
-
-        // Posicionamos nodoApuntado2 una posición anterior al nodo a eliminar
-        while (nodoApuntado2.getNodo().getInfo() != n) {
-            nodoApuntado2 = nodoApuntado2.getNodo();
-            nodoApuntado = nodoApuntado.getNodo();
+    public int getSize(){
+        Nodo aux = cabecera;
+        int i = 0;
+        
+        if(aux != null){
+            i++;
+            while(aux.getNodo() != null){
+                i++;
+                aux = aux.getNodo();                
+            } 
         }
         
-        // Avanzamos una posición porque coincide con el campo info actual
-        nodoApuntado = nodoApuntado.getNodo();
-
-        if (nodoApuntado.getInfo() == n) {
-            aux.setInfo(nodoApuntado.getInfo());
-            aux.setNodo(null);
-
-            nodoApuntado2.setNodo(nodoApuntado.getNodo());
-        }
-        
-        return aux;
-    }
+        return i;    
+    }    
 }

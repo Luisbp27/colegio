@@ -37,6 +37,12 @@ public class GestionColegios {
         VentanaEstudiante vEstud = new VentanaEstudiante();
 
         VentanaInicioGestion vInicio = new VentanaInicioGestion(vCurso, vAsign, vEstud, listaCursos, listaAsignaturas, listaEstudiantes);
+        
+        vCurso.setInicio(vInicio);
+        vAsign.setInicio(vInicio);
+        vEstud.setInicio(vInicio);
+
+        vInicio.setVisible(true);
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package Estudiante;
 
+import Asignatura.Asignatura;
 import Interfaz.InterfazDatos;
 import Lista_Ref.Lista_Ref_Estudiantes_Asignaturas;
 
@@ -21,10 +22,24 @@ public class Estudiante implements InterfazDatos {
     public Estudiante(String nombre, int dni) {
         this.nombre = nombre;
         this.dni = dni;
+        
+        this.lrea = new Lista_Ref_Estudiantes_Asignaturas();
     }
     
-    public void add() {
-        
+    public void addAsignatura(Asignatura asignatura) {
+        lrea.addAsignatura(asignatura);
+    }
+    
+    public void remove(Asignatura asignatura) {
+        lrea.removeNodo(asignatura);
+    }
+    
+    public Asignatura getRefAsignaturaEstudiante(int i) {
+        return (Asignatura) lrea.getInfo(i);
+    }
+    
+    public int getSizeRef() {
+        return lrea.getSize();
     }
 
     /**

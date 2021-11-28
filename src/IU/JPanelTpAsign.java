@@ -3,9 +3,12 @@
  */
 package IU;
 
-import Clases.Año;
-import Clases.Especialidad;
-import Asignatura.Perfil;
+import Asignatura.Optativa;
+import Asignatura.Optativa.Tipo;
+import Curso.Bachiller;
+import Curso.Bachiller.Año;
+import Curso.FP;
+import Curso.FP.Especialidad;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -24,12 +27,12 @@ import javax.swing.event.AncestorListener;
 public class JPanelTpAsign extends JPanel {
 
     private final String sBoxIn = "Seleciona";
-    private final Perfil perfiles[] = { Perfil.PRACTICO, Perfil.TEORICO };
+    private final Optativa.Tipo perfiles[] = {Tipo.PRÁCTICA, Tipo.TEÓRICA};
     // Especialidades de un curso FP:
-    private final Especialidad especialidades[] = { Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA,
+    private final FP.Especialidad especialidades[] = { Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA,
             Especialidad.INFORMÁTICA };
     // Tipos de cursos de Bachiller: tBach
-    private final Año tBach[] = { Año.PRIMERO, Año.SEGUNDO };
+    private final Bachiller.Año tBach[] = { Año.PRIMERO, Año.SEGUNDO };
     // Tipos de creditos Asignaturas Obligatorias:
     private final String creditos[] = { "Créditos", "6", "7.5", "9" };
 
@@ -69,18 +72,24 @@ public class JPanelTpAsign extends JPanel {
      * @param ver
      */
     public JPanelTpAsign(int ver) {
-        if (ver == 0) {
-            tipoB = false;
-            especialidadB = true;
-            jComboBoxB = true;
-        } else if (ver == 1) {
-            tipoB = true;
-            especialidadB = false;
-            jComboBoxB = true;
-        } else if (ver == 2) {
-            tipoB = true;
-            especialidadB = true;
-            jComboBoxB = false;
+        switch (ver) {
+            case 0:
+                tipoB = false;
+                especialidadB = true;
+                jComboBoxB = true;
+                break;
+            case 1:
+                tipoB = true;
+                especialidadB = false;
+                jComboBoxB = true;
+                break;
+            case 2:
+                tipoB = true;
+                especialidadB = true;
+                jComboBoxB = false;
+                break;
+            default:
+                break;
         }
 
         initComponents();

@@ -19,7 +19,7 @@ public class VentanaInicioGestion extends JFrame {
     //VARIABLES GLOBALES
     private ListaAsignaturas lista_global_asignaturas;
     private ListaCursos lista_global_cursos;
-    private ListaEstudiantes lista_global_alumnos;
+    private ListaEstudiantes lista_global_estudiantes;
 
     //INICIALIZACIÓN VARIABLES GLOBALES
     //lista_global_asignaturas
@@ -43,15 +43,15 @@ public class VentanaInicioGestion extends JFrame {
     VentanaCurso vCurso;
 
     //Constructor
-    public VentanaInicioGestion(VentanaCurso vC, VentanaAsignatura vA, VentanaEstudiante vE, ListaCursos listaCurso, ListaAsignaturas listaAsignatura, ListaEstudiantes listaAlumnos) {
+    public VentanaInicioGestion(VentanaCurso vCurso, VentanaAsignatura vAsignatura, VentanaEstudiante vEstudiante, ListaCursos listaCurso, ListaAsignaturas listaAsignatura, ListaEstudiantes listaEstudiantes) {
         super("Programa de Gestión de Datos Colegio");
-        vCurso = vC;
-        vAsignatura = vA;
-        vEstudiante  = vE;
+        this.vCurso = vCurso;
+        this.vAsignatura = vAsignatura;
+        this.vEstudiante  = vEstudiante;
 
         lista_global_cursos = listaCurso;
         lista_global_asignaturas = listaAsignatura;
-        lista_global_alumnos=listaAlumnos;
+        lista_global_estudiantes = listaEstudiantes;
         initComponents();
     }
 
@@ -95,30 +95,21 @@ public class VentanaInicioGestion extends JFrame {
 
         ///Actiones Botones///
         //Acciones al presionar el botón "Curso"
-        bCurso.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cerrarVentana();
-                vCurso.setVisible(true);
-            }
+        bCurso.addActionListener((ActionEvent ae) -> {
+            cerrarVentana();
+            vCurso.setVisible(true);
         });
 
         //Acciones al presionar el botón "Asignatura"
-        bAsign.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cerrarVentana();
-                vAsignatura.setVisible(true);
-            }
+        bAsign.addActionListener((ActionEvent ae) -> {
+            cerrarVentana();
+            vAsignatura.setVisible(true);
         });
 
         //Acciones al presionar el botón "Estudiante"
-        bEstud.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cerrarVentana();
-                vEstudiante.setVisible(true);
-            }
+        bEstud.addActionListener((ActionEvent ae) -> {
+            cerrarVentana();
+            vEstudiante.setVisible(true);
         });
 
         //.setBounds(x,y,ancho,alto)
@@ -157,12 +148,12 @@ public class VentanaInicioGestion extends JFrame {
     public ListaAsignaturas getListaGlobalAsignaturas(){
         return this.lista_global_asignaturas;
     }
-     public ListaEstudiantes getListaGlobalAlumnos(){
-        return this.lista_global_alumnos;
+     public ListaEstudiantes getListaGlobalEstudiantes(){
+        return this.lista_global_estudiantes;
         
     }
       public void setetListaGlobalAlumnos(ListaEstudiantes x){
-        this.lista_global_alumnos=x;
+        this.lista_global_estudiantes=x;
         
     }
     public void setListaAsignaturas(ListaAsignaturas la){
@@ -182,5 +173,4 @@ public class VentanaInicioGestion extends JFrame {
     private VentanaInicioGestion getInicio(){
         return this;
     }
-
 }

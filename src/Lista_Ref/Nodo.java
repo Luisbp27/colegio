@@ -6,7 +6,7 @@ package Lista_Ref;
  */
 public class Nodo {
     
-    private int info;
+    private Object info;
     private Nodo siguiente;
     
     /**
@@ -22,7 +22,7 @@ public class Nodo {
      * 
      * @param info 
      */
-    public Nodo(int info) {
+    public Nodo(Object info) {
         this.info = info;
         this.siguiente = null;
     }
@@ -43,7 +43,7 @@ public class Nodo {
      * 
      * @param info 
      */
-    public void setInfo(int info) {
+    public void setInfo(Object info) {
         this.info = info;
     }
     
@@ -61,7 +61,16 @@ public class Nodo {
      * 
      * @return 
      */
-    public int getInfo() {
+    public Object getInfo() {
         return this.info;
+    }
+    
+    /**
+     * Método que comprueba si el nodo tiene o no contenido
+     * 
+     * @return 
+     */
+    public boolean isEmpty() {
+        return this.info == null;
     }
 }

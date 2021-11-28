@@ -60,18 +60,18 @@ public class Obligatoria extends Asignatura {
     }
 
     @Override
-    public void setCurso(String x) {
+    public void setStringCurso(String x) {
         this.stringCurso = x;
     }
 
     @Override
-    public String getCurso() {
+    public String getStringCurso() {
         return stringCurso;
     }
 
     @Override
     public Estudiante getRefEstudiante(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Estudiante)lre.getInfo(i);
     }
 
     @Override
