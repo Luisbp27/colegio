@@ -29,7 +29,7 @@ public class FP extends Curso {
     
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "FP: "+ codigo + " - " + nombre + " - " + especialidad;
     }
 
     @Override
