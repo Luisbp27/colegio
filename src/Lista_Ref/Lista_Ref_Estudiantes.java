@@ -12,7 +12,7 @@ import Interfaz.InterfazLista;
  *
  * @author luisb
  */
-public class Lista_Ref_Estudiantes implements InterfazLista {
+public class Lista_Ref_Estudiantes {
     
     private Nodo cabecera;
     private Nodo vacia;
@@ -139,4 +139,8 @@ public class Lista_Ref_Estudiantes implements InterfazLista {
         
         return i;    
     }    
+
+
+
+
 }

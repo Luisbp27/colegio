@@ -33,7 +33,7 @@ public class JPanelTpAsign extends JPanel {
     // Tipos de cursos de Bachiller: tBach
     private final Bachiller.Año tBach[] = { Año.PRIMERO, Año.SEGUNDO };
     // Tipos de creditos Asignaturas Obligatorias:
-    private final String creditos[] = { "Créditos", "6", "7.5", "9" };
+    private final String creditos[] = { "Créditos", "6", "8", "9" };
 
     private JLabel tTipo;
     private JLabel tAsignatura;

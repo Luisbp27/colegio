@@ -16,7 +16,7 @@ public abstract class Asignatura implements InterfazDatos {
     protected String stringCurso;
     protected Lista_Ref_Estudiantes lre;
     
-    public Asignatura(String nombre, int codigo, Curso curso) {
+    public Asignatura(String nombre, int codigo) {
         this.nombre = nombre;
         this.codigo = codigo;
         

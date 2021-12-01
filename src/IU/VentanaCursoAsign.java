@@ -363,11 +363,11 @@ public class VentanaCursoAsign extends JFrame {
             case 2:
                 if (!panelTipoAsignatura.getSelectComboCurso().equals("Especialidad")) {
                     // add a  listaAuxiliarAsignatura la asig nueva
+                   //public Obligatoria(String nombre, int codigo, Curso curso, int creditos)
                    
-                    listaAuxiliarAsignatura.addObject(obligatoria = new Obligatoria(atNombre.getText(), Integer.parseInt(atCodigo.getText(), )));
-                    
-                    listaAuxiliarAsignatura.addObject(obligatoria = new Obligatoria(Integer.parseInt(atNombre.getText(), Integer.parseInt(atCodigo.getText()),
-                            Double.parseDouble(panelTipoAsignatura.getSelectComboAsig().toString())));
+                    listaAuxiliarAsignatura.addObject(obligatoria = new Obligatoria(atNombre.getText(),Integer.parseInt(atCodigo.getText()),Integer.parseInt(panelTipoAsignatura.getSelectComboAsig().toString())));
+                    //listaAuxiliarAsignatura.addObject(obligatoria = new Obligatoria(Integer.parseInt(atNombre.getText(), Integer.parseInt(atCodigo.getText()),
+                            //Double.parseDouble(panelTipoAsignatura.getSelectComboAsig().toString())));
                     //vemos segun si el objeto era bachiller o fp
                     if (this.i == 1) {
                         listaAuxiliarCurso.removeObject(sel_fp);
@@ -402,7 +402,7 @@ public class VentanaCursoAsign extends JFrame {
                 if (!panelTipoAsignatura.getSelectComboAsig().equals("Perfiles")) {
                     if (perfiles[1].ordinal() == ((Optativa.Tipo) panelTipoAsignatura.getSelectComboAsig()).ordinal()) {
                         // add a  listaAuxiliarAsignatura la asig nueva
-                        listaAuxiliarAsignatura.addObject(optativa = new Optativa(Integer.parseInt(atCodigo.getText()), atNombre.getText(), perfiles[1]));
+                        listaAuxiliarAsignatura.addObject(optativa = new Optativa( atNombre.getText(),Integer.parseInt(atCodigo.getText()), perfiles[1]));
                         //vemos segun si el objeto era bachiller o fp
 
                         if (this.i == 1) {
@@ -432,7 +432,7 @@ public class VentanaCursoAsign extends JFrame {
 
                     } else {
                         // add a  listaAuxiliarAsignatura la asig nueva
-                        listaAuxiliarAsignatura.addObject(optativa = new Optativa(Integer.parseInt(atCodigo.getText()), atNombre.getText(), perfiles[0]));
+                        listaAuxiliarAsignatura.addObject(optativa = new Optativa(atNombre.getText(),Integer.parseInt(atCodigo.getText()), perfiles[0]));
                         //vemos segun si el objeto era bachiller o fp
                         if (this.i == 1) {
                             listaAuxiliarCurso.removeObject(sel_fp);

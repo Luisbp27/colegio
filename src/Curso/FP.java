@@ -59,12 +59,12 @@ public class FP extends Curso {
 
     @Override
     public int getSizeRef() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lista_curso_asignatura.getSize();
     }
 
     @Override
     public void add(Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lista_curso_asignatura.add(x); 
     }
 
     @Override

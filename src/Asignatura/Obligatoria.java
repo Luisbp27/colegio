@@ -16,8 +16,8 @@ public class Obligatoria extends Asignatura {
     
     private int creditos;
 
-    public Obligatoria(String nombre, int codigo, Curso curso, int creditos) {
-        super(nombre, codigo, curso);
+    public Obligatoria(String nombre, int codigo, int creditos) {
+        super(nombre, codigo);
         this.creditos = creditos;
     }
 
@@ -77,7 +77,7 @@ public class Obligatoria extends Asignatura {
 
     @Override
     public int getSizeRef() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lre.getSize();
     }
 
     @Override

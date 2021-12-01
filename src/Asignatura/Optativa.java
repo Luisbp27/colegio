@@ -17,11 +17,12 @@ public class Optativa extends Asignatura {
     public enum Tipo {
         TEÓRICA, PRÁCTICA;
     }
-    
+    private Tipo tipo;
     private final int creditos = 3;
 
-    public Optativa(String nombre, int codigo, Curso curso) {
-        super(nombre, codigo, curso);
+    public Optativa(String nombre, int codigo, Tipo tipo) {
+        super(nombre, codigo);
+        this.tipo=tipo;
     }
 
     public int compareTo(Asignatura t) {
@@ -30,7 +31,7 @@ public class Optativa extends Asignatura {
     
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nombre+" CODIGO: "+codigo+" PERFIL: "+tipo;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class Optativa extends Asignatura {
 
     @Override
     public void setStringCurso(String x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.stringCurso = x;
     }
 
     @Override
@@ -70,7 +71,7 @@ public class Optativa extends Asignatura {
 
     @Override
     public int getSizeRef() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lre.getSize();
     }
 
     @Override

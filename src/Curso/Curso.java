@@ -9,6 +9,7 @@ import Asignatura.Asignatura;
 import Interfaz.InterfazDatos;
 import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
+import Lista_Ref.Lista_Ref_Asignaturas;
 
 /**
  *
