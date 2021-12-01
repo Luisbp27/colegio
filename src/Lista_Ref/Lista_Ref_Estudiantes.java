@@ -130,7 +130,7 @@ public class Lista_Ref_Estudiantes implements InterfazLista {
         int i = 0;
         
         if(aux != null){
-            i++;
+            //i++;
             while(aux.getNodo() != null){
                 i++;
                 aux = aux.getNodo();                

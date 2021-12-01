@@ -33,6 +33,7 @@ public abstract class Asignatura implements InterfazDatos {
     public abstract void setNombre(String name);
     
     public abstract void setCodigo(int cod);
+    
 
     public abstract void setStringCurso(String x);
 

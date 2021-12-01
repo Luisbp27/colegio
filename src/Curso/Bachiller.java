@@ -27,32 +27,34 @@ public class Bachiller extends Curso {
     
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      String s="";
+      s+="Curso de bachiller: "+nombre+" de "+año+" año, código "+codigo;
+      return s;
     }
 
     @Override
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nombre;
     }
 
     @Override
     public int getCodigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return codigo;
     }
 
     @Override
     public void setNombre(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            this.nombre=name;
     }
 
     @Override
     public void setCodigo(int cod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.codigo=cod;
     }
 
     @Override
     public Asignatura getAsignaturaRef(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.lista_curso_asignatura.;
     }
 
     @Override

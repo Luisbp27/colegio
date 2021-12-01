@@ -29,27 +29,29 @@ public class FP extends Curso {
     
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    String s="";
+      s+="Curso FP: "+nombre+" en especialidad de "+especialidad+", código "+codigo;
+      return s;
     }
 
     @Override
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nombre;
     }
 
     @Override
     public int getCodigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return codigo;
     }
 
     @Override
     public void setNombre(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            this.nombre=name;
     }
 
     @Override
     public void setCodigo(int cod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.codigo=cod;
     }
 
     @Override
