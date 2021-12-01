@@ -7,6 +7,7 @@ package Curso;
 
 import Asignatura.Asignatura;
 import Interfaz.InterfazDatos;
+import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
 
 /**
@@ -17,23 +18,31 @@ public abstract class Curso implements InterfazDatos {
     
     protected String nombre;
     protected int codigo;
-    protected ListaCursos lc;
+    //protected ListaCursos lc; no se necesita no?
+    //apuntador a la lista asignaturas del curso
+    protected ListaAsignaturas lista_curso_asignatura;
     
     public Curso(String nombre, int codigo) {
         this.nombre = nombre;
         this.codigo = codigo;
-        this.lc = new ListaCursos();
+        //inicilamente lista y apuntador vacíos
+        this.lista_curso_asignatura=new ListaAsignaturas();
+       // this.lc = new ListaCursos(); no se necesita no?
     }
     
     @Override
     public abstract String toString();
     
+    @Override
     public abstract String getNombre();
     
+    @Override
     public abstract int getCodigo();
     
+    @Override
     public abstract void setNombre(String name);
     
+    @Override
     public abstract void setCodigo(int cod);
 
     public abstract Asignatura getAsignaturaRef(int i);
