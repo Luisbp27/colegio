@@ -3,20 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Lista/ListaCursos1.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/IU/VentanaCurso.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Curso/FP.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Lista_Ref/Lista_Ref_Estudiantes.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Asignatura/Asignatura.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Lista/ListaAsignaturas.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Curso/Curso.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Interfaz/InterfazDatos.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/IU/VentanaAsignatura.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Interfaz/InterfazLista.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Curso/Bachiller.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Lista/ListaEstudiantes.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/Lista/ListaCursos.java</file>
-            <file>file:/C:/Users/missm/OneDrive/Documentos/GitHub/colegio/src/IU/VentanaCurso1.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/IU/VentanaAsignatura.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Curso/Bachiller.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/IU/VentanaCursoAsign.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/IU/JPanelTpAsign.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Curso/FP.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Asignatura/Obligatoria.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/IU/VentanaCurso.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Main/GestionColegios.java</file>
         </group>
     </open-files>
 </project-private>
