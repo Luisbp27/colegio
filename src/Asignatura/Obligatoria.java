@@ -14,11 +14,10 @@ import Estudiante.Estudiante;
  */
 public class Obligatoria extends Asignatura {
     
-    private int creditos;
+    private static final int CREDITOS = 6;
 
-    public Obligatoria(String nombre, int codigo, Curso curso, int creditos) {
+    public Obligatoria(String nombre, int codigo, Curso curso) {
         super(nombre, codigo, curso);
-        this.creditos = creditos;
     }
 
     public int compareTo(Asignatura a) {
@@ -37,7 +36,7 @@ public class Obligatoria extends Asignatura {
 
     @Override
     public String toString() {
-        return nombre + " CÓDIGO: " + codigo + " Nº Créditos: " + creditos;
+        return nombre + " CÓDIGO: " + codigo + " Nº Créditos: " + CREDITOS;
     }
 
     @Override

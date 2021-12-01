@@ -29,13 +29,9 @@ public class FP extends Curso {
     
     @Override
     public String toString() {
-<<<<<<< Updated upstream
     String s="";
       s+="Curso FP: "+nombre+" en especialidad de "+especialidad+", código "+codigo;
       return s;
-=======
-        return "FP: "+ codigo + " - " + nombre + " - " + especialidad;
->>>>>>> Stashed changes
     }
 
     @Override
