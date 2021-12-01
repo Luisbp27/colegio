@@ -27,9 +27,13 @@ public class Bachiller extends Curso {
     
     @Override
     public String toString() {
+<<<<<<< Updated upstream
       String s="";
       s+="Curso de bachiller: "+nombre+" de "+año+" año, código "+codigo;
       return s;
+=======
+        return "BACHILLER: "+ codigo + " - " + nombre + " - " + año;
+>>>>>>> Stashed changes
     }
 
     @Override

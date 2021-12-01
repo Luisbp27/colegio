@@ -40,7 +40,7 @@ public class VentanaCurso extends JFrame {
     private VentanaEstudiante vEstudiante;
 
     // Especialidades de un curso FP:
-    private final FP.Especialidad especialidades[] = {Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA, Especialidad.INFORMÁTICA};
+    private final FP.Especialidad especialidades[] = {Especialidad.INFORMÁTICA, Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA};
     // Tipos de cursos de Bachiller: tBach
     private final Bachiller.Año tBach[] = {Año.PRIMERO, Año.SEGUNDO};
 
@@ -81,7 +81,7 @@ public class VentanaCurso extends JFrame {
     private JButton botonEntrar;
 
     // VARIABLES
-    private final String listaC = "Lista Cursos";
+    private final String listaCursos = "Lista Cursos";
     private FP fp;
     private Bachiller bch, cb;
     private Object objeto, c, aEliminar;
@@ -195,7 +195,7 @@ public class VentanaCurso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                if (!listaCursosJBox.getSelectedItem().equals(listaC)) {
+                if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
 
                     aEliminar = listaCursosJBox.getSelectedItem();
                     accionBaja();
@@ -211,7 +211,7 @@ public class VentanaCurso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                if (!listaCursosJBox.getSelectedItem().equals(listaC)) {
+                if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
                     // c sera nuestro objeto seleccionado
                     c = listaCursosJBox.getSelectedItem();
                     vCrsAsg = new VentanaCursoAsign(vInicio, c);
@@ -307,7 +307,7 @@ public class VentanaCurso extends JFrame {
         //listaCursoAux = vInicio.getListaGlobalCursos();
 
         i = panelTipo.getSelectTCurso();
-        // 1 = curso 2 = batch
+        // 1 = fp 2 = bach
         switch (i) {
             case 1:
                 // JComboBox con las especialidades
@@ -315,7 +315,7 @@ public class VentanaCurso extends JFrame {
                 // vemos que especialidad es y la añadimos acordemente
                 for (int j = 0; j < especialidades.length; j++) {
                     if (seleccionado.getSelectedItem().equals(especialidades[j])) {
-                        listaCursoAux.addObject(fp = new FP(Integer.parseInt(areaCodigo.getText()), areaNombre.getText(), especialidades[j]));
+                        listaCursoAux.addObject(fp = new FP(areaNombre.getText(), Integer.parseInt(areaCodigo.getText()), especialidades[j]));
                         listaCursosJBox.addItem(fp);
                         this.pantalla.setText(fp.toString());
                     }
@@ -329,7 +329,7 @@ public class VentanaCurso extends JFrame {
                 // vemos que año es y la añadimos acordemente
                 for (int j = 0; j < tBach.length; j++) {
                     if (seleccionado.getSelectedItem().equals(tBach[j])) {
-                        listaCursoAux.addObject(bch = new Bachiller(Integer.parseInt(areaCodigo.getText()), areaNombre.getText(), tBach[j]));
+                        listaCursoAux.addObject(bch = new Bachiller(areaNombre.getText(), Integer.parseInt(areaCodigo.getText()), tBach[j]));
                         listaCursosJBox.addItem(bch);
                         this.pantalla.setText(bch.toString());
                     }
@@ -398,7 +398,7 @@ public class VentanaCurso extends JFrame {
         this.areaCodigo.setText("");
         this.pantalla.setText("");
         listaCursosJBox.removeAllItems();
-        listaCursosJBox.addItem(listaC);
+        listaCursosJBox.addItem(listaCursos);
 
         for (int n = 0; n < listaCursoAux.getSize(); n++) {
             listaCursosJBox.addItem(listaCursoAux.getArray()[n]);
