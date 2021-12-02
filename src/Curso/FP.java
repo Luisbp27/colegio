@@ -69,7 +69,7 @@ public class FP extends Curso {
 
     @Override
     public void remove(Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lista_curso_asignatura.removeAsignatura(x);
     }
     
     

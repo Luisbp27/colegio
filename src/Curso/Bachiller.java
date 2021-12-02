@@ -52,7 +52,7 @@ public class Bachiller extends Curso {
 
     @Override
     public Asignatura getAsignaturaRef(int i) {
-        return lista_curso_asignatura;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Bachiller extends Curso {
 
     @Override
     public void remove(Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lista_curso_asignatura.removeAsignatura(x);
     }
 
 }

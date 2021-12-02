@@ -19,7 +19,7 @@ import java.util.Collections;
 public class ListaAsignaturas implements InterfazLista {
     
     private ArrayList<Asignatura> asignaturas;
-    
+    Lista_Ref_Asignaturas l_Ref_Asign= new Lista_Ref_Asignaturas();
     public ListaAsignaturas() {
         this.asignaturas = new ArrayList<>();
     }
@@ -66,8 +66,10 @@ public class ListaAsignaturas implements InterfazLista {
     }
     
     public void add(Object x){
-        Lista_Ref_Asignaturas l_Ref_Asign= new Lista_Ref_Asignaturas();
         l_Ref_Asign.add_nodo((Asignatura)x);
+    }
+    public void removeAsignatura(Object x){
+        l_Ref_Asign.removeAsignatura((Asignatura)x);
     }
 
     public void removeObject(Object x) {
