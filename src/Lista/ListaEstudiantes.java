@@ -5,6 +5,7 @@
  */
 package Lista;
 
+import Asignatura.Asignatura;
 import Estudiante.Estudiante;
 import Interfaz.InterfazLista;
 import java.util.ArrayList;
@@ -57,6 +58,10 @@ public class ListaEstudiantes implements InterfazLista {
                 estudiantes.remove(i);
             }
         }
+    }
+    
+    public Asignatura getAsignatura(int i) {
+        return null;
     }
 
     public void removeObject(Object x) {

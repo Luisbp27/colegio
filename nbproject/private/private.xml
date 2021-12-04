@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/colegio/src/Asignatura/Optativa.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/colegio/src/Asignatura/Obligatoria.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/colegio/src/Curso/Bachiller.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/colegio/src/Curso/FP.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/colegio/src/Asignatura/Asignatura.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Curso/Curso.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/IU/VentanaEstudiante.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Curso/FP.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Curso/Bachiller.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/IU/VentanaInicioGestion.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Estudiante/Estudiante.java</file>
+            <file>file:/C:/Users/luisb/Documents/GitHub/colegio/src/Lista/ListaAsignaturas.java</file>
         </group>
     </open-files>
 </project-private>

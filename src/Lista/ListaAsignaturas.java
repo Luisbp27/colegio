@@ -8,9 +8,7 @@ package Lista;
 import Asignatura.Asignatura;
 import Interfaz.InterfazLista;
 import Lista_Ref.Lista_Ref_Asignaturas;
-import Lista_Ref.Nodo;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  *
@@ -19,7 +17,8 @@ import java.util.Collections;
 public class ListaAsignaturas implements InterfazLista {
     
     private ArrayList<Asignatura> asignaturas;
-    Lista_Ref_Asignaturas l_Ref_Asign= new Lista_Ref_Asignaturas();
+    Lista_Ref_Asignaturas l_Ref_Asign = new Lista_Ref_Asignaturas();
+    
     public ListaAsignaturas() {
         this.asignaturas = new ArrayList<>();
     }
@@ -50,7 +49,6 @@ public class ListaAsignaturas implements InterfazLista {
     //METODOS DE GESTION DE LA LISTA
     public void addObject(Object o) {
         asignaturas.add((Asignatura) o);
-
     }
 
     public void removeObject(int i) {
@@ -59,7 +57,7 @@ public class ListaAsignaturas implements InterfazLista {
 
     public void removeObject(String s) {
         for (int i = 0; i < this.getSize(); i++) {
-            if (asignaturas.get(i).getNombre() == s) {
+            if (asignaturas.get(i).getNombre().equals(s)) {
                 asignaturas.remove(i);
             }
         }
@@ -77,26 +75,23 @@ public class ListaAsignaturas implements InterfazLista {
     }
 
     public void ordenarLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

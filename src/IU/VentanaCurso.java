@@ -35,7 +35,7 @@ public class VentanaCurso extends JFrame {
     private final int alto_MAX = 400;
     private final int ancho_MAX = 600;
 
-    private VentanaInicioGestion vInicio;
+    private VentanaInicio vInicio;
     private VentanaAsignatura vAsignatura;
     private VentanaEstudiante vEstudiante;
 
@@ -385,7 +385,7 @@ public class VentanaCurso extends JFrame {
         // Lo quitamos del JCombobox
         listaCursosJBox.removeItem(aEliminar);
         // la volvemos a poner en la "global"
-        vInicio.setetListaGlobalAlumnos(listaAuxAlumnos);
+        vInicio.setListaGlobalEstudiantes(listaAuxAlumnos);
         vInicio.setListaGlobalCursos(listaCursoAux);
         vInicio.setListaAsignaturas(listaAuxiliarAsignatura);
     }
@@ -418,7 +418,7 @@ public class VentanaCurso extends JFrame {
         return objeto;
     }
 
-    public void setInicio(VentanaInicioGestion vI) {
+    public void setInicio(VentanaInicio vI) {
         vInicio = vI;
         vAsignatura = vInicio.getvAsignatura();
         vEstudiante = vInicio.getvEstudiante();

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +13,7 @@ import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
 import Lista.ListaEstudiantes;
 
-public class VentanaInicioGestion extends JFrame {
+public class VentanaInicio extends JFrame {
 
     //VARIABLES GLOBALES
     private ListaAsignaturas lista_global_asignaturas;
@@ -24,30 +23,30 @@ public class VentanaInicioGestion extends JFrame {
     //INICIALIZACIÓN VARIABLES GLOBALES
     //lista_global_asignaturas
     //Tamaño Pantalla
-    private final int alto_MAX = 300;
-    private final int ancho_MAX = 600;
+    private static final int ALTURA = 300;
+    private static final int ANCHURA = 600;
 
     //Componentes:
     private JPanel panelBotones;
     private JPanel panelTitulo;
 
     private JButton bCurso;
-    private JButton bAsign;
-    private JButton bEstud;
+    private JButton bAsignatura;
+    private JButton bEstudiante;
 
     private JLabel titulo;
 
     //Ventanas para abrir
-    VentanaAsignatura vAsignatura;
-    VentanaEstudiante vEstudiante;
-    VentanaCurso vCurso;
+    VentanaAsignatura ventanaAsignatura;
+    VentanaEstudiante ventanaEstudiante;
+    VentanaCurso ventanaCurso;
 
     //Constructor
-    public VentanaInicioGestion(VentanaCurso vCurso, VentanaAsignatura vAsignatura, VentanaEstudiante vEstudiante, ListaCursos listaCurso, ListaAsignaturas listaAsignatura, ListaEstudiantes listaEstudiantes) {
+    public VentanaInicio(VentanaCurso ventanaCurso, VentanaAsignatura ventanaAsignatura, VentanaEstudiante ventanaEstudiante, ListaCursos listaCurso, ListaAsignaturas listaAsignatura, ListaEstudiantes listaEstudiantes) {
         super("Programa de Gestión de Datos Colegio");
-        this.vCurso = vCurso;
-        this.vAsignatura = vAsignatura;
-        this.vEstudiante  = vEstudiante;
+        this.ventanaCurso = ventanaCurso;
+        this.ventanaAsignatura = ventanaAsignatura;
+        this.ventanaEstudiante = ventanaEstudiante;
 
         lista_global_cursos = listaCurso;
         lista_global_asignaturas = listaAsignatura;
@@ -57,7 +56,7 @@ public class VentanaInicioGestion extends JFrame {
 
     private void initComponents() {
         //+35 por los botones de la ventana y +5 para las separaciones Horitzontales
-        this.setSize(ancho_MAX, alto_MAX);
+        this.setSize(ANCHURA, ALTURA);
         this.setLocationRelativeTo(null);
 
         //Quitamos el Layout para ordenar los paneles
@@ -82,45 +81,45 @@ public class VentanaInicioGestion extends JFrame {
         this.titulo = new JLabel("GESTIÓN DE DATOS");
         this.titulo.setFont(new Font("Arial", Font.PLAIN, 24));
         this.titulo.setVerticalAlignment(SwingConstants.CENTER);
-
+       
         //Botones
         this.bCurso = new JButton("Curso");
         this.bCurso.setBackground(Color.BLACK);
 
-        this.bAsign = new JButton("Asignatura");
-        this.bAsign.setBackground(Color.BLACK);
+        this.bAsignatura = new JButton("Asignatura");
+        this.bAsignatura.setBackground(Color.BLACK);
 
-        this.bEstud = new JButton("Estudiante");
-        this.bEstud.setBackground(Color.BLACK);
+        this.bEstudiante = new JButton("Estudiante");
+        this.bEstudiante.setBackground(Color.BLACK);
 
         ///Actiones Botones///
         //Acciones al presionar el botón "Curso"
         bCurso.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
-            vCurso.setVisible(true);
+            ventanaCurso.setVisible(true);
         });
 
         //Acciones al presionar el botón "Asignatura"
-        bAsign.addActionListener((ActionEvent ae) -> {
+        bAsignatura.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
-            vAsignatura.setVisible(true);
+            ventanaAsignatura.setVisible(true);
         });
 
         //Acciones al presionar el botón "Estudiante"
-        bEstud.addActionListener((ActionEvent ae) -> {
+        bEstudiante.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
-            vEstudiante.setVisible(true);
+            ventanaEstudiante.setVisible(true);
         });
 
         //.setBounds(x,y,ancho,alto)
-        panelBotones.setBounds(27, this.alto_MAX - 100, this.ancho_MAX - 60, 30);
-        panelTitulo.setBounds(0+7, 20, this.ancho_MAX - 20, this.alto_MAX - 20);
+        panelBotones.setBounds(27, VentanaInicio.ALTURA - 100, VentanaInicio.ANCHURA - 60, 30);
+        panelTitulo.setBounds(0 + 7, 20, VentanaInicio.ANCHURA - 20, VentanaInicio.ALTURA - 20);
         //titulo.setBounds(this.ancho_MAX/2 - 50, 0,200,200);
 
         //Añadir componentes
         panelBotones.add(bCurso);
-        panelBotones.add(bAsign);
-        panelBotones.add(bEstud);
+        panelBotones.add(bAsignatura);
+        panelBotones.add(bEstudiante);
 
         panelTitulo.add(titulo);
 
@@ -134,43 +133,43 @@ public class VentanaInicioGestion extends JFrame {
         this.dispose();
     }
 
-    public VentanaCurso getvCurso(){
-        return vCurso;
+    public VentanaCurso getVentanaCurso() {
+        return ventanaCurso;
     }
 
-    public void setListaGlobalCursos(ListaCursos x){
-        this.lista_global_cursos = x;
+    public void setListaGlobalCursos(ListaCursos lc) {
+        this.lista_global_cursos = lc;
     }
 
-    public ListaCursos getListaGlobalCursos(){
+    public ListaCursos getListaGlobalCursos() {
         return this.lista_global_cursos;
     }
-    public ListaAsignaturas getListaGlobalAsignaturas(){
+
+    public ListaAsignaturas getListaGlobalAsignaturas() {
         return this.lista_global_asignaturas;
     }
-     public ListaEstudiantes getListaGlobalEstudiantes(){
+
+    public ListaEstudiantes getListaGlobalEstudiantes() {
         return this.lista_global_estudiantes;
-        
     }
-      public void setetListaGlobalAlumnos(ListaEstudiantes x){
-        this.lista_global_estudiantes=x;
-        
+
+    public void setListaGlobalEstudiantes(ListaEstudiantes le) {
+        this.lista_global_estudiantes = le;
     }
-    public void setListaAsignaturas(ListaAsignaturas la){
+
+    public void setListaAsignaturas(ListaAsignaturas la) {
         this.lista_global_asignaturas = la;
     }
-    
 
-    
     public VentanaAsignatura getvAsignatura() {
-        return vAsignatura;
+        return ventanaAsignatura;
     }
 
     public VentanaEstudiante getvEstudiante() {
-        return vEstudiante;
+        return ventanaEstudiante;
     }
-    
-    private VentanaInicioGestion getInicio(){
+
+    private VentanaInicio getInicio() {
         return this;
     }
 }

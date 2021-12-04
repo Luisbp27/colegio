@@ -46,7 +46,7 @@ public class VentanaEstudiante extends JFrame {
     private final int alturaBotnsAsig = 50;
 
     // Variables
-    private VentanaInicioGestion vInicio;
+    private VentanaInicio vInicio;
     private VentanaAsignatura vAsignatura;
     private VentanaCurso vCurso;
 
@@ -664,10 +664,10 @@ public class VentanaEstudiante extends JFrame {
         this.dispose();
     }
 
-    public void setInicio(VentanaInicioGestion vI) {
+    public void setInicio(VentanaInicio vI) {
         vInicio = vI;
         vAsignatura = vInicio.getvAsignatura();
-        vCurso = vInicio.getvCurso();
+        vCurso = vInicio.getVentanaCurso();
     }
 
     public ListaEstudiantes getListaEstudiantes() {

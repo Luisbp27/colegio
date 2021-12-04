@@ -13,30 +13,30 @@ import Interfaz.InterfazLista;
  * @author luisb
  */
 public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
-    
+
     private Nodo cabecera;
     private Nodo vacia;
-    
+
     public Lista_Ref_Estudiantes_Asignaturas() {
         this.cabecera = null;
     }
-    
+
     public void addAsignatura(Asignatura asignatura) {
         Nodo nuevo = new Nodo(asignatura);
-        
+
         if (cabecera != null) {
             Nodo index = cabecera;
-            
+
             while (index.getNodo() != null) {
                 index = index.getNodo();
             }
-            
+
             index.setNodo(nuevo);
         } else {
             cabecera = nuevo;
         }
     }
-    
+
     public void removeNodo(Asignatura asignatura) {
         if (cabecera != null) {
             if (cabecera.getInfo().equals(asignatura)) {
@@ -97,32 +97,33 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
             System.out.println("Lista vacía\n");
         }
     }
-    
+
+    @SuppressWarnings("override")
     public Object getInfo(int i) {
         Nodo aux = cabecera;
         int j = 0;
-        
-        if (aux != null){
-            while(!aux.isEmpty() && j < i ){
+
+        if (aux != null) {
+            while (!aux.isEmpty() && j < i) {
                 j++;
-                if(aux.getNodo() != null) {
+                if (aux.getNodo() != null) {
                     aux = aux.getNodo();
                 }
             }
-            
+
             return aux.getInfo();
         } else {
             return null;
-        } 
+        }
     }
-    
+
     public void visualizarLista() {
         Nodo aux = cabecera;
-        
-        if (!aux.isEmpty()){
+
+        if (!aux.isEmpty()) {
             System.out.println(aux.getInfo().toString());
-            
-            while(aux.getNodo() != null){
+
+            while (aux.getNodo() != null) {
                 aux = aux.getNodo();
                 System.out.println(aux.getInfo().toString());
             }
@@ -130,19 +131,45 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
             System.out.println("Vacía");
         }
     }
-    
-    public int getSize(){
+
+    public int getSize() {
         Nodo aux = cabecera;
         int i = 0;
-        
-        if(aux != null){
+
+        if (aux != null) {
             i++;
-            while(aux.getNodo() != null){
+            while (aux.getNodo() != null) {
                 i++;
-                aux = aux.getNodo();                
-            } 
+                aux = aux.getNodo();
+            }
         }
-        
-        return i;    
-    }    
+
+        return i;
+    }
+
+    @Override
+    public String getInfoTotal() {
+        return null;
+    }
+
+    @Override
+    public Object getObject(int pos) {
+        return null;
+    }
+
+    @Override
+    public void setObject(Object o) {
+    }
+
+    @Override
+    public void setObject(int i, Object o) {
+    }
+
+    @Override
+    public void removeObject(Object o) {
+    }
+
+    @Override
+    public void removeObject(int i) {
+    }
 }

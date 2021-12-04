@@ -3,7 +3,7 @@ package Main;
 import IU.VentanaAsignatura;
 import IU.VentanaCurso;
 import IU.VentanaEstudiante;
-import IU.VentanaInicioGestion;
+import IU.VentanaInicio;
 import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
 import Lista.ListaEstudiantes;
@@ -36,7 +36,7 @@ public class GestionColegios {
         VentanaAsignatura vAsign = new VentanaAsignatura();
         VentanaEstudiante vEstud = new VentanaEstudiante();
 
-        VentanaInicioGestion vInicio = new VentanaInicioGestion(vCurso, vAsign, vEstud, listaCursos, listaAsignaturas, listaEstudiantes);
+        VentanaInicio vInicio = new VentanaInicio(vCurso, vAsign, vEstud, listaCursos, listaAsignaturas, listaEstudiantes);
         
         vCurso.setInicio(vInicio);
         vAsign.setInicio(vInicio);
