@@ -26,7 +26,13 @@ public class Nodo {
         this.info = info;
         this.siguiente = null;
     }
-    
+/**
+ * Constructor que inicializamos los atributos a Null 
+ */
+    public Nodo(Object info,Nodo n) {
+        this.info = info;
+        siguiente = n;
+    }
     /**
      * Método que modifica el valor del atributo siguiente por el valor pasado
      * por parámetro 

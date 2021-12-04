@@ -22,7 +22,7 @@ public interface InterfazLista {
     public String getInfo(int pos);
     //método que devuelve LA INFORMACIÓN de todos los elementos de la lista
     public String getInfoTotal();
-    //método para obtener un elemento i-ésimo de la lista según su posición
+    //método pra obtener un elemento i-ésimo de la lista según su posición
     public Object getObject(int pos);
     //método para añadir un el elemento a la lista (nombre y código)
     public void setObject(Object o); //o addObject

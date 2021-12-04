@@ -14,12 +14,11 @@ import Estudiante.Estudiante;
  */
 public class Obligatoria extends Asignatura {
     
-    //private static final int CREDITOS = 6; En la interfaz hay tres posibilidades
-    private double creditos;
-    
-    public Obligatoria(String nombre, int codigo, Curso curso,double creditos) {
-        super(nombre, codigo, creditos,curso.getNombre());
-        this.creditos=creditos;
+    private int creditos;
+
+    public Obligatoria(String nombre, int codigo, int creditos) {
+        super(nombre, codigo);
+        this.creditos = creditos;
     }
 
     public int compareTo(Asignatura a) {
@@ -38,7 +37,7 @@ public class Obligatoria extends Asignatura {
 
     @Override
     public String toString() {
-        return (nombre + " -> Código: " + codigo + " Nº Créditos: " + creditos);
+        return nombre + " CÓDIGO: " + codigo + " Nº Créditos: " + creditos;
     }
 
     @Override
@@ -61,26 +60,24 @@ public class Obligatoria extends Asignatura {
         this.codigo = codigo;
     }
 
-   /* @Override
+    @Override
     public void setStringCurso(String x) {
         this.stringCurso = x;
-    }*/
+    }
 
     @Override
     public String getStringCurso() {
         return stringCurso;
     }
 
-    /*
     @Override
     public Estudiante getRefEstudiante(int i) {
         return (Estudiante)lre.getInfo(i);
     }
 
-    
     @Override
     public int getSizeRef() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lre.getSize();
     }
 
     @Override
@@ -92,5 +89,5 @@ public class Obligatoria extends Asignatura {
     public void remove(Estudiante e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    */
+    
 }

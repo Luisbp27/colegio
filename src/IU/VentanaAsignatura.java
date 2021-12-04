@@ -21,7 +21,7 @@ import Asignatura.Obligatoria;
 import Asignatura.Optativa;
 import Curso.Bachiller;
 import Curso.FP;
-import Lista.ListaEstudiantesAntigua;
+import Lista.ListaEstudiantes;
 import Lista.ListaAsignaturas;
 
 
@@ -328,7 +328,7 @@ public class VentanaAsignatura extends JFrame {
      */
     private void accionListarCurso() {
         //Lista auxiliar de alumnos
-        ListaEstudiantesAntigua lista_auxiliar = new ListaEstudiantesAntigua();
+        ListaEstudiantes lista_auxiliar = new ListaEstudiantes();
         //Si el tipo de asignatura seleccionado no esta vacio
         if (!panelTipoAsignatura.isEmpty()) {
             //Y si el elemento seleccionado del Jbox no es la cabecera

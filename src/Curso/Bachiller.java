@@ -6,7 +6,6 @@
 package Curso;
 
 import Asignatura.Asignatura;
-import Lista.ListaAsignaturas;
 
 /**
  *
@@ -15,22 +14,20 @@ import Lista.ListaAsignaturas;
 public class Bachiller extends Curso {
 
     private Año año;
-  
+
     public enum Año {
         PRIMERO, SEGUNDO;
     }
-    
+
     public Bachiller(String nombre, int codigo, Año año) {
         super(nombre, codigo);
-        
+
         this.año = año;
     }
-    
+
     @Override
     public String toString() {
-      String s="";
-      s+=" Bachiller "+nombre+" de "+año+" año, código "+codigo;
-      return s;
+        return "BACHILLER: " + codigo + " - " + nombre + " - " + año;
     }
 
     @Override
@@ -45,20 +42,14 @@ public class Bachiller extends Curso {
 
     @Override
     public void setNombre(String name) {
-            this.nombre=name;
+        this.nombre = name;
     }
 
     @Override
     public void setCodigo(int cod) {
-        this.codigo=cod;
+        this.codigo = cod;
     }
-    
-    @Override
-    public ListaAsignaturas getListaAsignaturas() {
-        return this.lista_curso_asignatura;
-    }
-    
-    /*
+
     @Override
     public Asignatura getAsignaturaRef(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -66,19 +57,17 @@ public class Bachiller extends Curso {
 
     @Override
     public int getSizeRef() {
-        return (this.lista_curso_asignatura.getSize());
+        return lista_curso_asignatura.getSize();
     }
 
     @Override
     public void add(Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lista_curso_asignatura.add(x); 
     }
 
     @Override
     public void remove(Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lista_curso_asignatura.removeAsignatura(x);
     }
-    
-    */
-    
+
 }

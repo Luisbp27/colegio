@@ -6,7 +6,7 @@ import Asignatura.Optativa;
 import Curso.Bachiller;
 import Curso.FP;
 import Estudiante.Estudiante;
-import Lista.ListaEstudiantesAntigua;
+import Lista.ListaEstudiantes;
 import Lista.ListaAsignaturas;
 import java.awt.Color;
 import java.awt.Font;
@@ -51,7 +51,7 @@ public class VentanaEstudiante extends JFrame {
     private VentanaCurso vCurso;
 
     // RELLENAR CON EL TIPO DE ASIGNATURAS
-    private ListaEstudiantesAntigua listaEstudiantes;
+    private ListaEstudiantes listaEstudiantes;
 
     // Componentes:
     // Barra de Menu
@@ -105,7 +105,7 @@ public class VentanaEstudiante extends JFrame {
     // CONSTRUCTOR//
     public VentanaEstudiante() {
         super("Gestión Estudiantes");
-        listaEstudiantes = new ListaEstudiantesAntigua();
+        listaEstudiantes = new ListaEstudiantes();
         initComponents();
     }
 
@@ -588,7 +588,7 @@ public class VentanaEstudiante extends JFrame {
         estudiantesJBox.removeAllItems();
         estudiantesJBox.addItem(lEstudiantes);
         //Lista auxiliar de alumnos
-        ListaEstudiantesAntigua lista_auxiliar = new ListaEstudiantesAntigua();
+        ListaEstudiantes lista_auxiliar = new ListaEstudiantes();
 
         //Si el objeto seleccionado del JBox es perteneciente a Optativa o a Obligatoria
         if (listaTipoAsignaturasJBox.getSelectedItem().getClass() == Optativa.class || listaTipoAsignaturasJBox.getSelectedItem().getClass() == Obligatoria.class) {
@@ -643,7 +643,7 @@ public class VentanaEstudiante extends JFrame {
     private void inItEstudiantes() {
         this.estudiantesJBox.removeAllItems();
         this.estudiantesJBox.addItem(lEstudiantes);
-        ListaEstudiantesAntigua lista_auxiliar = vInicio.getListaGlobalEstudiantes();
+        ListaEstudiantes lista_auxiliar = vInicio.getListaGlobalEstudiantes();
         for (int i = 0; i < lista_auxiliar.getSize(); i++) {
             if (lista_auxiliar.getEstudiante(i).getSizeRef() != 0) {
                 this.estudiantesJBox.addItem(lista_auxiliar.getEstudiante(i));
@@ -670,7 +670,7 @@ public class VentanaEstudiante extends JFrame {
         vCurso = vInicio.getvCurso();
     }
 
-    public ListaEstudiantesAntigua getListaEstudiantes() {
+    public ListaEstudiantes getListaEstudiantes() {
         return listaEstudiantes;
     }
 

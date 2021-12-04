@@ -8,7 +8,8 @@ package Curso;
 import Asignatura.Asignatura;
 import Interfaz.InterfazDatos;
 import Lista.ListaAsignaturas;
-//import Lista.ListaCursos;
+import Lista.ListaCursos;
+import Lista_Ref.Lista_Ref_Asignaturas;
 
 /**
  *
@@ -44,10 +45,7 @@ public abstract class Curso implements InterfazDatos {
     
     @Override
     public abstract void setCodigo(int cod);
-    
-    public abstract ListaAsignaturas getListaAsignaturas();
-    
-    /*
+
     public abstract Asignatura getAsignaturaRef(int i);
 
     public abstract int getSizeRef();
@@ -55,6 +53,5 @@ public abstract class Curso implements InterfazDatos {
     public abstract void add(Object x);
 
     public abstract void remove(Object x);
-*/
     
 }

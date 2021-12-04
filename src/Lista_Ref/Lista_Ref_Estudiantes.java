@@ -12,7 +12,7 @@ import Interfaz.InterfazLista;
  *
  * @author luisb
  */
-public class Lista_Ref_Estudiantes implements InterfazLista {
+public class Lista_Ref_Estudiantes {
     
     private Nodo cabecera;
     private Nodo vacia;
@@ -21,23 +21,19 @@ public class Lista_Ref_Estudiantes implements InterfazLista {
         cabecera = null;
     }
     
-    @Override
-    public void setObject(Object nodo) {
-        
+    public void addNodo(Nodo nodo) {
         Nodo aux = cabecera;
         
         while (aux.getNodo() != null) {
             aux = aux.getNodo();
         }
         
-        aux.setNodo((Nodo)nodo);
+        aux.setNodo(nodo);
     }
     
-    @Override
-    public void removeObject(Object estudiante) {
-        Estudiante es=(Estudiante)estudiante;
+    public void removeNodo(Estudiante estudiante) {
         if (cabecera != null) {
-            if (cabecera.getInfo().equals(es)) {
+            if (cabecera.getInfo().equals(estudiante)) {
                 Nodo nodoBorrado = cabecera;
                 if (cabecera.getNodo() == null) {
                     cabecera = null;
@@ -68,7 +64,7 @@ public class Lista_Ref_Estudiantes implements InterfazLista {
                 boolean encontrado = false;
                 Nodo index = cabecera;
                 while (!encontrado && index.getNodo() != null) {
-                    if (index.getNodo().getInfo().equals(es)) {
+                    if (index.getNodo().getInfo().equals(estudiante)) {
                         encontrado = true;
                     } else {
                         index = index.getNodo();
@@ -96,8 +92,7 @@ public class Lista_Ref_Estudiantes implements InterfazLista {
         }
     }
     
-    @Override
-    public Object getObject(int i) {
+    public Object getInfo(int i) {
         Nodo aux = cabecera;
         int j = 0;
         
@@ -115,43 +110,21 @@ public class Lista_Ref_Estudiantes implements InterfazLista {
         } 
     }
     
-    @Override
-    public String getInfo(int pos) {
-          Nodo aux = cabecera;
-        int j = 0;
-        
-        if (aux != null){
-            while(!aux.isEmpty() && j < pos ){
-                j++;
-                if(aux.getNodo() != null) {
-                    aux = aux.getNodo();
-                }
-            }
-            
-            return aux.getInfo().toString();
-        } else {
-            return null;
-        } 
-    }
-    
-    @Override
-    public String getInfoTotal() {
-        String s="";
+    public void visualizarLista() {
         Nodo aux = cabecera;
         
         if (!aux.isEmpty()){
-            s+=(aux.getInfo().toString())+"\n";
+            System.out.println(aux.getInfo().toString());
             
             while(aux.getNodo() != null){
                 aux = aux.getNodo();
-                s+=(aux.getInfo().toString())+"\n";
+                System.out.println(aux.getInfo().toString());
             }
         } else {
-            return s; //Vacía
-        }return s;
-    } 
+            System.out.println("Vacía");
+        }
+    }
     
-    @Override
     public int getSize(){
         Nodo aux = cabecera;
         int i = 0;
@@ -165,18 +138,9 @@ public class Lista_Ref_Estudiantes implements InterfazLista {
         }
         
         return i;    
-    }   
-    
-     
+    }    
 
-    @Override
-    public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void removeObject(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
 }

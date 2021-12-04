@@ -17,12 +17,11 @@ public class Optativa extends Asignatura {
     public enum Tipo {
         TEÓRICA, PRÁCTICA;
     }
-    
-    private static final int CREDITOS = 3;
     private Tipo tipo;
+    private final int creditos = 3;
 
-    public Optativa(String nombre, int codigo, Curso curso, Tipo tipo) {
-        super(nombre, codigo, Optativa.CREDITOS, curso.getNombre());
+    public Optativa(String nombre, int codigo, Tipo tipo) {
+        super(nombre, codigo);
         this.tipo=tipo;
     }
 
@@ -32,51 +31,47 @@ public class Optativa extends Asignatura {
     
     @Override
     public String toString() {
-                return (nombre + " -> Perfil: "+ tipo +" Código: " + codigo + " Nº Créditos: " + CREDITOS);
-
+        return nombre+" CODIGO: "+codigo+" PERFIL: "+tipo;
     }
 
     @Override
     public String getNombre() {
-        return nombre;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public int getCodigo() {
-        return codigo;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCodigo(int cod) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /*
     @Override
     public void setStringCurso(String x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
+        this.stringCurso = x;
+    }
 
     @Override
     public String getStringCurso() {
-        return this.stringCurso;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /*
-     @Override
+    @Override
     public Estudiante getRefEstudiante(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-  
-    
+
     @Override
     public int getSizeRef() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lre.getSize();
     }
 
     @Override
@@ -88,7 +83,6 @@ public class Optativa extends Asignatura {
     public void remove(Estudiante e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-*/
     
     
     

@@ -21,12 +21,8 @@ import javax.swing.event.AncestorListener;
 import Asignatura.Obligatoria;
 import Asignatura.Optativa;
 import Curso.Bachiller;
-import Curso.Curso;
 import Curso.FP;
 import Estudiante.Estudiante;
-import IU.JPanelTpAsign;
-import IU.VentanaCurso;
-import IU.VentanaInicioGestion;
 import Lista.ListaAsignaturas;
 import Lista.ListaEstudiantes;
 import Lista.ListaCursos;
@@ -85,9 +81,9 @@ public class VentanaCursoAsign extends JFrame {
 
     // Variables
     private FP sel_fp;
-    private Bachiller sel_bch;
-    private Obligatoria obli;
-    private Optativa opt;
+    private Bachiller sel_bachiller;
+    private Obligatoria obligatoria;
+    private Optativa optativa;
     private final Optativa.Tipo perfiles[] = {Optativa.Tipo.TEÓRICA, Optativa.Tipo.PRÁCTICA};
     private int asig_option, i, size_lista_ref;
     private static final String asignaturaBox = "Asignaturas";
@@ -96,39 +92,37 @@ public class VentanaCursoAsign extends JFrame {
     private ListaEstudiantes listaAuxEstudiantes;
 
     // Constructores
-    public VentanaCursoAsign(VentanaInicioGestion inicio, Curso seleccionado) {
+    public VentanaCursoAsign(VentanaInicioGestion inicio, Object seleccionado) {
         // super("Gestión Asignaturas - Curso" + nombreCurso);
-        super("Gestión Asignaturas - " + seleccionado.getNombre());
+        super("Gestión Asignaturas - " + seleccionado);
         vInicio = inicio;
         vCurso = vInicio.getvCurso();
-        
+
         //conseguimos las listas "globales"
         listaAuxiliarCurso = vInicio.getListaGlobalCursos();
         listaAuxiliarAsignatura = vInicio.getListaGlobalAsignaturas();
         listaAuxEstudiantes = vInicio.getListaGlobalEstudiantes();
-        
-        //A LO MEJOR NO IMPORTA
+
         //vemos si el objeto seleccionado es Fp o Bachiller
         if (seleccionado.getClass() == FP.class) {
             this.i = 1;
         } else {
             this.i = 2;
         }
-        /* BORRAR SI VA TODO BIEN porque ya paso el curso
         //segun si es bachiller o fp llenamos el objeto correspondiente
         if (this.i == 1) {
             this.sel_fp = (FP) seleccionado;
             //tamaño de la lista con referencias a asignatura
             size_lista_ref = sel_fp.getSizeRef();
         } else if (this.i == 2) {
-            this.sel_bch = (Bachiller) seleccionado;
+            this.sel_bachiller = (Bachiller) seleccionado;
             //tamaño de la lista con referencias a asignatura
-            size_lista_ref = sel_bch.getSizeRef();
-        }*/
-        initComponents(seleccionado);
+            size_lista_ref = sel_bachiller.getSizeRef();
+        }
+        initComponents();
     }
 
-    private void initComponents(Curso seleccionado) {
+    private void initComponents() {
 
         this.setSize(ancho_MAX, alto_MAX);
         this.setLocationRelativeTo(null);
@@ -225,7 +219,7 @@ public class VentanaCursoAsign extends JFrame {
                         }
                     }
                 } else {
-                    accionAltaAsignatura(seleccionado);
+                    accionAltaAsignatura();
                 }
             }
 
@@ -262,7 +256,7 @@ public class VentanaCursoAsign extends JFrame {
             @Override
             public void ancestorAdded(AncestorEvent event
             ) {
-                inIt(seleccionado);
+                inIt();
             }
 
             @Override
@@ -343,55 +337,131 @@ public class VentanaCursoAsign extends JFrame {
     /**
      * Actualiza el Jcombobox con la asignaturas que ya exisitian
      */
-    private void actualizar_lista_asignaturas(ListaAsignaturas lista) {
-            for (int i = 0; i <lista.getSize(); i++) {
-                listaTipoAsignaturasJBox.addItem(lista.getObject(i));
+    private void actualizar_lista_asignaturas() {
+        if (i == 1) {
+            for (int m = 0; m <= size_lista_ref - 1; m++) {
+                listaTipoAsignaturasJBox.addItem(sel_fp.getAsignaturaRef(m));
             }
+        } else if (i == 2) {
+            for (int m = 0; m <= size_lista_ref - 1; m++) {
+                listaTipoAsignaturasJBox.addItem(sel_bachiller.getAsignaturaRef(m));
+            }
+        }
     }
 
-    private void accionAltaAsignatura(Curso seleccionado) {
+    private void accionAltaAsignatura() {
         //Vemos si la opcion es obligatoria (2) u optativa (1)
         asig_option = panelTipoAsignatura.getSelectEspAsignatura();
 
         switch (asig_option) {
-            // Obligatoria
+            // if obligatoria
+            case 0:
+                this.pantalla.setText("No hay ningún tipo de asignatura seleccionado.\n"
+                        + "Por favor, revise su selección");
+                break;
+            // if optativa
             case 2:
-                if (!panelTipoAsignatura.getSelectComboAsig().equals("Créditos")) {
-                    //crear asignatura del curso específico
-                    int codigo=Integer.parseInt(atCodigo.getText());
-                    double creditos=Double.parseDouble(panelTipoAsignatura.getSelectComboAsig().toString());
-                    Obligatoria obl=new Obligatoria(atNombre.getText(),codigo,seleccionado,creditos);
-                     // Añadir a listaAuxiliarAsignatura la asignatura nueva
-                    listaAuxiliarAsignatura.setObject(obl);
-                    listaAuxiliarAsignatura.ordenarLista();
-                    vInicio.setListaAsignaturas(listaAuxiliarAsignatura);
-                    //añadir a la lista de asignaturas del curso en concreto
-                    seleccionado.getListaAsignaturas().setObject(obl);
-                    seleccionado.getListaAsignaturas().ordenarLista();
-                    //añadimos la asignatura en el JComboBox
-                    listaTipoAsignaturasJBox.addItem(obl);
-                    this.pantalla.setText(obl.toString());
+                if (!panelTipoAsignatura.getSelectComboCurso().equals("Especialidad")) {
+                    // add a  listaAuxiliarAsignatura la asig nueva
+                   //public Obligatoria(String nombre, int codigo, Curso curso, int creditos)
+                   
+                    listaAuxiliarAsignatura.addObject(obligatoria = new Obligatoria(atNombre.getText(),Integer.parseInt(atCodigo.getText()),Integer.parseInt(panelTipoAsignatura.getSelectComboAsig().toString())));
+                    //listaAuxiliarAsignatura.addObject(obligatoria = new Obligatoria(Integer.parseInt(atNombre.getText(), Integer.parseInt(atCodigo.getText()),
+                            //Double.parseDouble(panelTipoAsignatura.getSelectComboAsig().toString())));
+                    //vemos segun si el objeto era bachiller o fp
+                    if (this.i == 1) {
+                        listaAuxiliarCurso.removeObject(sel_fp);
+                        //le pasamos el curso.toString() a la asignatura creada
+                        obligatoria.setStringCurso(sel_fp.toString());
+                        //añadimos la asignatura a la lista de referencias del curso
+                        sel_fp.add(obligatoria);
+                        //Actualizamos el curso seleccionado
+                        listaAuxiliarCurso.addObject(sel_fp);
+
+                        //añadimos la asignatura en el JComboBox
+                        listaTipoAsignaturasJBox.addItem(obligatoria);
+                    } else if (this.i == 2) {
+                        listaAuxiliarCurso.removeObject(sel_bachiller);
+                        //le pasamos el curso.toString() a la asignatura creada
+                        obligatoria.setStringCurso(sel_bachiller.toString());
+                        //añadimos la asignatura a la lista de referencias del curso
+                        sel_bachiller.add(obligatoria);
+                        //Actualizamos el curso seleccionado
+                        listaAuxiliarCurso.addObject(sel_bachiller);
+                        //añadimos la asignatura en el JComboBox
+                        listaTipoAsignaturasJBox.addItem(obligatoria);
+                    }
+                    this.pantalla.setText(obligatoria.toString());
                 } else {
-                    this.pantalla.setText("No has seleccionado el número de créditos.\n"
+                    this.pantalla.setText("No hay ningún tipo de asignatura seleccionado.\n"
                             + "Por favor, revise su selección");
                 }
                 break;
-            //Optativa
+            //If obligatoria
             case 1:
                 if (!panelTipoAsignatura.getSelectComboAsig().equals("Perfiles")) {
-                    int codigo=Integer.parseInt(atCodigo.getText());
-                    Optativa.Tipo tipo=(Optativa.Tipo)panelTipoAsignatura.getSelectComboAsig();
-                    Optativa opt=new Optativa(atNombre.getText(),codigo,seleccionado,tipo);
-                        //añadir lista global asignaturas
-                        listaAuxiliarAsignatura.setObject(opt);
-                        //añadir a lista concreta de un curso
-                        seleccionado.getListaAsignaturas().setObject(opt);
-                        seleccionado.getListaAsignaturas().ordenarLista();
-                        //añadirlo a JComboBox de opción
-                        listaTipoAsignaturasJBox.addItem(opt);
-                        this.pantalla.setText(opt.toString());
+                    if (perfiles[1].ordinal() == ((Optativa.Tipo) panelTipoAsignatura.getSelectComboAsig()).ordinal()) {
+                        // add a  listaAuxiliarAsignatura la asig nueva
+                        listaAuxiliarAsignatura.addObject(optativa = new Optativa( atNombre.getText(),Integer.parseInt(atCodigo.getText()), perfiles[1]));
+                        //vemos segun si el objeto era bachiller o fp
+
+                        if (this.i == 1) {
+                            listaAuxiliarCurso.removeObject(sel_fp);
+                            //le pasamos el curso.toString() a la asignatura creada
+                            optativa.setStringCurso(sel_fp.toString());
+                            //añadimos la asignatura a la lista de referencias del curso
+                            sel_fp.add(optativa);
+                            //Actualizamos el curso seleccionado
+                            listaAuxiliarCurso.addObject(sel_fp);
+                            //añadimos la asignatura en el JComboBox
+                            listaTipoAsignaturasJBox.addItem(optativa);
+
+                        } else if (this.i == 2) {
+                            listaAuxiliarCurso.removeObject(sel_bachiller);
+                            //le pasamos el curso.toString() a la asignatura creada
+                            optativa.setStringCurso(sel_bachiller.toString());
+                            //añadimos la asignatura a la lista de referencias del curso
+                            sel_bachiller.add(optativa);
+                            //Actualizamos el curso seleccionado
+                            listaAuxiliarCurso.addObject(sel_bachiller);
+                            //añadimos la asignatura en el JComboBox
+                            listaTipoAsignaturasJBox.addItem(optativa);
+
+                        }
+                        this.pantalla.setText(optativa.toString());
+
+                    } else {
+                        // add a  listaAuxiliarAsignatura la asig nueva
+                        listaAuxiliarAsignatura.addObject(optativa = new Optativa(atNombre.getText(),Integer.parseInt(atCodigo.getText()), perfiles[0]));
+                        //vemos segun si el objeto era bachiller o fp
+                        if (this.i == 1) {
+                            listaAuxiliarCurso.removeObject(sel_fp);
+                            //le pasamos el curso.toString() a la asignatura creada
+                            optativa.setStringCurso(sel_fp.toString());
+                            //añadimos la asignatura a la lista de referencias del curso
+                            sel_fp.add(optativa);
+                            //Actualizamos el curso seleccionado
+
+                            listaAuxiliarCurso.addObject(sel_fp);
+                            //añadimos la asignatura en el JComboBox
+                            listaTipoAsignaturasJBox.addItem(optativa);
+
+                        } else if (this.i == 2) {
+                            listaAuxiliarCurso.removeObject(sel_bachiller);
+                            //le pasamos el curso.toString() a la asignatura creada
+                            optativa.setStringCurso(sel_bachiller.toString());
+                            //añadimos la asignatura a la lista de referencias del curso
+                            sel_bachiller.add(optativa);
+                            //Actualizamos el curso seleccionado
+                            listaAuxiliarCurso.addObject(sel_bachiller);
+                            //añadimos la asignatura en el JComboBox
+                            listaTipoAsignaturasJBox.addItem(optativa);
+
+                        }
+                        this.pantalla.setText(optativa.toString());
+                    }
                 } else {
-                    this.pantalla.setText("Perfil sin seleccionar.\n"
+                    this.pantalla.setText("No hay ningún tipo de asignatura seleccionado.\n"
                             + "Por favor, revise su selección");
                 }
                 break;
@@ -402,7 +472,7 @@ public class VentanaCursoAsign extends JFrame {
         }
         //Actualizamos la slistas
         vInicio.setListaAsignaturas(listaAuxiliarAsignatura);
-        //vInicio.setListaGlobalCursos(listaAuxiliarCurso);
+        vInicio.setListaGlobalCursos(listaAuxiliarCurso);
     }
 
     /**
@@ -446,7 +516,7 @@ public class VentanaCursoAsign extends JFrame {
             es = ass.getRefEstudiante(k);
             listaAuxEstudiantes.removeObject(es);
             es.remove(ass);
-            listaAuxEstudiantes.setObject(es);
+            listaAuxEstudiantes.addObject(es);
             }
             
         }
@@ -460,13 +530,13 @@ public class VentanaCursoAsign extends JFrame {
             if (i == 1) {
                 listaAuxiliarCurso.removeObject(sel_fp);
                 sel_fp.remove(aEliminar);
-                listaAuxiliarCurso.setObject(sel_fp);
+                listaAuxiliarCurso.addObject(sel_fp);
 
             } else if (i == 2) {
 
-                listaAuxiliarCurso.removeObject(sel_bch);
-                sel_bch.removeObject(aEliminar);
-                listaAuxiliarCurso.setObject(sel_bch);
+                listaAuxiliarCurso.removeObject(sel_bachiller);
+                sel_bachiller.remove(aEliminar);
+                listaAuxiliarCurso.addObject(sel_bachiller);
             }
             //eliminamos objeto del combobox
             removeEstudiantes((Asignatura)aEliminar);
@@ -492,14 +562,14 @@ public class VentanaCursoAsign extends JFrame {
         this.vCurso = vInicio.getvCurso();
     }
 
-    private void inIt(Curso seleccionado) {
+    private void inIt() {
         this.atNombre.setText("");
         this.atCodigo.setText("");
         //this.pantalla.setText("");
         this.pantalla.setText("Selecciona una asignatura para ver sus estudiantes");
         listaTipoAsignaturasJBox.removeAllItems();
         listaTipoAsignaturasJBox.addItem("Asignaturas");
-        actualizar_lista_asignaturas(seleccionado.getListaAsignaturas());
+        actualizar_lista_asignaturas();
     }
 
     private void cerrarVentana() {
