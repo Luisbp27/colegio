@@ -27,51 +27,41 @@ public class Estudiante implements InterfazDatos {
     }
     
     public void addAsignatura(Asignatura asignatura) {
-        lrea.addAsignatura(asignatura);
+        lrea.setObject(asignatura);
     }
     
     public void remove(Asignatura asignatura) {
-        lrea.removeNodo(asignatura);
+        lrea.removeObject(asignatura);
     }
     
     public Asignatura getRefAsignaturaEstudiante(int i) {
-        return (Asignatura) lrea.getInfo(i);
+        return (Asignatura) lrea.getObject(i);
     }
     
     public int getSizeRef() {
         return lrea.getSize();
     }
+    
 
-    /**
-     * Método que devuelve el valor del atributo nombre
-     * 
-     * @return 
-     */
+    
+     @Override
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * Método que devuelve el valor del atributo dni
-     * 
-     * @return 
-     */
-    public int getDni() {
+    @Override
+    public int getCodigo() {
         return dni;
     }
 
     @Override
-    public void setNombre(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setNombre(String name) {
+            this.nombre=name;
     }
 
     @Override
-    public void setCodigo(int Codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setCodigo(int cod) {
+        this.dni=cod;
     }
 
-    @Override
-    public int getCodigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

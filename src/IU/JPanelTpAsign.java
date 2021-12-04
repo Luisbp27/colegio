@@ -27,13 +27,14 @@ import javax.swing.event.AncestorListener;
 public class JPanelTpAsign extends JPanel {
 
     private final String sBoxIn = "Seleciona";
-    private final Optativa.Tipo perfiles[] = {Tipo.TEÓRICA, Tipo.PRÁCTICA};
+    private final Optativa.Tipo perfiles[] = {Tipo.PRÁCTICA, Tipo.TEÓRICA};
     // Especialidades de un curso FP:
-    private final FP.Especialidad especialidades[] = {Especialidad.INFORMÁTICA, Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA};
+    private final FP.Especialidad especialidades[] = { Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA,
+            Especialidad.INFORMÁTICA };
     // Tipos de cursos de Bachiller: tBach
     private final Bachiller.Año tBach[] = { Año.PRIMERO, Año.SEGUNDO };
     // Tipos de creditos Asignaturas Obligatorias:
-    private final String creditos[] = { "Créditos", "6", "8", "9" };
+    private final String creditos[] = { "Créditos", "6", "7.5", "9" };
 
     private JLabel tTipo;
     private JLabel tAsignatura;

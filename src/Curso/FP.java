@@ -6,6 +6,7 @@
 package Curso;
 
 import Asignatura.Asignatura;
+import Lista.ListaAsignaturas;
 
 
 
@@ -20,7 +21,7 @@ public class FP extends Curso {
     public enum Especialidad {
         INFORMÁTICA, MECÁNICA, ELECTRÓNICA;
     }
-    
+      
     public FP(String nombre, int codigo, Especialidad especialidad) {
         super(nombre, codigo);
         
@@ -29,7 +30,9 @@ public class FP extends Curso {
     
     @Override
     public String toString() {
-        return "FP: "+ codigo + " - " + nombre + " - " + especialidad;
+    String s="";
+      s+=" FP "+nombre+", especialidad "+especialidad+", código "+codigo;
+      return s;
     }
 
     @Override
@@ -51,7 +54,14 @@ public class FP extends Curso {
     public void setCodigo(int cod) {
         this.codigo=cod;
     }
-
+    
+    
+  @Override
+    public ListaAsignaturas getListaAsignaturas() {
+        return this.lista_curso_asignatura;
+    }
+    
+    /*
     @Override
     public Asignatura getAsignaturaRef(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -59,19 +69,19 @@ public class FP extends Curso {
 
     @Override
     public int getSizeRef() {
-        return lista_curso_asignatura.getSize();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void add(Object x) {
-        lista_curso_asignatura.add(x); 
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void remove(Object x) {
-        lista_curso_asignatura.removeAsignatura(x);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+    */
     
 }
 

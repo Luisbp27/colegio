@@ -8,8 +8,8 @@ package Lista;
 import Curso.Curso;
 import Interfaz.InterfazLista;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+//import java.util.Collections;
+//import java.util.Comparator;
 
 /**
  *
@@ -23,53 +23,96 @@ public class ListaCursos implements InterfazLista {
         this.cursos = new ArrayList<>();
     }
     
-    //Metodos GET
+    //tamaño de la lista
+    @Override
     public int getSize() {
         return cursos.size();
     }
+    
+    @Override
+    public void setObject(Object curso) {
+        cursos.add((Curso)curso);
+    }
 
+    @Override
+    public void setObject(int i, Object curso) {
+      cursos.add(i, (Curso)curso);
+    }
+    
+    /*public void addObject(Object curso) {
+              cursos.add((Curso)curso);
+    }*/
+    @Override
+    public Curso getObject(int pos){
+       return  cursos.get(pos);     
+    }
+    
+     public Curso getObjectPorNombre(String nombre){
+         int i=0;
+         for(i=0;i<getSize();i++){
+             if(getObject(i).getNombre().equals(nombre)){
+                 return getObject(i);
+             }
+         }
+         //en principio no sale del bucle sin encontrar coincidencia
+         return getObject(i); 
+     }
+     
+     public Curso getObjectPorCodigo(int codigo){
+        int i=0;
+         for(i=0;i<getSize();i++){
+             if(getObject(i).getCodigo()==codigo){
+                 return getObject(i);
+             }
+         }
+         //en principio no sale del bucle sin encontrar coincidencia
+         return getObject(i); 
+     }
+     
+     //método que busca un elemento de la lista, sino está devuleve null;
+      public Curso getObject(Object object){
+        int i;
+         for(i=0;i<getSize();i++){
+             if(getObject(i).equals((Curso)object)){
+                 return getObject(i);
+             }
+         }
+         //en principio no sale del bucle sin encontrar coincidencia
+         return null; 
+     }
+
+    @Override 
+    //probar si va bien, en principio solo funciona datos Object primitivos
+    //no objetos 
+    public void removeObject(Object o) {
+       cursos.remove((Curso)o);
+    }
+
+    @Override 
+    public void removeObject(int pos) {
+        cursos.remove(pos);
+    }
+    
+     @Override //imprime todo el objeto nombre y código
+    public String getInfo(int pos) {
+       return  cursos.get(pos).toString();   
+    }
+    
+    @Override
+    public String getInfoTotal() {
+        String s="";
+        for(int i=0;i<getSize();i++){
+            s+= getObject(i).toString()+"\n";
+        }
+        return s;
+    }
+    
     public int getIndexof(Object x) {
         return cursos.indexOf(x);
     }
-
-    public void setAt(int i, Object x) {
-        cursos.add(i, (Curso) x);
-    }
-
-    public Object[] getArray() {
-        return cursos.toArray();
-    }
-
-    public String getInfo(int i) {
-        String info;
-        info = cursos.get(i).toString();
-        return info;
-    }
     
-    public String getInfoLista() {
-        String infoTotal = "";
-        for (int i = 0; i < this.getSize(); i++) {
-            infoTotal += cursos.get(i).toString() + "\n";
-        }
-        return infoTotal;
-    }
-
-    //METODOS DE GESTION DE LA LISTA
-    public void addObject(Object o) {
-        cursos.add((Curso) o);
-
-    }
-
-    public void removeObject(Object x) {
-        cursos.remove(x);
-    }
-
-    public void removeObject(int i) {
-        cursos.remove(i);
-    }
-
-    public Curso getCurso(int i) {
-        return cursos.get(i);
+     public Object[] getArray() {
+        return cursos.toArray();
     }
 
     public void removeObject(String s) {
@@ -79,24 +122,11 @@ public class ListaCursos implements InterfazLista {
             }
         }
     }
-
-    @Override
-    public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    //método que estaba antes
+    /* public void removeObject(Object x) {
+        cursos.remove(x);
     }
-
-    @Override
-    public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    */
+    
 }

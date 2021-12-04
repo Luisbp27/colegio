@@ -12,7 +12,7 @@ import Interfaz.InterfazLista;
  *
  * @author luisb
  */
-public class Lista_Ref_Estudiantes {
+public class Lista_Ref_Estudiantes implements InterfazLista {
     
     private Nodo cabecera;
     private Nodo vacia;
@@ -21,19 +21,23 @@ public class Lista_Ref_Estudiantes {
         cabecera = null;
     }
     
-    public void addNodo(Nodo nodo) {
+    @Override
+    public void setObject(Object nodo) {
+        
         Nodo aux = cabecera;
         
         while (aux.getNodo() != null) {
             aux = aux.getNodo();
         }
         
-        aux.setNodo(nodo);
+        aux.setNodo((Nodo)nodo);
     }
     
-    public void removeNodo(Estudiante estudiante) {
+    @Override
+    public void removeObject(Object estudiante) {
+        Estudiante es=(Estudiante)estudiante;
         if (cabecera != null) {
-            if (cabecera.getInfo().equals(estudiante)) {
+            if (cabecera.getInfo().equals(es)) {
                 Nodo nodoBorrado = cabecera;
                 if (cabecera.getNodo() == null) {
                     cabecera = null;
@@ -64,7 +68,7 @@ public class Lista_Ref_Estudiantes {
                 boolean encontrado = false;
                 Nodo index = cabecera;
                 while (!encontrado && index.getNodo() != null) {
-                    if (index.getNodo().getInfo().equals(estudiante)) {
+                    if (index.getNodo().getInfo().equals(es)) {
                         encontrado = true;
                     } else {
                         index = index.getNodo();
@@ -92,7 +96,8 @@ public class Lista_Ref_Estudiantes {
         }
     }
     
-    public Object getInfo(int i) {
+    @Override
+    public Object getObject(int i) {
         Nodo aux = cabecera;
         int j = 0;
         
@@ -110,21 +115,43 @@ public class Lista_Ref_Estudiantes {
         } 
     }
     
-    public void visualizarLista() {
+    @Override
+    public String getInfo(int pos) {
+          Nodo aux = cabecera;
+        int j = 0;
+        
+        if (aux != null){
+            while(!aux.isEmpty() && j < pos ){
+                j++;
+                if(aux.getNodo() != null) {
+                    aux = aux.getNodo();
+                }
+            }
+            
+            return aux.getInfo().toString();
+        } else {
+            return null;
+        } 
+    }
+    
+    @Override
+    public String getInfoTotal() {
+        String s="";
         Nodo aux = cabecera;
         
         if (!aux.isEmpty()){
-            System.out.println(aux.getInfo().toString());
+            s+=(aux.getInfo().toString())+"\n";
             
             while(aux.getNodo() != null){
                 aux = aux.getNodo();
-                System.out.println(aux.getInfo().toString());
+                s+=(aux.getInfo().toString())+"\n";
             }
         } else {
-            System.out.println("Vacía");
-        }
-    }
+            return s; //Vacía
+        }return s;
+    } 
     
+    @Override
     public int getSize(){
         Nodo aux = cabecera;
         int i = 0;
@@ -138,9 +165,18 @@ public class Lista_Ref_Estudiantes {
         }
         
         return i;    
-    }    
+    }   
+    
+     
 
+    @Override
+    public void setObject(int i, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-
+    @Override
+    public void removeObject(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

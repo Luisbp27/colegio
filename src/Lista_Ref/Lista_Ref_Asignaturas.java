@@ -14,124 +14,160 @@ import Interfaz.InterfazLista;
  */
 public class Lista_Ref_Asignaturas implements InterfazLista {
     
-    private Nodo primero;
+    private Nodo cabecera;
     private Nodo vacia;
+    
     public Lista_Ref_Asignaturas() {
-        this.primero = null;
+        this.cabecera = null;
     }
-     public void add_nodo(Asignatura asignatura) {
+    
+    @Override
+    public void setObject(Object nodo) {
         
-         Nodo nuevo = new Nodo(asignatura, null);
-        if (primero != null) {
-               
-            Nodo index = primero;
-            while (index.getNodo() != null) {
-                index = index.getNodo();
-            }
-            index.setNodo(nuevo);
-            
-        } else {
-                 
-            primero = nuevo;
-           
+        Nodo aux = cabecera;
+        
+        while (aux.getNodo() != null) {
+            aux = aux.getNodo();
         }
-
-    }
-    
-    public void addAsignatura(Nodo asignatura) {
         
+        aux.setNodo((Nodo)nodo);
     }
     
-    public void removeAsignatura(Asignatura asignatura) {    
-         if (primero != null) {
-            if (primero.getInfo().equals(asignatura)) {
-                Nodo nodeBorrado = primero;
-                if (primero.getNodo() == null) {
-                    primero = null;
-                    nodeBorrado.setNodo(null);
+    @Override
+    public void removeObject(Object asignatura) {
+        Asignatura asig=(Asignatura)asignatura;
+        if (cabecera != null) {
+            if (cabecera.getInfo().equals(asig)) {
+                Nodo nodoBorrado = cabecera;
+                if (cabecera.getNodo() == null) {
+                    cabecera = null;
+                    nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
-                        index2.setNodo(nodeBorrado);
+                        index2.setNodo(nodoBorrado);
                     } else {
-                        vacia = nodeBorrado;
+                        vacia = nodoBorrado;
                     }
                 } else {
-                    primero = primero.getNodo();
-                    nodeBorrado.setNodo(null);
+                    cabecera = cabecera.getNodo();
+                    nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
-                        index2.setNodo(nodeBorrado);
+                        index2.setNodo(nodoBorrado);
                     } else {
-                        vacia = nodeBorrado;
+                        vacia = nodoBorrado;
                     }
                 }
             } else {
-                boolean trobat = false;
-                Nodo index = primero;
-                while (!trobat && index.getNodo() != null) {
-                    if (index.getNodo().getInfo().equals(asignatura)) {
-                        trobat = true;
+                boolean encontrado = false;
+                Nodo index = cabecera;
+                while (!encontrado && index.getNodo() != null) {
+                    if (index.getNodo().getInfo().equals(asig)) {
+                        encontrado = true;
                     } else {
                         index = index.getNodo();
                     }
                 }
-                Nodo nodeBorrat = index.getNodo();
-                if (trobat) {
-                    index.setNodo(nodeBorrat.getNodo());
-                    nodeBorrat.setNodo(null);
+                Nodo nodoBorrado = index.getNodo();
+                if (encontrado) {
+                    index.setNodo(nodoBorrado.getNodo());
+                    nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
-                        index2.setNodo(nodeBorrat);
+                        index2.setNodo(nodoBorrado);
                     } else {
-                        vacia = nodeBorrat;
+                        vacia = nodoBorrado;
                     }
                 } else {
-                    System.out.println("Element no trobat");
+                    System.out.println("Elemento no encontrado");
                 }
             }
         } else {
-            System.out.println("Llista buida\n");
+            System.out.println("Lista vacía\n");
         }
     }
     
-    
-    
-    public Asignatura getInfoAsignatura() {
-        return null;
+    @Override
+    public Object getObject(int i) {
+        Nodo aux = cabecera;
+        int j = 0;
+        
+        if (aux != null){
+            while(!aux.isEmpty() && j < i ){
+                j++;
+                if(aux.getNodo() != null) {
+                    aux = aux.getNodo();
+                }
+            }
+            
+            return aux.getInfo();
+        } else {
+            return null;
+        } 
     }
     
-    public int getSize() {
-        return 0;
-    }
-
     @Override
     public String getInfo(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          Nodo aux = cabecera;
+        int j = 0;
+        
+        if (aux != null){
+            while(!aux.isEmpty() && j < pos ){
+                j++;
+                if(aux.getNodo() != null) {
+                    aux = aux.getNodo();
+                }
+            }
+            
+            return aux.getInfo().toString();
+        } else {
+            return null;
+        } 
     }
-
+    
     @Override
     public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+        String s="";
+        Nodo aux = cabecera;
+        
+        if (!aux.isEmpty()){
+            s+=(aux.getInfo().toString())+"\n";
+            
+            while(aux.getNodo() != null){
+                aux = aux.getNodo();
+                s+=(aux.getInfo().toString())+"\n";
+            }
+        } else {
+            return s; //Vacía
+        }return s;
+    } 
+    
     @Override
-    public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public int getSize(){
+        Nodo aux = cabecera;
+        int i = 0;
+        
+        if(aux != null){
+            //i++;
+            while(aux.getNodo() != null){
+                i++;
+                aux = aux.getNodo();                
+            } 
+        }
+        
+        return i;    
+    }   
+    
+     
 
     @Override
     public void setObject(int i, Object o) {
@@ -139,12 +175,8 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
     }
 
     @Override
-    public void removeObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void removeObject(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

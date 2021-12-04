@@ -25,11 +25,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
-import Lista.ListaEstudiantes;
+import Lista.ListaEstudiantesAntigua;
 import Lista.ListaAsignaturas;
-import Lista.ListaCursos;
+import Lista.ListaCursosAntigua;
 
-public class VentanaCurso1 extends JFrame {
+public class VentanaCursoAntigua extends JFrame {
 
     // Tamaño Pantalla
     private final int alto_MAX = 400;
@@ -44,7 +44,7 @@ public class VentanaCurso1 extends JFrame {
     // Tipos de cursos de Bachiller: tBach
     private final Bachiller.Año tBach[] = {Año.PRIMERO, Año.SEGUNDO};
 
-    private VentanaCursoAsign vCrsAsg;
+    private VentanaCursoAsignAntigua vCrsAsg;
 
     // Componentes:
     // Barra de Menu
@@ -87,11 +87,11 @@ public class VentanaCurso1 extends JFrame {
     private Object objeto, c, aEliminar;
     private int i;
     // listas auxiliaries
-    private ListaCursos listaCursoAux = new ListaCursos();
+    private ListaCursosAntigua listaCursoAux = new ListaCursosAntigua();
     private ListaAsignaturas listaAuxiliarAsignatura;
-    private ListaEstudiantes listaAuxAlumnos;
+    private ListaEstudiantesAntigua listaAuxAlumnos;
 
-    public VentanaCurso1() {
+    public VentanaCursoAntigua() {
         super("Gestión Curso");
         initComponents();
 
@@ -214,7 +214,7 @@ public class VentanaCurso1 extends JFrame {
                 if (!listaCursosJBox.getSelectedItem().equals(listaC)) {
                     // c sera nuestro objeto seleccionado
                     c = listaCursosJBox.getSelectedItem();
-                    vCrsAsg = new VentanaCursoAsign(vInicio, c);
+                    vCrsAsg = new VentanaCursoAsignAntigua(vInicio, c);
                     cerrarVentana();
                     vCrsAsg.setVisible(true);
 
@@ -428,7 +428,7 @@ public class VentanaCurso1 extends JFrame {
         listaAuxAlumnos = vInicio.getListaGlobalEstudiantes();
     }
 
-    public VentanaCurso1 getVentanaCurso() {
+    public VentanaCursoAntigua getVentanaCurso() {
         return this;
     }
 

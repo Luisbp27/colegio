@@ -1,6 +1,7 @@
 package IU;
 
 import Asignatura.Asignatura;
+import Asignatura.Optativa;
 import Curso.Bachiller;
 import Curso.Bachiller.Año;
 import Curso.Curso;
@@ -40,11 +41,11 @@ public class VentanaCurso extends JFrame {
     private VentanaEstudiante vEstudiante;
 
     // Especialidades de un curso FP:
-    private final FP.Especialidad especialidades[] = {Especialidad.INFORMÁTICA, Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA};
+    private final FP.Especialidad especialidades[] = Especialidad.values();
     // Tipos de cursos de Bachiller: tBach
-    private final Bachiller.Año tBach[] = {Año.PRIMERO, Año.SEGUNDO};
+    private final Bachiller.Año tBach[] = Año.values();
 
-    private VentanaCursoAsign vCrsAsg;
+    private VentanaCursoAsignNueva vCrsAsg;
 
     // Componentes:
     // Barra de Menu
@@ -75,17 +76,16 @@ public class VentanaCurso extends JFrame {
 
     // Botones
     private JComboBox listaCursosJBox;
-    private JComboBox seleccionado;
     private JButton botonAlta;
     private JButton botonBaja;
     private JButton botonEntrar;
 
     // VARIABLES
-    private final String listaCursos = "Lista Cursos";
-    private FP fp;
-    private Bachiller bch, cb;
-    private Object objeto, c, aEliminar;
-    private int i;
+    private final String listaC = "Lista Cursos";
+    /*private FP fp;
+    private Bachiller bch;*/
+   //private Object objeto, aEliminar;
+
     // listas auxiliaries
     private ListaCursos listaCursoAux = new ListaCursos();
     private ListaAsignaturas listaAuxiliarAsignatura;
@@ -195,10 +195,20 @@ public class VentanaCurso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
+                if (!listaCursosJBox.getSelectedItem().equals(listaC)) {
 
-                    aEliminar = listaCursosJBox.getSelectedItem();
-                    accionBaja();
+                   Curso aEliminar = (Curso)listaCursosJBox.getSelectedItem();
+                   
+                    // Lo quitamos del JCombobox
+                    listaCursosJBox.removeItem(aEliminar);
+                    //con esta frase eliminamos el curso y todo lo enlazado a este
+                   //en teoría
+                    System.out.println(aEliminar.getListaAsignaturas().toString());
+                    ListaAsignaturas las=aEliminar.getListaAsignaturas();
+                    listaCursoAux.removeObject(aEliminar);
+                    vInicio.setListaGlobalCursos(listaCursoAux);
+                    pantalla.setText("BAJA: "+aEliminar.toString());
+                    //accionBaja(aEliminar);
 
                 } else {
                     pantalla.setText("Selecciona un curso");
@@ -211,10 +221,10 @@ public class VentanaCurso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
+                if (!listaCursosJBox.getSelectedItem().equals(listaC)) {
                     // c sera nuestro objeto seleccionado
-                    c = listaCursosJBox.getSelectedItem();
-                    vCrsAsg = new VentanaCursoAsign(vInicio, c);
+                    Object c = listaCursosJBox.getSelectedItem();
+                    vCrsAsg = new VentanaCursoAsignNueva(vInicio, (Curso)c);
                     cerrarVentana();
                     vCrsAsg.setVisible(true);
 
@@ -306,16 +316,17 @@ public class VentanaCurso extends JFrame {
         // conseguimos la listaCursoAux "global" de cursos
         //listaCursoAux = vInicio.getListaGlobalCursos();
 
-        i = panelTipo.getSelectTCurso();
-        // 1 = fp 2 = bach
+        int i = panelTipo.getSelectTCurso();
+        // 1 = curso 2 = batch
         switch (i) {
             case 1:
                 // JComboBox con las especialidades
-                seleccionado = (JComboBox) panelTipo.getTipo();
+               JComboBox seleccionado = (JComboBox) panelTipo.getTipo();
+               FP fp;
                 // vemos que especialidad es y la añadimos acordemente
                 for (int j = 0; j < especialidades.length; j++) {
                     if (seleccionado.getSelectedItem().equals(especialidades[j])) {
-                        listaCursoAux.addObject(fp = new FP(areaNombre.getText(), Integer.parseInt(areaCodigo.getText()), especialidades[j]));
+                        listaCursoAux.setObject(fp = new FP( areaNombre.getText(),Integer.parseInt(areaCodigo.getText()), especialidades[j]));
                         listaCursosJBox.addItem(fp);
                         this.pantalla.setText(fp.toString());
                     }
@@ -326,10 +337,11 @@ public class VentanaCurso extends JFrame {
             case 2:
                 // JComboBox con los años
                 seleccionado = (JComboBox) panelTipo.getTipo();
+                Bachiller bch;
                 // vemos que año es y la añadimos acordemente
                 for (int j = 0; j < tBach.length; j++) {
                     if (seleccionado.getSelectedItem().equals(tBach[j])) {
-                        listaCursoAux.addObject(bch = new Bachiller(areaNombre.getText(), Integer.parseInt(areaCodigo.getText()), tBach[j]));
+                        listaCursoAux.setObject(bch = new Bachiller( areaNombre.getText(),Integer.parseInt(areaCodigo.getText()), tBach[j]));
                         listaCursosJBox.addItem(bch);
                         this.pantalla.setText(bch.toString());
                     }
@@ -343,53 +355,7 @@ public class VentanaCurso extends JFrame {
         }
         vInicio.setListaGlobalCursos(listaCursoAux);
     }
-
-    /**
-     * Dar de baja un curso
-     */
-    private void removeEstudiantes(Asignatura ass, Curso aux) {
-        int size = ass.getSizeRef();
-        Estudiante es;
-
-        for (int k = 0; k < size; k++) {
-            if (ass.getRefEstudiante(k) != null) {
-                es = ass.getRefEstudiante(k);
-                listaAuxAlumnos.removeObject(es);
-                es.remove(ass);
-                listaAuxAlumnos.addObject(es);
-            }
-
-        }
-    }
-
-    private void accionBaja() {
-        if (aEliminar.getClass() == FP.class) {
-            FP aux_fp = (FP) aEliminar;
-            int size_lista_ref = aux_fp.getSizeRef();
-            for (int k = 0; k < size_lista_ref; k++) {
-                if (aux_fp.getAsignaturaRef(k) != null) {
-                    removeEstudiantes(aux_fp.getAsignaturaRef(k), aux_fp);
-                    listaAuxiliarAsignatura.removeObject(aux_fp.getAsignaturaRef(k));
-                }
-            }
-        } else if (aEliminar.getClass() == Bachiller.class) {
-            Bachiller aux_bch = (Bachiller) aEliminar;
-            int size_lista_ref = aux_bch.getSizeRef();
-            for (int k = 0; k < size_lista_ref; k++) {
-                removeEstudiantes(aux_bch.getAsignaturaRef(k), aux_bch);
-                listaAuxiliarAsignatura.removeObject(aux_bch.getAsignaturaRef(k));
-            }
-        }
-        // Eliminamos el objeto seleccionado
-        listaCursoAux.removeObject(aEliminar);
-        // Lo quitamos del JCombobox
-        listaCursosJBox.removeItem(aEliminar);
-        // la volvemos a poner en la "global"
-        vInicio.setetListaGlobalAlumnos(listaAuxAlumnos);
-        vInicio.setListaGlobalCursos(listaCursoAux);
-        vInicio.setListaAsignaturas(listaAuxiliarAsignatura);
-    }
-
+    
     /**
      * Ponemos todos los campos en blanco
      */
@@ -398,7 +364,7 @@ public class VentanaCurso extends JFrame {
         this.areaCodigo.setText("");
         this.pantalla.setText("");
         listaCursosJBox.removeAllItems();
-        listaCursosJBox.addItem(listaCursos);
+        listaCursosJBox.addItem(listaC);
 
         for (int n = 0; n < listaCursoAux.getSize(); n++) {
             listaCursosJBox.addItem(listaCursoAux.getArray()[n]);
@@ -414,9 +380,9 @@ public class VentanaCurso extends JFrame {
         this.dispose();
     }
 
-    public Object get_Selected() {
+    /*public Object get_Selected() {
         return objeto;
-    }
+    }*/
 
     public void setInicio(VentanaInicioGestion vI) {
         vInicio = vI;

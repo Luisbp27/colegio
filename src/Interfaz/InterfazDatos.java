@@ -21,6 +21,7 @@ public interface InterfazDatos {
     //método para imprimir nombre y código de un elemento
     @Override
     public String toString();
+
     
     
     

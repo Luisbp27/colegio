@@ -9,6 +9,7 @@ import Estudiante.Estudiante;
 import Interfaz.InterfazLista;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -22,76 +23,60 @@ public class ListaEstudiantes implements InterfazLista {
         this.estudiantes = new ArrayList<>();
     }
     
+     //tamaño de la lista
+    @Override
     public int getSize() {
         return estudiantes.size();
     }
     
-    public String getInfo(int i) {
-        return estudiantes.get(i).toString();
+    @Override
+    public void setObject(Object estudiante) {
+        estudiantes.add((Estudiante)estudiante);
+    }
+
+    @Override
+    public void setObject(int i, Object estudiante) {
+      estudiantes.add(i, (Estudiante)estudiante);
+    }
+
+    @Override
+    public Estudiante getObject(int pos){
+       return  estudiantes.get(pos);     
+    }
+
+    @Override 
+    //probar si va bien, en principio solo funciona datos Object primitivos
+    //no objetos 
+    public void removeObject(Object o) {
+       estudiantes.remove((Estudiante)o);
+    }
+
+    @Override 
+    public void removeObject(int pos) {
+        estudiantes.remove(pos);
     }
     
-    public String getInfoLista() {
-        String infoTotal = "";
-        for (int i = 0; i < this.getSize(); i++) {
-            infoTotal += estudiantes.get(i).toString() + "\n";
-        }
-        return infoTotal;
-    }
-    public int getIndice(Estudiante a){
-        return estudiantes.indexOf(a);
+     @Override
+    public String getInfo(int pos) {
+       return  estudiantes.get(pos).toString();   
     }
     
-    //METODOS DE GESTION DE LA LISTA
-    public void addObject(Object o) {
-        estudiantes.add((Estudiante) o);
-    }
-
-    public void removeObject(int i) {
-        estudiantes.remove(i);
-
-    }
-
-    public void removeObject(String s) {
-        for (int i = 0; i < this.getSize(); i++) {
-            if (estudiantes.get(i).getNombre() == s) {
-                estudiantes.remove(i);
-            }
-        }
-    }
-
-    public void removeObject(Object x) {
-        estudiantes.remove(x);
-    }
-    
-    public Estudiante getEstudiante(int i) {
-        if(estudiantes.get(i) != null) {
-            return estudiantes.get(i);
-        } else {
-            return null;
-        }
-    }
-
-    public void ordenarLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String s="";
+        for(int i=0;i<getSize();i++){
+            s+= getObject(i).toString()+"\n";
+        }
+        return s;
     }
 
-    @Override
-    public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //ordena lista de menor a mayor
+    public void ordenarLista() {
+        Collections.sort(estudiantes, new Comparator<Estudiante>() {
+            @Override
+            public int compare(Estudiante a1, Estudiante a2) {
+                return ((a1.getNombre()).compareTo((a2.getNombre()))); 
+            }
+        });
     }
 }

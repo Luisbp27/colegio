@@ -7,10 +7,9 @@ package Lista;
 
 import Asignatura.Asignatura;
 import Interfaz.InterfazLista;
-import Lista_Ref.Lista_Ref_Asignaturas;
-import Lista_Ref.Nodo;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -19,42 +18,69 @@ import java.util.Collections;
 public class ListaAsignaturas implements InterfazLista {
     
     private ArrayList<Asignatura> asignaturas;
-    Lista_Ref_Asignaturas l_Ref_Asign= new Lista_Ref_Asignaturas();
+    
     public ListaAsignaturas() {
         this.asignaturas = new ArrayList<>();
     }
-    
+    //tamaño de la lista
+    @Override
     public int getSize() {
         return asignaturas.size();
     }
     
-    public String getInfo(int i) {
-        return asignaturas.get(i).toString();
+    @Override
+    public void setObject(Object asignatura) {
+        asignaturas.add((Asignatura)asignatura);
+    }
+
+    @Override
+    public void setObject(int i, Object asignatura) {
+      asignaturas.add(i, (Asignatura)asignatura);
+    }
+
+    @Override
+    public Asignatura getObject(int pos){
+       return  asignaturas.get(pos);     
+    }
+
+    @Override 
+    //probar si va bien, en principio solo funciona datos Object primitivos
+    //no objetos 
+    public void removeObject(Object o) {
+       asignaturas.remove((Asignatura)o);
+    }
+
+    @Override 
+    public void removeObject(int pos) {
+        asignaturas.remove(pos);
     }
     
-    public Asignatura getAsignatura(int i) {
-        return asignaturas.get(i);
+     @Override
+    public String getInfo(int pos) {
+       return  asignaturas.get(pos).toString();   
     }
+    
+    @Override
+    public String getInfoTotal() {
+        String s="";
+        for(int i=0;i<getSize();i++){
+            s+= getObject(i).toString()+"\n";
+        }
+        return s;
+    }
+
+    //ordena lista de menor a mayor
+    public void ordenarLista() {
+        Collections.sort(asignaturas, new Comparator<Asignatura>() {
+            @Override
+            public int compare(Asignatura a1, Asignatura a2) {
+                return ((a1.getNombre()).compareTo((a2.getNombre()))); 
+            }
+        });
+    }
+    
     public int getIndice(Asignatura a){
         return asignaturas.indexOf(a);
-    }
-
-    public String getInfoLista() {
-        String infoTotal = "";
-        for (int i = 0; i < this.getSize(); i++) {
-            infoTotal += asignaturas.get(i).toString() + "\n";
-        }
-        return infoTotal;
-    }
-
-    //METODOS DE GESTION DE LA LISTA
-    public void addObject(Object o) {
-        asignaturas.add((Asignatura) o);
-
-    }
-
-    public void removeObject(int i) {
-        asignaturas.remove(i);
     }
 
     public void removeObject(String s) {
@@ -63,40 +89,5 @@ public class ListaAsignaturas implements InterfazLista {
                 asignaturas.remove(i);
             }
         }
-    }
-    
-    public void add(Object x){
-        l_Ref_Asign.add_nodo((Asignatura)x);
-    }
-    public void removeAsignatura(Object x){
-        l_Ref_Asign.removeAsignatura((Asignatura)x);
-    }
-
-    public void removeObject(Object x) {
-        asignaturas.remove(x);
-    }
-
-    public void ordenarLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
