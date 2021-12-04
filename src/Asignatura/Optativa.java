@@ -7,6 +7,7 @@ package Asignatura;
 
 import Curso.Curso;
 import Estudiante.Estudiante;
+import Lista_Ref.Lista_Ref_Estudiantes;
 
 /**
  *
@@ -18,15 +19,25 @@ public class Optativa extends Asignatura {
         TEÓRICA, PRÁCTICA;
     }
     private Tipo tipo;
-    private final int creditos = 3;
+    private final int CREDITOS = 3;
 
-    public Optativa(String nombre, int codigo, Tipo tipo) {
-        super(nombre, codigo);
+    public Optativa(String nombre, int codigo, Tipo tipo,Curso curso) {
+        super(nombre, codigo, curso.getNombre());
         this.tipo=tipo;
     }
 
-    public int compareTo(Asignatura t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int compareTo(Asignatura a) {
+        int resultado = this.nombre.compareTo(a.nombre);
+        
+        if (resultado < 0) {
+            return -1;
+        } else {
+            if (resultado == 0) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
     }
     
     @Override
@@ -34,55 +45,49 @@ public class Optativa extends Asignatura {
         return nombre+" CODIGO: "+codigo+" PERFIL: "+tipo;
     }
 
-    @Override
+   @Override
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nombre;
     }
 
     @Override
     public int getCodigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return codigo;
     }
 
     @Override
-    public void setNombre(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
-    public void setCodigo(int cod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
-
-    @Override
-    public void setStringCurso(String x) {
-        this.stringCurso = x;
-    }
-
-    @Override
+    
+     @Override
     public String getStringCurso() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return stringCurso;
     }
+    
+     @Override
+    public Lista_Ref_Estudiantes getListaEstudiantes(){
+        return this.lre;
+    }
+     /*en principio no vamos a modificar el nombre del curso en ningún momento
+    
+    public abstract void setStringCurso(String x);
 
-    @Override
-    public Estudiante getRefEstudiante(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
+    
+    public abstract Estudiante getRefEstudiante(int i);
 
-    @Override
-    public int getSizeRef() {
-        return lre.getSize();
-    }
+   public abstract int getSizeRef(); cada lista tiene su getSize
 
-    @Override
-    public void add(Estudiante e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract void add(Estudiante e);
 
-    @Override
-    public void remove(Estudiante e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract void remove(Estudiante e);
+    */
     
     
     

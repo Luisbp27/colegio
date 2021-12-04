@@ -125,6 +125,27 @@ public class Lista_Ref_Estudiantes {
         }
     }
     
+    /**
+     * Recorre todos los campos info de la lista de nodos y devuelve si es una 
+     * referencia a asignatura o estudiante el objeto referenciado en String.
+     * @return String de todos los objetos de la lista
+     */
+    public String getInfoTotal() {
+        String s="";
+        Nodo aux = cabecera;
+        
+        if (!aux.isEmpty()){
+            s+=(aux.getInfo().toString())+"\n";
+            
+            while(aux.getNodo() != null){
+                aux = aux.getNodo();
+                s+=(aux.getInfo().toString())+"\n";
+            }
+        } else {
+            return s; //Vacía
+        }return s;
+    } 
+    
     public int getSize(){
         Nodo aux = cabecera;
         int i = 0;
@@ -140,7 +161,32 @@ public class Lista_Ref_Estudiantes {
         return i;    
     }    
 
-
+    /**
+     * Busca en la lista enlazada de referencias al objeto referencia a estudiante
+     * en la posición i pasada por argumento y devuelve el campo info de un
+     * objeto referencia estudiante, por tanto al estudiante.
+     * Objeto referencia a estudiante->Nodo Estudiante
+     * Nodo estudiante campo info es el Estudiante.
+     * @param i, indica la posición de un objeto referencia a estudiante(Nodo)
+     * @return Nodo Estudiante-> Estudiante == (Estudiante)aux.getInfo();
+     */
+    public Estudiante getObject(int i) {
+        Nodo aux = cabecera;
+        int j = 0;
+        
+        if (aux != null){
+            while(!aux.isEmpty() && j < i ){
+                j++;
+                if(aux.getNodo() != null) {
+                    aux = aux.getNodo();
+                }
+            }
+            
+            return (Estudiante)aux.getInfo();
+        } else {
+            return null;
+        } 
+    }
 
 
 }

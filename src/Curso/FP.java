@@ -6,6 +6,7 @@
 package Curso;
 
 import Asignatura.Asignatura;
+import Lista.ListaAsignaturas;
 
 
 
@@ -51,7 +52,12 @@ public class FP extends Curso {
     public void setCodigo(int cod) {
         this.codigo=cod;
     }
-
+    
+    @Override
+    public ListaAsignaturas getListaAsignaturas() {
+        return this.lista_curso_asignatura;
+    }
+    
     @Override
     public Asignatura getAsignaturaRef(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

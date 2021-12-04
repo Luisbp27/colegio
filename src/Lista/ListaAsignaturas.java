@@ -9,6 +9,8 @@ import Asignatura.Asignatura;
 import Interfaz.InterfazLista;
 import Lista_Ref.Lista_Ref_Asignaturas;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -74,12 +76,23 @@ public class ListaAsignaturas implements InterfazLista {
         asignaturas.remove(x);
     }
 
+    //ordena lista de menor a mayor
     public void ordenarLista() {
+        Collections.sort(asignaturas, new Comparator<Asignatura>() {
+            @Override
+            public int compare(Asignatura a1, Asignatura a2) {
+                return ((a1.getNombre()).compareTo((a2.getNombre()))); 
+            }
+        });
     }
 
     @Override
     public String getInfoTotal() {
-        return null;
+        String s="";
+        for(int i=0;i<getSize();i++){
+            s+= getObject(i).toString()+"\n";
+        }
+        return s;
     }
 
     @Override
@@ -87,11 +100,13 @@ public class ListaAsignaturas implements InterfazLista {
         return null;
     }
 
-    @Override
-    public void setObject(Object o) {
+      @Override
+    public void setObject(Object asignatura) {
+        asignaturas.add((Asignatura)asignatura);
     }
 
-    @Override
-    public void setObject(int i, Object o) {
+     @Override
+    public void setObject(int i, Object asignatura) {
+      asignaturas.add(i, (Asignatura)asignatura);
     }
 }

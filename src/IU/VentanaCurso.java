@@ -28,6 +28,7 @@ import javax.swing.event.AncestorListener;
 import Lista.ListaEstudiantes;
 import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
+import Lista_Ref.Lista_Ref_Estudiantes;
 
 public class VentanaCurso extends JFrame {
 
@@ -214,7 +215,7 @@ public class VentanaCurso extends JFrame {
                 if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
                     // c sera nuestro objeto seleccionado
                     c = listaCursosJBox.getSelectedItem();
-                    vCrsAsg = new VentanaCursoAsign(vInicio, c);
+                    vCrsAsg = new VentanaCursoAsign(vInicio, (Curso)c);
                     cerrarVentana();
                     vCrsAsg.setVisible(true);
 
@@ -348,12 +349,13 @@ public class VentanaCurso extends JFrame {
      * Dar de baja un curso
      */
     private void removeEstudiantes(Asignatura ass, Curso aux) {
-        int size = ass.getSizeRef();
+        int size = ass.getListaEstudiantes().getSize();
+        Lista_Ref_Estudiantes lre=ass.getListaEstudiantes();
         Estudiante es;
-
+        
         for (int k = 0; k < size; k++) {
-            if (ass.getRefEstudiante(k) != null) {
-                es = ass.getRefEstudiante(k);
+            if (lre.getObject(k) != null) {
+                es = lre.getObject(i);
                 listaAuxAlumnos.removeObject(es);
                 es.remove(ass);
                 listaAuxAlumnos.addObject(es);
