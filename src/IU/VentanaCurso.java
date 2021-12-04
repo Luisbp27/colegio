@@ -45,7 +45,7 @@ public class VentanaCurso extends JFrame {
     // Tipos de cursos de Bachiller: tBach
     private final Bachiller.Año tBach[] = Año.values();
 
-    private VentanaCursoAsignNueva vCrsAsg;
+    private VentanaCursoAsign vCrsAsg;
 
     // Componentes:
     // Barra de Menu
@@ -224,7 +224,7 @@ public class VentanaCurso extends JFrame {
                 if (!listaCursosJBox.getSelectedItem().equals(listaC)) {
                     // c sera nuestro objeto seleccionado
                     Object c = listaCursosJBox.getSelectedItem();
-                    vCrsAsg = new VentanaCursoAsignNueva(vInicio, (Curso)c);
+                    vCrsAsg = new VentanaCursoAsign(vInicio, (Curso)c);
                     cerrarVentana();
                     vCrsAsg.setVisible(true);
 

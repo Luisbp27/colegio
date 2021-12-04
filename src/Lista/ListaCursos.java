@@ -127,6 +127,15 @@ public class ListaCursos implements InterfazLista {
     /* public void removeObject(Object x) {
         cursos.remove(x);
     }
+    
+      public Object[] getArray() {
+        return cursos.toArray();
+    }
+    
+     public int getIndexof(Object x) {
+        return cursos.indexOf(x);
+    }
     */
+    
     
 }
