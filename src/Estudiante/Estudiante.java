@@ -16,10 +16,10 @@ import Lista_Ref.Lista_Ref_Estudiantes_Asignaturas;
 public class Estudiante implements InterfazDatos {
     
     private String nombre;
-    private int dni;
+    private String dni;
     private Lista_Ref_Estudiantes_Asignaturas lrea;
     
-    public Estudiante(String nombre, int dni) {
+    public Estudiante(String nombre, String dni) {
         this.nombre = nombre;
         this.dni = dni;
         
@@ -35,7 +35,7 @@ public class Estudiante implements InterfazDatos {
     }
     
     public Asignatura getRefAsignaturaEstudiante(int i) {
-        return (Asignatura) lrea.getInfo(i);
+        return (Asignatura) lrea.getInfoNodo(i);
     }
     
     public int getSizeRef() {
@@ -56,22 +56,21 @@ public class Estudiante implements InterfazDatos {
      * 
      * @return 
      */
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
     @Override
     public void setNombre(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.nombre = nombre;
     }
 
     @Override
-    public void setCodigo(int Codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setCodigo(int Codigo) {   
     }
 
     @Override
     public int getCodigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 }

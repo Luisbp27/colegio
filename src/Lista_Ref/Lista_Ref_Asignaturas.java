@@ -13,47 +13,49 @@ import Interfaz.InterfazLista;
  * @author luisb
  */
 public class Lista_Ref_Asignaturas implements InterfazLista {
-    
+
     private Nodo primero;
     private Nodo vacia;
+
     public Lista_Ref_Asignaturas() {
         this.primero = null;
     }
-     public void add_nodo(Asignatura asignatura) {
+
+    public void add_nodo(Asignatura asignatura) {
+        Nodo nuevo = new Nodo(asignatura, null);
         
-         Nodo nuevo = new Nodo(asignatura, null);
         if (primero != null) {
-               
             Nodo index = primero;
+            
             while (index.getNodo() != null) {
                 index = index.getNodo();
             }
-            index.setNodo(nuevo);
             
+            index.setNodo(nuevo);
         } else {
-                 
             primero = nuevo;
-           
         }
+    }
+
+    public void addAsignatura(Nodo asignatura) {
 
     }
-    
-    public void addAsignatura(Nodo asignatura) {
-        
-    }
-    
-    public void removeAsignatura(Asignatura asignatura) {    
-         if (primero != null) {
+
+    public void removeAsignatura(Asignatura asignatura) {
+        if (primero != null) {
             if (primero.getInfo().equals(asignatura)) {
                 Nodo nodeBorrado = primero;
+                
                 if (primero.getNodo() == null) {
                     primero = null;
                     nodeBorrado.setNodo(null);
                     Nodo index2 = vacia;
+                    
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
+                        
                         index2.setNodo(nodeBorrado);
                     } else {
                         vacia = nodeBorrado;
@@ -62,10 +64,12 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
                     primero = primero.getNodo();
                     nodeBorrado.setNodo(null);
                     Nodo index2 = vacia;
+                    
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
+                        
                         index2.setNodo(nodeBorrado);
                     } else {
                         vacia = nodeBorrado;
@@ -74,6 +78,7 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
             } else {
                 boolean trobat = false;
                 Nodo index = primero;
+                
                 while (!trobat && index.getNodo() != null) {
                     if (index.getNodo().getInfo().equals(asignatura)) {
                         trobat = true;
@@ -86,10 +91,12 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
                     index.setNodo(nodeBorrat.getNodo());
                     nodeBorrat.setNodo(null);
                     Nodo index2 = vacia;
+                    
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
+                        
                         index2.setNodo(nodeBorrat);
                     } else {
                         vacia = nodeBorrat;
@@ -102,49 +109,43 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
             System.out.println("Llista buida\n");
         }
     }
-    
-    
-    
+
     public Asignatura getInfoAsignatura() {
         return null;
     }
-    
+
     public int getSize() {
         return 0;
     }
 
     @Override
     public String getInfo(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void removeObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void removeObject(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

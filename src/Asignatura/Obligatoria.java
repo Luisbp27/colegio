@@ -60,11 +60,6 @@ public class Obligatoria extends Asignatura {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
-    @Override
-    public String getStringCurso() {
-        return stringCurso;
-    }
     
     @Override
     public Lista_Ref_Estudiantes getListaEstudiantes(){

@@ -32,13 +32,13 @@ public class VentanaEstudiante extends JFrame {
 
     // Constantes
     // Tamaño ventana
-    private final int alto_MAX = 600;
-    private final int ancho_MAX = 700;
+    private static final int ALTURA = 600;
+    private static final int ANCHURA = 700;
 
     private final int altoBotonesV = 40 + 27;
 
-    private final int anchoPanelesIzq = ancho_MAX * 35 / 100;
-    private final int anchoPanelesDrc = (ancho_MAX * 65 / 100) - 30;
+    private final int anchoPanelesIzq = ANCHURA * 35 / 100;
+    private final int anchoPanelesDrc = (ANCHURA * 65 / 100) - 30;
 
     private final int alturaPEstudiante = 75;
     private final int alturaTituloAsign = 50;
@@ -46,9 +46,9 @@ public class VentanaEstudiante extends JFrame {
     private final int alturaBotnsAsig = 50;
 
     // Variables
-    private VentanaInicio vInicio;
-    private VentanaAsignatura vAsignatura;
-    private VentanaCurso vCurso;
+    private VentanaInicio ventanaInicio;
+    private VentanaAsignatura ventanaAsignatura;
+    private VentanaCurso ventanaCurso;
 
     // RELLENAR CON EL TIPO DE ASIGNATURAS
     private ListaEstudiantes listaEstudiantes;
@@ -60,7 +60,7 @@ public class VentanaEstudiante extends JFrame {
     private JMenu menu;
 
     private JMenuItem ventanaPrin;
-    private JMenuItem ventanaCurso;
+    private JMenuItem ventanaCur;
     private JMenuItem ventanaAsign;
 
     // Paneles
@@ -102,15 +102,19 @@ public class VentanaEstudiante extends JFrame {
     private final String lAsignatura = "Lista Asignaturas";
     private final String lEstudiantes = "Lista Estudiantes";
 
-    // CONSTRUCTOR//
+    /**
+     * Método constructor de la clase
+     * 
+     */
     public VentanaEstudiante() {
         super("Gestión Estudiantes");
         listaEstudiantes = new ListaEstudiantes();
+        
         initComponents();
     }
 
     private void initComponents() {
-        this.setSize(ancho_MAX, alto_MAX);
+        this.setSize(ANCHURA, ALTURA);
         this.setLocationRelativeTo(null);
 
         // Quitamos el Layout para ordenar los paneles
@@ -126,11 +130,11 @@ public class VentanaEstudiante extends JFrame {
         barraMenu = new JMenuBar();
         menu = new JMenu("Menú");
         ventanaPrin = new JMenuItem("Menú Principal");
-        ventanaCurso = new JMenuItem("Gestión Cursos");
+        ventanaCur = new JMenuItem("Gestión Cursos");
         ventanaAsign = new JMenuItem("Gestión Asignaturas");
 
         menu.add(ventanaPrin);
-        menu.add(ventanaCurso);
+        menu.add(ventanaCur);
         menu.add(ventanaAsign);
         barraMenu.add(menu);
 
@@ -243,19 +247,19 @@ public class VentanaEstudiante extends JFrame {
         // Acciones al presionar el botón de la barra de menú "Menú Principal"
         ventanaPrin.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
-            vInicio.setVisible(true);
+            ventanaInicio.setVisible(true);
         });
 
         // Acciones al presionar el botón de la barra de menú "Gestión Cursos"
-        ventanaCurso.addActionListener((ActionEvent ae) -> {
+        ventanaCur.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
-            vCurso.setVisible(true);
+            ventanaCurso.setVisible(true);
         });
 
         // Acciones al presionar el botón de la barra de menú "Gestión Estudiantes"
         ventanaAsign.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
-            vAsignatura.setVisible(true);
+            ventanaAsignatura.setVisible(true);
         });
 
         botonListarEstudiante.addActionListener((ActionEvent ae) -> {
@@ -273,13 +277,13 @@ public class VentanaEstudiante extends JFrame {
         panelTituloAsig.setBounds(10, alturaTituloAsign + 10 + alturaPEstudiante, anchoPanelesIzq, alturaTituloAsign);
         panelTipoAsig.setBounds(10, alturaTituloAsign + 15 + alturaPEstudiante + alturaTituloAsign, anchoPanelesIzq, 40 + alturaTipoAsig);
 
-        panelBotonActuaiza.setBounds(10, alto_MAX - altoBotonesV - 2 * alturaBotnsAsig - 20, anchoPanelesIzq,
+        panelBotonActuaiza.setBounds(10, ALTURA - altoBotonesV - 2 * alturaBotnsAsig - 20, anchoPanelesIzq,
                 alturaBotnsAsig);
-        panelBotonListaAsig.setBounds(10, alto_MAX - altoBotonesV - alturaBotnsAsig - 5, anchoPanelesIzq,
+        panelBotonListaAsig.setBounds(10, ALTURA - altoBotonesV - alturaBotnsAsig - 5, anchoPanelesIzq,
                 alturaBotnsAsig);
 
         scrollPane.setBounds(anchoPanelesIzq + 20, alturaPEstudiante + 10, anchoPanelesDrc,
-                alto_MAX - altoBotonesV - 90);
+                ALTURA - altoBotonesV - 90);
 
         // Añadimos componentes a los paneles
         // Panel Estudiate
@@ -354,30 +358,31 @@ public class VentanaEstudiante extends JFrame {
     }
 
     /**
-     * Actión al pulsar el boton actualizar
+     * Acción al pulsar el boton actualizar
+     * 
      */
     private void actualizarLista() {
-        //Si se ha seleccionado un elemento de la lista de asignaturas
+        // Si se ha seleccionado un elemento de la lista de asignaturas
         if (!isEmptySelectA()) {
 
-            //Se limpia la lista
+            // Se limpia la lista
             listaTipoAsignaturasJBox.removeAllItems();
-            //Se añade la cabecera
+            // Se añade la cabecera
             listaTipoAsignaturasJBox.addItem(lAsignatura);
-            //Lista auxiliar de asignaturas, servira para ordenar alfabeticamente
+            // Lista auxiliar de asignaturas, servira para ordenar alfabeticamente
             ListaAsignaturas lista_auxiliar = new ListaAsignaturas();
             switch (panelTipoAsig.getSelect()) {
                 // FP - Obligatoria
                 case 1:
-                    for (int i = 0; i < vInicio.getListaGlobalCursos().getSize(); i++) {
-                        if (vInicio.getListaGlobalCursos().getCurso(i).getClass() == FP.class) {
+                    for (int i = 0; i < ventanaInicio.getListaGlobalCursos().getSize(); i++) {
+                        if (ventanaInicio.getListaGlobalCursos().getCurso(i).getClass() == FP.class) {
                             //Algoritmo para todos los casos:
                             //Recorremos el array Lista global de cursos, cuando encontremos el que cumple el filtro hacemos:
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro, se añaden al JBox.
-                            for (int j = 0; j < vInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
+                            for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
 
-                                if (vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Obligatoria.class) {
-                                    lista_auxiliar.addObject(vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Obligatoria.class) {
+                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
 
                                 }
                             }
@@ -390,14 +395,14 @@ public class VentanaEstudiante extends JFrame {
                     break;
                 // FP - Optativa
                 case 2:
-                    for (int i = 0; i < vInicio.getListaGlobalCursos().getSize(); i++) {
-                        if (vInicio.getListaGlobalCursos().getCurso(i).getClass() == FP.class) {
+                    for (int i = 0; i < ventanaInicio.getListaGlobalCursos().getSize(); i++) {
+                        if (ventanaInicio.getListaGlobalCursos().getCurso(i).getClass() == FP.class) {
                             //Algoritmo para todos los casos:
                             //Recorremos el array Lista global de cursos, cuando encontremos el que cumple el filtro hacemos:
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro, se añaden al JBox.
-                            for (int j = 0; j < vInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
-                                if (vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Optativa.class) {
-                                    lista_auxiliar.addObject(vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                            for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Optativa.class) {
+                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
                                 }
                             }
                         }
@@ -409,14 +414,14 @@ public class VentanaEstudiante extends JFrame {
                     break;
                 // Bach - Obligatoria
                 case 3:
-                    for (int i = 0; i < vInicio.getListaGlobalCursos().getSize(); i++) {
-                        if (vInicio.getListaGlobalCursos().getCurso(i).getClass() == Bachiller.class) {
+                    for (int i = 0; i < ventanaInicio.getListaGlobalCursos().getSize(); i++) {
+                        if (ventanaInicio.getListaGlobalCursos().getCurso(i).getClass() == Bachiller.class) {
                             //Algoritmo para todos los casos:
                             //Recorremos el array Lista global de cursos, cuando encontremos el que cumple el filtro hacemos:
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro, se añaden al JBox.
-                            for (int j = 0; j < vInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
-                                if (vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Obligatoria.class) {
-                                    lista_auxiliar.addObject(vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                            for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Obligatoria.class) {
+                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
                                 }
                             }
                         }
@@ -428,14 +433,14 @@ public class VentanaEstudiante extends JFrame {
                     break;
                 // Bach - Optativa
                 case 4:
-                    for (int i = 0; i < vInicio.getListaGlobalCursos().getSize(); i++) {
-                        if (vInicio.getListaGlobalCursos().getCurso(i).getClass() == Bachiller.class) {
+                    for (int i = 0; i < ventanaInicio.getListaGlobalCursos().getSize(); i++) {
+                        if (ventanaInicio.getListaGlobalCursos().getCurso(i).getClass() == Bachiller.class) {
                             //Algoritmo para todos los casos:
                             //Recorremos el array Lista global de cursos, cuando encontremos el que cumple el filtro hacemos:
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro, se añaden al JBox.
-                            for (int j = 0; j < vInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
-                                if (vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Optativa.class) {
-                                    lista_auxiliar.addObject(vInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                            for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Optativa.class) {
+                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
                                 }
                             }
                         }
@@ -479,6 +484,7 @@ public class VentanaEstudiante extends JFrame {
 
     /**
      * Acción que da de alta un estudiante
+     * 
      */
     private void accionAlta() {
         //Si alguno de los campos que definen un alumno, esta vacío
@@ -494,15 +500,15 @@ public class VentanaEstudiante extends JFrame {
                 //Asignatura auxiliar, se crea a partir del objeto seleccionado en la lista, haciendo cast porque devuelve Object
                 Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
                 //Indice de la asignatura seleccionada en la lista, en la lista global
-                int indice = vInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
+                int indice = ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
 
                 //Alumno nuevo, se crea a partir de los campos 
-                Estudiante es = new Estudiante(areaNombre.getText(), Integer.parseInt(areaDNI.getText()));
+                Estudiante es = new Estudiante(areaNombre.getText(), areaDNI.getText());
                 boolean matriculado = false;
-                for (int i = 0; i < vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef(); i++) {
-
-                    if (vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i).getNombre().equals(es.getNombre()) && 
-                            vInicio.getListaGlobalEstudiantes().getAsignatura(indice).getRefEstudiante(i).getDni().equals(es.getDni())) {
+                                
+                for (int i = 0; i < ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef(); i++) {
+                    if (ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i).getNombre().equals(es.getNombre()) && 
+                            ventanaInicio.getListaGlobalEstudiantes().getAsignatura(indice).getRefEstudiante(i).getDni().equals(es.getDni())) {
                         matriculado = true;
                     }
                 }
@@ -510,25 +516,28 @@ public class VentanaEstudiante extends JFrame {
                 if (matriculado == false) {
                     boolean original = true;
                     int indiceAlumno = 0;
-                    for (int i = 0; i < vInicio.getListaGlobalEstudiantes().getSize(); i++) {
-                        if (vInicio.getListaGlobalEstudiantes().getEstudiante(i).getNombre().equals(es.getNombre()) && 
-                                vInicio.getListaGlobalEstudiantes().getEstudiante(i).getDni().equals(es.getDni())) {
+                    
+                    for (int i = 0; i < ventanaInicio.getListaGlobalEstudiantes().getSize(); i++) {
+                        if (ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i).getNombre().equals(es.getNombre()) && 
+                                ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i).getDni().equals(es.getDni())) {
                             original = false;
                             indiceAlumno = i;
                         }
                     }
+                    
                     if (original) {
-                        vInicio.getListaGlobalEstudiantes().addObject(es);
-                        vInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(vInicio.getListaGlobalEstudiantes().getEstudiante(vInicio.getListaGlobalEstudiantes().getSize() - 1));
-                        vInicio.getListaGlobalEstudiantes().getEstudiante(vInicio.getListaGlobalEstudiantes().getSize() - 1).addAsignatura(vInicio.getListaGlobalAsignaturas().getAsignatura(indice));
-                        this.estudiantesJBox.addItem(vInicio.getListaGlobalEstudiantes().getEstudiante(vInicio.getListaGlobalEstudiantes().getSize() - 1));
+                        ventanaInicio.getListaGlobalEstudiantes().addObject(es);
+                        ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(ventanaInicio.getListaGlobalEstudiantes().getSize() - 1));
+                        ventanaInicio.getListaGlobalEstudiantes().getEstudiante(ventanaInicio.getListaGlobalEstudiantes().getSize() - 1).addAsignatura(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice));
+                        this.estudiantesJBox.addItem(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(ventanaInicio.getListaGlobalEstudiantes().getSize() - 1));
 
                     } else {
-                        vInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno).addAsignatura(vInicio.getListaGlobalAsignaturas().getAsignatura(indice));
-                        vInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(vInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
+                        ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno).addAsignatura(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice));
+                        ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
                         //Se añade al Jbox el nuevo alumno
-                        this.estudiantesJBox.addItem(vInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
+                        this.estudiantesJBox.addItem(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
                     }
+                    
                     this.pantalla.setText("Se ha matriculado:\nAlumno " + es);
                 } else {
                     this.pantalla.setText("ESTE ESTUDIANTE YA ESTABA MATRICULADO EN ESTA ASIGNATURA");
@@ -553,14 +562,14 @@ public class VentanaEstudiante extends JFrame {
             //Se crea un alumno auxiliar, que es igual al seleccionado en el Jbox
             Estudiante auxiliar = (Estudiante) estudiantesJBox.getSelectedItem();
             //Se busca el indice de este alumno en la lista global de alumnos
-            int indice = vInicio.getListaGlobalEstudiantes().getIndice(auxiliar);
+            int indice = ventanaInicio.getListaGlobalEstudiantes().getIndice(auxiliar);
             //Se calcula el tamaño de la lista de referncia de dicho alumno
-            int size = vInicio.getListaGlobalEstudiantes().getEstudiante(indice).getSizeRef();
+            int size = ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indice).getSizeRef();
             //Si hay asignaturas enlazadas a este alumno
             if (size != 0) {
                 //Se añaden a la lista auxiliar de asignaturas
                 for (int i = 0; i < size; i++) {
-                    lista_auxiliar.addObject(vInicio.getListaGlobalEstudiantes().getEstudiante(indice).getRefAsignaturaEstudiante(i));
+                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indice).getRefAsignaturaEstudiante(i));
                 }
                 //Se ordenada la lista
                 lista_auxiliar.ordenarLista();
@@ -596,20 +605,20 @@ public class VentanaEstudiante extends JFrame {
             Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
 
             //Se busca el indice de esta asignatura en la lista global de asignaturas
-            int indice = vInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
+            int indice = ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
             //Se calcula el numero de estudiantes matriculados de esta asignatura
-            int size = vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef();
+            int size = ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef();
 
             //Si hay algun estudiante matriculado
             if (size != 0) {
 
                 for (int i = 0; i < size; i++) {
-                    lista_auxiliar.addObject(vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
+                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
                 }
                 //Se ordena la lista
                 lista_auxiliar.ordenarLista();
 
-                String listado = "CURSO: " + vInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
+                String listado = "CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
                 for (int i = 0; i < lista_auxiliar.getSize(); i++) {
                     listado = listado + lista_auxiliar.getEstudiante(i).toString() + "\n\n";
                     estudiantesJBox.addItem(lista_auxiliar.getEstudiante(i));
@@ -643,7 +652,7 @@ public class VentanaEstudiante extends JFrame {
     private void inItEstudiantes() {
         this.estudiantesJBox.removeAllItems();
         this.estudiantesJBox.addItem(lEstudiantes);
-        ListaEstudiantes lista_auxiliar = vInicio.getListaGlobalEstudiantes();
+        ListaEstudiantes lista_auxiliar = ventanaInicio.getListaGlobalEstudiantes();
         for (int i = 0; i < lista_auxiliar.getSize(); i++) {
             if (lista_auxiliar.getEstudiante(i).getSizeRef() != 0) {
                 this.estudiantesJBox.addItem(lista_auxiliar.getEstudiante(i));
@@ -665,9 +674,9 @@ public class VentanaEstudiante extends JFrame {
     }
 
     public void setInicio(VentanaInicio vI) {
-        vInicio = vI;
-        vAsignatura = vInicio.getvAsignatura();
-        vCurso = vInicio.getVentanaCurso();
+        ventanaInicio = vI;
+        ventanaAsignatura = ventanaInicio.getvAsignatura();
+        ventanaCurso = ventanaInicio.getVentanaCurso();
     }
 
     public ListaEstudiantes getListaEstudiantes() {

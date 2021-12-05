@@ -10,33 +10,33 @@ import Interfaz.InterfazLista;
 import Lista_Ref.Lista_Ref_Asignaturas;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
  * @author luisb
  */
 public class ListaAsignaturas implements InterfazLista {
-    
+
     private ArrayList<Asignatura> asignaturas;
     Lista_Ref_Asignaturas l_Ref_Asign = new Lista_Ref_Asignaturas();
-    
+
     public ListaAsignaturas() {
         this.asignaturas = new ArrayList<>();
     }
-    
+
     public int getSize() {
         return asignaturas.size();
     }
-    
+
     public String getInfo(int i) {
         return asignaturas.get(i).toString();
     }
-    
+
     public Asignatura getAsignatura(int i) {
         return asignaturas.get(i);
     }
-    public int getIndice(Asignatura a){
+
+    public int getIndice(Asignatura a) {
         return asignaturas.indexOf(a);
     }
 
@@ -64,33 +64,37 @@ public class ListaAsignaturas implements InterfazLista {
             }
         }
     }
-    
-    public void add(Object x){
-        l_Ref_Asign.add_nodo((Asignatura)x);
+
+    // MÉTODOS RELACIONADOS CON LA LISTA DE REF_ASIG
+    public void add(Object x) {
+        l_Ref_Asign.add_nodo((Asignatura) x);
     }
-    public void removeAsignatura(Object x){
-        l_Ref_Asign.removeAsignatura((Asignatura)x);
+
+    public void removeAsignatura(Object x) {
+        l_Ref_Asign.removeAsignatura((Asignatura) x);
     }
 
     public void removeObject(Object x) {
         asignaturas.remove(x);
     }
+    
+    public int getSizeRef() {
+        return l_Ref_Asign.getSize();
+    }
 
-    //ordena lista de menor a mayor
+    /**
+     * Método que ordena la lista de menor a mayor asignatura segun su nombre
+     * 
+     */
     public void ordenarLista() {
-        Collections.sort(asignaturas, new Comparator<Asignatura>() {
-            @Override
-            public int compare(Asignatura a1, Asignatura a2) {
-                return ((a1.getNombre()).compareTo((a2.getNombre()))); 
-            }
-        });
+        Collections.sort(asignaturas, (Asignatura a1, Asignatura a2) -> ((a1.getNombre()).compareTo((a2.getNombre()))));
     }
 
     @Override
     public String getInfoTotal() {
-        String s="";
-        for(int i=0;i<getSize();i++){
-            s+= getObject(i).toString()+"\n";
+        String s = "";
+        for (int i = 0; i < getSize(); i++) {
+            s += getObject(i).toString() + "\n";
         }
         return s;
     }
@@ -100,13 +104,13 @@ public class ListaAsignaturas implements InterfazLista {
         return null;
     }
 
-      @Override
+    @Override
     public void setObject(Object asignatura) {
-        asignaturas.add((Asignatura)asignatura);
+        asignaturas.add((Asignatura) asignatura);
     }
 
-     @Override
+    @Override
     public void setObject(int i, Object asignatura) {
-      asignaturas.add(i, (Asignatura)asignatura);
+        asignaturas.add(i, (Asignatura) asignatura);
     }
 }

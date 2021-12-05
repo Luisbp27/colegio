@@ -6,7 +6,6 @@
 package Asignatura;
 
 import Curso.Curso;
-import Estudiante.Estudiante;
 import Lista_Ref.Lista_Ref_Estudiantes;
 
 /**
@@ -18,17 +17,24 @@ public class Optativa extends Asignatura {
     public enum Tipo {
         TEÓRICA, PRÁCTICA;
     }
+    
     private Tipo tipo;
-    private final int CREDITOS = 3;
+    private int creditos;
 
-    public Optativa(String nombre, int codigo, Tipo tipo,Curso curso) {
+    public Optativa(String nombre, int codigo, int creditos, Tipo tipo, Curso curso) {
         super(nombre, codigo, curso.getNombre());
-        this.tipo=tipo;
+        this.creditos = creditos;
+        this.tipo = tipo;
+    }
+    
+    public Optativa(String nombre, int codigo, Tipo tipo, Curso curso) {
+        super(nombre, codigo, curso.getNombre());
+        this.tipo = tipo;
     }
 
     public int compareTo(Asignatura a) {
         int resultado = this.nombre.compareTo(a.nombre);
-        
+
         if (resultado < 0) {
             return -1;
         } else {
@@ -39,13 +45,13 @@ public class Optativa extends Asignatura {
             }
         }
     }
-    
+
     @Override
     public String toString() {
-        return nombre+" CODIGO: "+codigo+" PERFIL: "+tipo;
+        return nombre + " CODIGO: " + codigo + " PERFIL: " + tipo;
     }
 
-   @Override
+    @Override
     public String getNombre() {
         return nombre;
     }
@@ -64,31 +70,9 @@ public class Optativa extends Asignatura {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
-     @Override
-    public String getStringCurso() {
-        return stringCurso;
-    }
-    
-     @Override
-    public Lista_Ref_Estudiantes getListaEstudiantes(){
+
+    @Override
+    public Lista_Ref_Estudiantes getListaEstudiantes() {
         return this.lre;
     }
-     /*en principio no vamos a modificar el nombre del curso en ningún momento
-    
-    public abstract void setStringCurso(String x);
-
-    //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
-    
-    public abstract Estudiante getRefEstudiante(int i);
-
-   public abstract int getSizeRef(); cada lista tiene su getSize
-
-    public abstract void add(Estudiante e);
-
-    public abstract void remove(Estudiante e);
-    */
-    
-    
-    
 }

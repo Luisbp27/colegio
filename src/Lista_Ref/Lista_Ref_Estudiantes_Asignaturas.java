@@ -98,8 +98,7 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
         }
     }
 
-    @SuppressWarnings("override")
-    public Object getInfo(int i) {
+    public Object getInfoNodo(int i) {
         Nodo aux = cabecera;
         int j = 0;
 
@@ -171,5 +170,10 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
 
     @Override
     public void removeObject(int i) {
+    }
+
+    @Override
+    public String getInfo(int pos) {
+        return null;
     }
 }
