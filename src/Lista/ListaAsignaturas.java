@@ -101,7 +101,7 @@ public class ListaAsignaturas implements InterfazLista {
 
     @Override
     public Object getObject(int pos) {
-        return null;
+        return  asignaturas.get(pos);  
     }
 
     @Override
