@@ -65,6 +65,10 @@ public class Obligatoria extends Asignatura {
     public Lista_Ref_Estudiantes getListaEstudiantes(){
         return this.lre;
     }
+    @Override
+    public int getSizeRef(){
+        return lre.getSize();
+    }
     /*en principio no vamos a modificar el nombre del curso en ningún momento
     
     public abstract void setStringCurso(String x);

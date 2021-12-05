@@ -60,7 +60,7 @@ public class FP extends Curso {
     
     @Override
     public Asignatura getAsignaturaRef(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Asignatura)lista_curso_asignatura.getObject(i);
     }
 
     @Override

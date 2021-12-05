@@ -75,4 +75,8 @@ public class Optativa extends Asignatura {
     public Lista_Ref_Estudiantes getListaEstudiantes() {
         return this.lre;
     }
+    @Override
+    public int getSizeRef(){
+        return lre.getSize();
+    }
 }

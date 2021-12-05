@@ -39,7 +39,8 @@ public abstract class Asignatura implements InterfazDatos {
     public abstract void setCodigo(int cod);
 
     public abstract Lista_Ref_Estudiantes getListaEstudiantes();
-
+    
+    public abstract int getSizeRef();
     /*
     //en principio no vamos a modificar el nombre del curso en ningún momento
     

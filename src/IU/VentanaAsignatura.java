@@ -333,12 +333,14 @@ public class VentanaAsignatura extends JFrame {
                 int size = ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef();
                 //Si hay alguno matriculado
                 if (size != 0) {
+                    /*aun no tenemos estudiantes
                     for (int i = 0; i < size; i++) {
                         lista_auxiliar.addObject(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
-                    }
+                    }*/
                     
                     lista_auxiliar.ordenarLista();
                     String listado = "CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
+                    //String listado = "CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
                     
                     for (int i = 0; i < lista_auxiliar.getSize(); i++) {
                         listado = listado + lista_auxiliar.getEstudiante(i).toString() + "\n\n";
