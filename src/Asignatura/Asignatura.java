@@ -41,19 +41,18 @@ public abstract class Asignatura implements InterfazDatos {
     public abstract Lista_Ref_Estudiantes getListaEstudiantes();
     
     public abstract int getSizeRef();
-    /*
-    //en principio no vamos a modificar el nombre del curso en ningún momento
-    
-    public abstract String getStringCurso();
 
+    public abstract String getStringCurso();
+    
     //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
     
     public abstract Estudiante getRefEstudiante(int i);
 
-    public abstract int getSizeRef(); //cada lista tiene su getSize
+
+    // public abstract int getSizeRef(); //cada lista tiene su getSize
 
     public abstract void add(Estudiante e);
 
-    public abstract void remove(Estudiante e);
-     */
+    // public abstract void remove(Estudiante e);
+
 }

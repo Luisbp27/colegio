@@ -367,12 +367,13 @@ public class VentanaCursoAsign extends JFrame {
             int size = aux_obli.getListaEstudiantes().getSize();
             Lista_Ref_Estudiantes are = aux_obli.getListaEstudiantes();
             estudiantes = are.getInfoTotal();
-            /*for (int p = 0; (p < size); p++) {
+            
+            for (int p = 0; (p < size); p++) {
                 are.getObject(p).toString();
                 if (are.getObject(p)!= null) {
                     estudiantes += aux_obli.getRefEstudiante(p).toString() + "\n";
                 }
-            }*/
+            }
 
         } else if (listaTipoAsignaturasJBox.getSelectedItem().getClass() == Optativa.class) {
 
@@ -408,7 +409,7 @@ public class VentanaCursoAsign extends JFrame {
                 //y así quita la relación del estudiante con esa asignatura
                 es.remove(ass);
                 //aquí vuelve a añadirlo a la lista global, creo que no importa
-                listaAuxEstudiantes.addObject(es);
+                listaAuxEstudiantes.setObject(es);
             }
 
         }

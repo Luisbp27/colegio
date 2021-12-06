@@ -27,7 +27,7 @@ public class Estudiante implements InterfazDatos {
     }
     
     public void addAsignatura(Asignatura asignatura) {
-        lrea.addAsignatura(asignatura);
+        lrea.addNodo(asignatura);
     }
     
     public void remove(Asignatura asignatura) {
@@ -37,6 +37,7 @@ public class Estudiante implements InterfazDatos {
     public Asignatura getRefAsignaturaEstudiante(int i) {
         return (Asignatura) lrea.getInfoNodo(i);
     }
+    
     public Lista_Ref_Estudiantes_Asignaturas getListaRefEstudianteAsignatura(){
         return lrea;
     }
@@ -75,5 +76,10 @@ public class Estudiante implements InterfazDatos {
     @Override
     public int getCodigo() {
         return 0;
+    }
+    
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + " DNI: " + dni;
     }
 }

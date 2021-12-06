@@ -28,8 +28,10 @@ public class Nodo {
     }
 /**
  * Constructor que inicializamos los atributos a Null 
+     * @param info
+     * @param n
  */
-    public Nodo(Object info,Nodo n) {
+    public Nodo(Object info, Nodo n) {
         this.info = info;
         siguiente = n;
     }

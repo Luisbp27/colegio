@@ -358,7 +358,7 @@ public class VentanaCurso extends JFrame {
                 es = lre.getObject(i);
                 listaAuxAlumnos.removeObject(es);
                 es.remove(ass);
-                listaAuxAlumnos.addObject(es);
+                listaAuxAlumnos.setObject(es);
             }
 
         }

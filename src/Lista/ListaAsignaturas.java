@@ -42,9 +42,11 @@ public class ListaAsignaturas implements InterfazLista {
 
     public String getInfoLista() {
         String infoTotal = "";
+        
         for (int i = 0; i < this.getSize(); i++) {
             infoTotal += asignaturas.get(i).toString() + "\n";
         }
+        
         return infoTotal;
     }
 
@@ -67,7 +69,7 @@ public class ListaAsignaturas implements InterfazLista {
 
     // MÉTODOS RELACIONADOS CON LA LISTA DE REF_ASIG
     public void add(Object x) {
-        l_Ref_Asign.add_nodo((Asignatura) x);
+        l_Ref_Asign.addNodo((Asignatura) x);
     }
 
     public void removeAsignatura(Object x) {

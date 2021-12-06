@@ -27,16 +27,22 @@ public class Lista_Ref_Estudiantes {
     /**
      * Método que añande un nodo al final de la lista
      * 
-     * @param nodo 
+     * @param estudiante
      */
-    public void addNodo(Nodo nodo) {
-        Nodo aux = cabecera;
-        
-        while (aux.getNodo() != null) {
-            aux = aux.getNodo();
+    public void addNodo(Estudiante estudiante) {
+        Nodo nuevo = new Nodo(estudiante, null);
+
+        if (cabecera != null) {
+            Nodo index = cabecera;
+
+            while (index.getNodo() != null) {
+                index = index.getNodo();
+            }
+
+            index.setNodo(nuevo);
+        } else {
+            cabecera = nuevo;
         }
-        
-        aux.setNodo(nodo);
     }
     
     public void addObjectEstudiante(Nodo nodo) {
@@ -160,6 +166,7 @@ public class Lista_Ref_Estudiantes {
     /**
      * Recorre todos los campos info de la lista de nodos y devuelve si es una 
      * referencia a asignatura o estudiante el objeto referenciado en String.
+     * 
      * @return String de todos los objetos de la lista
      */
     public String getInfoTotal() {
@@ -173,6 +180,7 @@ public class Lista_Ref_Estudiantes {
                 aux = aux.getNodo();
                 s += (aux.getInfo().toString()) + "\n";
             }
+            
         } else {
             return s; //Vacía
         }return s;

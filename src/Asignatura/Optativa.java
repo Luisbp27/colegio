@@ -6,6 +6,7 @@
 package Asignatura;
 
 import Curso.Curso;
+import Estudiante.Estudiante;
 import Lista_Ref.Lista_Ref_Estudiantes;
 
 /**
@@ -14,17 +15,24 @@ import Lista_Ref.Lista_Ref_Estudiantes;
  */
 public class Optativa extends Asignatura {
 
+    @Override
+    public void add(Estudiante e) {
+        lre.addNodo(e);
+    }
+
     public enum Tipo {
         TEÓRICA, PRÁCTICA;
     }
     
     private Tipo tipo;
     private int creditos;
+    private String stringCurso;
 
     public Optativa(String nombre, int codigo, int creditos, Tipo tipo, Curso curso) {
         super(nombre, codigo, curso.getNombre());
         this.creditos = creditos;
         this.tipo = tipo;
+        this.stringCurso = curso.getNombre();
     }
     
     public Optativa(String nombre, int codigo, Tipo tipo, Curso curso) {
@@ -75,8 +83,19 @@ public class Optativa extends Asignatura {
     public Lista_Ref_Estudiantes getListaEstudiantes() {
         return this.lre;
     }
+    
     @Override
     public int getSizeRef(){
         return lre.getSize();
+    }
+    
+    public String getStringCurso() {
+        return stringCurso;
+    }
+    
+    //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
+    
+    public Estudiante getRefEstudiante(int i) {
+        return lre.getObject(i);
     }
 }

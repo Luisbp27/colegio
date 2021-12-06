@@ -21,7 +21,7 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
         this.primero = null;
     }
 
-    public void add_nodo(Asignatura asignatura) {
+    public void addNodo(Asignatura asignatura) {
         Nodo nuevo = new Nodo(asignatura, null);
         
         if (primero != null) {

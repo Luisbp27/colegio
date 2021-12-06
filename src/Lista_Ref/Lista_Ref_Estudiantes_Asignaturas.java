@@ -21,8 +21,8 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
         this.cabecera = null;
     }
 
-    public void addAsignatura(Asignatura asignatura) {
-        Nodo nuevo = new Nodo(asignatura);
+    public void addNodo(Asignatura asignatura) {
+        Nodo nuevo = new Nodo(asignatura, null);
 
         if (cabecera != null) {
             Nodo index = cabecera;

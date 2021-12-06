@@ -43,9 +43,6 @@ public class ListaEstudiantes implements InterfazLista {
     }
     
     //METODOS DE GESTION DE LA LISTA
-    public void addObject(Object o) {
-        estudiantes.add((Estudiante) o);
-    }
 
     public void removeObject(int i) {
         estudiantes.remove(i);
@@ -77,7 +74,7 @@ public class ListaEstudiantes implements InterfazLista {
     }
 
     public void ordenarLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Collections.sort(estudiantes, (Estudiante e1, Estudiante e2) -> ((e1.getNombre()).compareTo((e2.getNombre()))));
     }
 
     @Override
@@ -92,7 +89,7 @@ public class ListaEstudiantes implements InterfazLista {
 
     @Override
     public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        estudiantes.add((Estudiante)o);
     }
 
     @Override
