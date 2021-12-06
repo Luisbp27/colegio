@@ -38,6 +38,7 @@ public class Optativa extends Asignatura {
     public Optativa(String nombre, int codigo, Tipo tipo, Curso curso) {
         super(nombre, codigo, curso.getNombre());
         this.tipo = tipo;
+        this.stringCurso = curso.getNombre();
     }
 
     public int compareTo(Asignatura a) {
@@ -89,8 +90,9 @@ public class Optativa extends Asignatura {
         return lre.getSize();
     }
     
+    @Override
     public String getStringCurso() {
-        return stringCurso;
+        return this.stringCurso;
     }
     
     //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO

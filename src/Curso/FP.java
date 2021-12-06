@@ -35,7 +35,7 @@ public class FP extends Curso {
 
     @Override
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     @Override

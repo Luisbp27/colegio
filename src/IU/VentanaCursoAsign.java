@@ -284,9 +284,6 @@ public class VentanaCursoAsign extends JFrame {
     /**
      * Actualiza el Jcombobox con la asignaturas que ya exisitian
      */
-    /**
-     * Actualiza el Jcombobox con la asignaturas que ya exisitian
-     */
     private void actualizar_lista_asignaturas(ListaAsignaturas lista) {
             for (int i = 0; i <lista.getSize(); i++) {
                 listaTipoAsignaturasJBox.addItem(lista.getObject(i));
@@ -366,10 +363,8 @@ public class VentanaCursoAsign extends JFrame {
             //vamos añadiendo todos sus alumnos al string
             int size = aux_obli.getListaEstudiantes().getSize();
             Lista_Ref_Estudiantes are = aux_obli.getListaEstudiantes();
-            estudiantes = are.getInfoTotal();
             
             for (int p = 0; (p < size); p++) {
-                are.getObject(p).toString();
                 if (are.getObject(p)!= null) {
                     estudiantes += aux_obli.getRefEstudiante(p).toString() + "\n";
                 }

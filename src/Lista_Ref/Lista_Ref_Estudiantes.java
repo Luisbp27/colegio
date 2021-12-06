@@ -195,13 +195,10 @@ public class Lista_Ref_Estudiantes {
         Nodo aux = cabecera;
         int i = 0;
         
-        if(aux != null){
-            while(aux.getNodo() != null){
+            while(aux != null){
                 i++;
                 aux = aux.getNodo();                
-            } 
-        }
-        
+            }         
         return i;    
     }    
 

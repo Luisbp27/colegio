@@ -131,20 +131,21 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
         }
     }
 
-    public int getSize() {
+    /**
+     * Método que devuelve la longitud de la lista
+     * 
+     * @return 
+     */
+    public int getSize(){
         Nodo aux = cabecera;
         int i = 0;
-
-        if (aux != null) {
-            i++;
-            while (aux.getNodo() != null) {
+        
+            while(aux != null){
                 i++;
-                aux = aux.getNodo();
-            }
-        }
-
-        return i;
-    }
+                aux = aux.getNodo();                
+            }         
+        return i;    
+    }    
 
     @Override
     public String getInfoTotal() {

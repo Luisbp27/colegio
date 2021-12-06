@@ -114,9 +114,21 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
         return null;
     }
 
-    public int getSize() {
-        return 0;
-    }
+    /**
+     * Método que devuelve la longitud de la lista
+     * 
+     * @return 
+     */
+    public int getSize(){
+        Nodo aux = primero;
+        int i = 0;
+        
+            while(aux != null){
+                i++;
+                aux = aux.getNodo();                
+            }         
+        return i;    
+    }    
 
     @Override
     public String getInfo(int pos) {

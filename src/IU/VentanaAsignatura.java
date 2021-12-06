@@ -140,7 +140,7 @@ public class VentanaAsignatura extends JFrame {
         listarC = new JButton("Listar Curso");
         listarC.setBackground(Color.BLACK);
 
-        // Acciones al presionar el botón "Indicar Curso"
+        // Acciones al presionar el botón "Actualizar Curso"
         actualizarA.addActionListener((ActionEvent ae) -> {
             accionActualizarCurso();
         });
