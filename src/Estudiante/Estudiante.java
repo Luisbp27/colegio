@@ -37,6 +37,9 @@ public class Estudiante implements InterfazDatos {
     public Asignatura getRefAsignaturaEstudiante(int i) {
         return (Asignatura) lrea.getInfoNodo(i);
     }
+    public Lista_Ref_Estudiantes_Asignaturas getListaRefEstudianteAsignatura(){
+        return lrea;
+    }
     
     public int getSizeRef() {
         return lrea.getSize();

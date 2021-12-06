@@ -8,9 +8,6 @@ import Curso.FP;
 import Estudiante.Estudiante;
 import Lista.ListaEstudiantes;
 import Lista.ListaAsignaturas;
-import Lista_Ref.Lista_Ref_Estudiantes;
-import Lista_Ref.Lista_Ref_Estudiantes_Asignaturas;
-import Lista_Ref.Nodo;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -31,7 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
-public class VentanaEstudiante extends JFrame {
+public class VentanaEstudianteCopyOriginal extends JFrame {
 
     // Constantes
     // Tamaño ventana
@@ -109,7 +106,7 @@ public class VentanaEstudiante extends JFrame {
      * Método constructor de la clase
      * 
      */
-    public VentanaEstudiante() {
+    public VentanaEstudianteCopyOriginal() {
         super("Gestión Estudiantes");
         listaEstudiantes = new ListaEstudiantes();
         
@@ -502,43 +499,51 @@ public class VentanaEstudiante extends JFrame {
             } else {
                 //Asignatura auxiliar, se crea a partir del objeto seleccionado en la lista, haciendo cast porque devuelve Object
                 Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
-                Lista_Ref_Estudiantes lre=auxiliar.getListaEstudiantes();
-               
+                /*//Indice de la asignatura seleccionada en la lista, en la lista global
+                int indice = ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
+                */
                 //Alumno nuevo, se crea a partir de los campos 
                 Estudiante es = new Estudiante(areaNombre.getText(), areaDNI.getText());
                 boolean matriculado = false;
                 
-                //recorrer la lista de referencias a estudiantes de la asignatura selecionada JComboBox
-                for (int i = 0; i < lre.getSize(); i++) {
-                    Estudiante aux=(Estudiante)lre.getObject(i);
-                   if(es.equals(aux)){
-                       matriculado=true;
-                   }   
+                //recorrer la lista de referencias a estudiantes
+                /*                
+                for (int i = 0; i < ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef(); i++) {
+                    if (ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i).getNombre().equals(es.getNombre()) && 
+                            ventanaInicio.getListaGlobalEstudiantes().getAsignatura(indice).getRefEstudiante(i).getDni().equals(es.getDni())) {
+                        matriculado = true;
+                    }
                 }
-                
-                //recorrer lista global asignaturas para saber si ya estaba lista global
-                ListaEstudiantes le=ventanaInicio.getListaGlobalEstudiantes();
-                boolean original = true;
-                for (int i = 0; i < le.getSize(); i++) {
-                   if(es.equals(le.getEstudiante(i))) {
-                       //ya está en la lista de estudiantes general
-                       original=false;
-                   }          
-                }
-                
-               if((!matriculado)&&(!original)){
-                   //añadir estudiante a esa asignatura pero no lista estudiantes
-                   Nodo Nestudiante =new Nodo(es);
-                   auxiliar.getListaEstudiantes().addNodo(Nestudiante);
+                */
+                if (matriculado == false) {
+                    boolean original = true;
+                    int indiceAlumno = 0;
                     
-               }else if((!matriculado)&&original){//añadirlo lista global y a la asignatura{
-                   Nodo Nestudiante =new Nodo(es);
-                   auxiliar.getListaEstudiantes().addNodo(Nestudiante);
-                   ventanaInicio.getListaGlobalEstudiantes().setObject(es);
+                    for (int i = 0; i < ventanaInicio.getListaGlobalEstudiantes().getSize(); i++) {
+                        if (ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i).getNombre().equals(es.getNombre()) && 
+                                ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i).getDni().equals(es.getDni())) {
+                            original = false;
+                            indiceAlumno = i;
+                        }
+                    }
+                    
+                    if (original) {
+                        ventanaInicio.getListaGlobalEstudiantes().addObject(es);
+                        ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(ventanaInicio.getListaGlobalEstudiantes().getSize() - 1));
+                        ventanaInicio.getListaGlobalEstudiantes().getEstudiante(ventanaInicio.getListaGlobalEstudiantes().getSize() - 1).addAsignatura(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice));
+                        this.estudiantesJBox.addItem(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(ventanaInicio.getListaGlobalEstudiantes().getSize() - 1));
+
+                    } else {
+                        ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno).addAsignatura(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice));
+                        ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
+                        //Se añade al Jbox el nuevo alumno
+                        this.estudiantesJBox.addItem(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
+                    }
+                    
                     this.pantalla.setText("Se ha matriculado:\nAlumno " + es);
-               }else{ //ya está matriculado
-                this.pantalla.setText("ESTE ESTUDIANTE YA ESTABA MATRICULADO EN ESTA ASIGNATURA");
-               }
+                } else {
+                    this.pantalla.setText("ESTE ESTUDIANTE YA ESTABA MATRICULADO EN ESTA ASIGNATURA");
+                }
                 inItEstudiantes();
             }
         }

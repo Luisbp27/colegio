@@ -39,6 +39,15 @@ public class Lista_Ref_Estudiantes {
         aux.setNodo(nodo);
     }
     
+    public void addObjectEstudiante(Nodo nodo) {
+        Nodo aux = cabecera;
+        
+        while (aux.getNodo() != null) {
+            aux = aux.getNodo();
+        }
+        
+        aux.setNodo(nodo);
+    }
     /**
      * Método que elimina el objeto pasado por parámetro de la lista
      * 
