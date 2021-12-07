@@ -135,10 +135,12 @@ public class VentanaAsignatura extends JFrame {
         listaAsignaturas.addItem(listaAsig);
 
         actualizarA = new JButton("Actualizar");
-        actualizarA.setBackground(Color.BLACK);
+        actualizarA.setForeground(Color.WHITE);
+        actualizarA.setBackground(Color.GRAY);
 
         listarC = new JButton("Listar Curso");
-        listarC.setBackground(Color.BLACK);
+        listarC.setForeground(Color.WHITE);
+        listarC.setBackground(Color.GRAY);
 
         // Acciones al presionar el botón "Actualizar Curso"
         actualizarA.addActionListener((ActionEvent ae) -> {
@@ -172,7 +174,7 @@ public class VentanaAsignatura extends JFrame {
         scrollPane.addAncestorListener(new AncestorListener() {
             @Override
             public void ancestorAdded(AncestorEvent event) {
-                inIt();
+                init();
             }
 
             @Override
@@ -321,6 +323,7 @@ public class VentanaAsignatura extends JFrame {
     private void accionListarCurso() {
         //Lista auxiliar de alumnos
         ListaEstudiantes lista_auxiliar = new ListaEstudiantes();
+        
         //Si el tipo de asignatura seleccionado no esta vacio
         if (!panelTipoAsignatura.isEmpty()) {
             //Y si el elemento seleccionado del Jbox no es la cabecera
@@ -331,12 +334,13 @@ public class VentanaAsignatura extends JFrame {
                 int indice = ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
                 //Numero de alumnos matriculados en esta asignatura
                 int size = ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef();
+                
                 //Si hay alguno matriculado
                 if (size != 0) {
-                    /*aun no tenemos estudiantes
+
                     for (int i = 0; i < size; i++) {
-                        lista_auxiliar.addObject(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
-                    }*/
+                        lista_auxiliar.setObject(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
+                    }
                     
                     lista_auxiliar.ordenarLista();
                     String listado = "CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
@@ -361,7 +365,7 @@ public class VentanaAsignatura extends JFrame {
     /**
      * Ponemos todos los campos en blanco
      */
-    private void inIt() {
+    private void init() {
         this.pantalla.setText("");
         this.listaAsignaturas.removeAllItems();
         this.listaAsignaturas.addItem(listaAsig);

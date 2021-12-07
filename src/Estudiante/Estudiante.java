@@ -43,6 +43,7 @@ public class Estudiante implements InterfazDatos {
     }
     
     public int getSizeRef() {
+        System.out.println("hola3");
         return lrea.getSize();
     }
 

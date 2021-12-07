@@ -8,6 +8,7 @@ import Curso.FP;
 import Estudiante.Estudiante;
 import Lista.ListaEstudiantes;
 import Lista.ListaAsignaturas;
+import Lista_Ref.Lista_Ref_Asignaturas;
 import Lista_Ref.Lista_Ref_Estudiantes;
 import Lista_Ref.Lista_Ref_Estudiantes_Asignaturas;
 import Lista_Ref.Nodo;
@@ -143,13 +144,16 @@ public class VentanaEstudiante extends JFrame {
 
         // BOTONES//
         botonAlta = new JButton("ALTA");
-        botonAlta.setBackground(Color.BLACK);
+        botonAlta.setForeground(Color.WHITE);
+        botonAlta.setBackground(Color.GRAY);
 
         botonActualiza = new JButton("Actualizar Lista");
-        botonActualiza.setBackground(Color.BLACK);
+        botonActualiza.setForeground(Color.WHITE);
+        botonActualiza.setBackground(Color.GRAY);
 
         botonListarEstudiante = new JButton("Listar");
-        botonListarEstudiante.setBackground(Color.BLACK);
+        botonListarEstudiante.setForeground(Color.WHITE);
+        botonListarEstudiante.setBackground(Color.GRAY);
 
         listaTipoAsignaturasJBox = new JComboBox();
         listaTipoAsignaturasJBox.addItem(lAsignatura);
@@ -367,7 +371,6 @@ public class VentanaEstudiante extends JFrame {
     private void actualizarLista() {
         // Si se ha seleccionado un elemento de la lista de asignaturas
         if (!isEmptySelectA()) {
-
             // Se limpia la lista
             listaTipoAsignaturasJBox.removeAllItems();
             // Se añade la cabecera
@@ -482,11 +485,12 @@ public class VentanaEstudiante extends JFrame {
         } else {
             this.pantalla.setText("No están todos los botones seleccionados");
         }
+
         return empty;
     }
 
     /**
-     * Acción que da de alta un estudiante
+     * Método que realiza la acción de dar de alta a un estudiante
      *
      */
     private void accionAlta() {
@@ -499,11 +503,9 @@ public class VentanaEstudiante extends JFrame {
                 this.pantalla.setText("Selecciona una Asignatura de la lista");
 
             } else {
-                System.out.println("entrar");
                 //Asignatura auxiliar, se crea a partir del objeto seleccionado en la lista, haciendo cast porque devuelve Object
                 Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
                 Lista_Ref_Estudiantes lre = auxiliar.getListaEstudiantes();
-                // int indice = lre.getSize();
 
                 //Alumno nuevo, se crea a partir de los campos 
                 Estudiante es = new Estudiante(areaNombre.getText(), areaDNI.getText());
@@ -516,124 +518,83 @@ public class VentanaEstudiante extends JFrame {
 
                     if (es.getDni().equals(aux.getDni())) {
                         matriculado = true;
-                        System.out.println(matriculado);
                     }
                 }
 
                 if (matriculado == false) {
                     boolean original = true;
-                    int indiceAlumno = 0;
 
                     for (int i = 0; i < ventanaInicio.getListaGlobalEstudiantes().getSize(); i++) {
-                        if (ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i).getNombre().equals(es.getNombre())
-                                && ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i).getDni().equals(es.getDni())) {
-
+                        Estudiante estudianteAuxiliar = ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i);
+                        if (estudianteAuxiliar.getNombre().equals(es.getNombre())
+                                && estudianteAuxiliar.getDni().equals(es.getDni())) {
                             original = false;
-                            indiceAlumno = i;
                         }
                     }
 
                     // No matriculado en la asignatura y nuevo alumno del curso
                     if (original) {
                         auxiliar.getListaEstudiantes().addNodo(es);
+
+                        // Añadimos la asignatura a las respectivas listas
                         ventanaInicio.getListaGlobalEstudiantes().setObject(es);
+                        es.getListaRefEstudianteAsignatura().addNodo(auxiliar);
+
                         this.pantalla.setText("Se ha matriculado:\nAlumno " + es);
                         System.out.println("No matriculado en la asignatura y nuevo alumno del curso");
 
-                    // No matriculado de la asignatura y no es nuevo alumno del curso
+                        // No matriculado de la asignatura y no es nuevo alumno del curso
                     } else {
                         auxiliar.getListaEstudiantes().addNodo(es);
+
+                        // Añadimos la asignatura a las respectivas listas
+                        es.getListaRefEstudianteAsignatura().addNodo(auxiliar);
+
                         this.pantalla.setText("Se ha matriculado:\nAlumno " + es);
                         System.out.println("No matriculado de la asignatura y no es nuevo alumno del curso");
                     }
 
-                                        
-                    
-                    
-                    
-
-//                    if (original) {
-//                        ventanaInicio.getListaGlobalEstudiantes().addObject(es);
-//
-//                        ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(
-//                                ventanaInicio.getListaGlobalEstudiantes().getEstudiante(
-//                                        ventanaInicio.getListaGlobalEstudiantes().getSize() - 1));
-//                        ventanaInicio.getListaGlobalEstudiantes().getEstudiante(
-//                                ventanaInicio.getListaGlobalEstudiantes().getSize() - 1).addAsignatura(
-//                                ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice));
-//                        this.estudiantesJBox.addItem(
-//                                ventanaInicio.getListaGlobalEstudiantes().getEstudiante(
-//                                        ventanaInicio.getListaGlobalEstudiantes().getSize() - 1));
-//
-//                    } else {
-//                        ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno).addAsignatura(
-//                                ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice));
-//                        ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).add(
-//                                ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
-//                        //Se añade al Jbox el nuevo alumno
-//                        this.estudiantesJBox.addItem(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indiceAlumno));
-//                    }
-//                    this.pantalla.setText("Se ha matriculado:\nAlumno " + es);
-//                } else {
-//                    this.pantalla.setText("ESTE ESTUDIANTE YA ESTABA MATRICULADO EN ESTA ASIGNATURA");
-//                }
-
-//                //recorrer lista global asignaturas para saber si ya estaba lista global
-//                ListaEstudiantes le = ventanaInicio.getListaGlobalEstudiantes();
-//                boolean original = true;
-//                for (int i = 0; i < le.getSize(); i++) {
-//                    if (es.equals(le.getEstudiante(i))) {
-//                        //ya está en la lista de estudiantes general
-//                        original = false;
-//                    }
-//                }
-//
-//                if ((!matriculado) && (!original)) {
-//                    //añadir estudiante a esa asignatura pero no lista estudiantes
-//                    auxiliar.getListaEstudiantes().addNodo(es);
-//
-//                } else if ((!matriculado) && original) {//añadirlo lista global y a la asignatura{
-//                    
-//                } else { //ya está matriculado
-//                    this.pantalla.setText("ESTE ESTUDIANTE YA ESTABA MATRICULADO EN ESTA ASIGNATURA");
-//                }
-                    
                 } else {
                     this.pantalla.setText("Este estudiante ya está matriculado en esta asignatura.");
                 }
-                
+
                 initEstudiantes();
             }
         }
     }
 
     /**
-     * Acción al presionar el botón de listar. Indicar de que asignaturas (con
-     * el tipo, perfil y credits de cada una de ellos) está matriculado y a que
-     * curso (indicando el tipo y especialidad del curso) pertenece cada
-     * asignatura.
-     * 
+     * Método que realiza la acción al presionar el botón de listar. Indica de
+     * que asignaturas (con el tipo, perfil y credits de cada una de ellos) está
+     * matriculado el estudiante seleccionado en el JComboBox y a que curso
+     * (indicando el tipo y especialidad del curso) pertenece cada asignatura.
+     *
      */
     private void accionListarEstudiante() {
+        System.out.println("hola");
         //Lista auxiliar de asignaturas
         ListaAsignaturas lista_auxiliar = new ListaAsignaturas();
-        
+
         //Si no se ha seleccionada la cabecera
         if (!estudiantesJBox.getSelectedItem().equals(lEstudiantes)) {
             //Se crea un alumno auxiliar, que es igual al seleccionado en el Jbox
-            Estudiante auxiliar = (Estudiante) estudiantesJBox.getSelectedItem();
+            Estudiante estudianteAuxiliar = (Estudiante) estudiantesJBox.getSelectedItem();
             //Se busca el indice de este alumno en la lista global de alumnos
-            int indice = ventanaInicio.getListaGlobalEstudiantes().getIndice(auxiliar);
+            int indice = ventanaInicio.getListaGlobalEstudiantes().getIndice(estudianteAuxiliar);
             //Se calcula el tamaño de la lista de referncia de dicho alumno
             int size = ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indice).getSizeRef();
-            
+
+            System.out.println("hola2");
+
+            System.out.println(estudianteAuxiliar.getListaRefEstudianteAsignatura().getSize());
+
             //Si hay asignaturas enlazadas a este alumno
             if (size != 0) {
                 //Se añaden a la lista auxiliar de asignaturas
                 for (int i = 0; i < size; i++) {
                     lista_auxiliar.addObject(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indice).getRefAsignaturaEstudiante(i));
                 }
-                
+
                 //Se ordenada la lista
                 lista_auxiliar.ordenarLista();
 
@@ -645,13 +606,14 @@ public class VentanaEstudiante extends JFrame {
 
                 this.pantalla.setText(listado);
             } else {
-                this.pantalla.setText("NO SE HAN ENCONTRADO ASIGNATURAS");
+                this.pantalla.setText(" NO SE HAN ENCONTRADO ASIGNATURAS");
             }
         }
     }
 
     /**
      * Metodo que muestra automaticamente la lista global de los estudiantes
+     *
      */
     private void actualizarListaEstudiantesAuto() {
         //Se resetea el estudianteJBox
@@ -675,7 +637,7 @@ public class VentanaEstudiante extends JFrame {
                 for (int i = 0; i < size; i++) {
                     lista_auxiliar.setObject(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
                 }
-                
+
                 //Se ordena la lista
                 lista_auxiliar.ordenarLista();
 
@@ -687,13 +649,14 @@ public class VentanaEstudiante extends JFrame {
 
                 this.pantalla.setText(listado);
             } else {
-                this.pantalla.setText("NO SE HAN ENCONTRADO ALUMNOS MATRICULADOS");
+                this.pantalla.setText(" NO SE HAN ENCONTRADO ALUMNOS MATRICULADOS");
             }
         }
     }
 
     /**
-     * Ponemos todos los campos en blanco
+     * Método que pone todos los campos en blanco
+     *
      */
     private void init() {
         this.areaNombre.setText("");
@@ -709,18 +672,27 @@ public class VentanaEstudiante extends JFrame {
 
     /**
      * Método que recorre todos los estudiantes y los añado al JComboBox
+     *
      */
     private void initEstudiantes() {
-        this.estudiantesJBox.removeAllItems();
-        this.estudiantesJBox.addItem(lEstudiantes);
-        Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
-        Lista_Ref_Estudiantes lre = auxiliar.getListaEstudiantes();
-        
-        for (int i = 0; i < lre.getSize(); i++) {
-            if (lre.getSize() != 0) {
-                this.estudiantesJBox.addItem(lre.getObject(i));
+        try {
+            this.estudiantesJBox.removeAllItems();
+
+            this.estudiantesJBox.addItem(lEstudiantes);
+            Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
+            System.out.println(auxiliar);
+            Lista_Ref_Estudiantes lre = auxiliar.getListaEstudiantes();
+
+            for (int i = 0; i < lre.getSize(); i++) {
+                if (lre.getSize() != 0) {
+                    this.estudiantesJBox.addItem(lre.getObject(i));
+                }
             }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
+
     }
 
     private boolean jComboBoxAsigIsEmpety() {

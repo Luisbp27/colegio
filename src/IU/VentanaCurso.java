@@ -127,11 +127,16 @@ public class VentanaCurso extends JFrame {
 
         // BOTONES//
         botonAlta = new JButton("ALTA");
-        botonAlta.setBackground(Color.BLACK);
+        botonAlta.setForeground(Color.WHITE);
+        botonAlta.setBackground(Color.GRAY);
+        
         botonBaja = new JButton("BAJA");
-        botonBaja.setBackground(Color.BLACK);
+        botonBaja.setForeground(Color.WHITE);
+        botonBaja.setBackground(Color.GRAY);
+        
         botonEntrar = new JButton("ENTRAR");
-        botonEntrar.setBackground(Color.BLACK);
+        botonEntrar.setForeground(Color.WHITE);
+        botonEntrar.setBackground(Color.GRAY);
 
         listaCursosJBox = new JComboBox();
         listaCursosJBox.addItem("Lista Cursos");

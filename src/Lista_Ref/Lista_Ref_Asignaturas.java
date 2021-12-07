@@ -23,14 +23,14 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
 
     public void addNodo(Asignatura asignatura) {
         Nodo nuevo = new Nodo(asignatura, null);
-        
+
         if (primero != null) {
             Nodo index = primero;
-            
+
             while (index.getNodo() != null) {
                 index = index.getNodo();
             }
-            
+
             index.setNodo(nuevo);
         } else {
             primero = nuevo;
@@ -45,17 +45,17 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
         if (primero != null) {
             if (primero.getInfo().equals(asignatura)) {
                 Nodo nodeBorrado = primero;
-                
+
                 if (primero.getNodo() == null) {
                     primero = null;
                     nodeBorrado.setNodo(null);
                     Nodo index2 = vacia;
-                    
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
-                        
+
                         index2.setNodo(nodeBorrado);
                     } else {
                         vacia = nodeBorrado;
@@ -64,12 +64,12 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
                     primero = primero.getNodo();
                     nodeBorrado.setNodo(null);
                     Nodo index2 = vacia;
-                    
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
-                        
+
                         index2.setNodo(nodeBorrado);
                     } else {
                         vacia = nodeBorrado;
@@ -78,7 +78,7 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
             } else {
                 boolean trobat = false;
                 Nodo index = primero;
-                
+
                 while (!trobat && index.getNodo() != null) {
                     if (index.getNodo().getInfo().equals(asignatura)) {
                         trobat = true;
@@ -91,12 +91,12 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
                     index.setNodo(nodeBorrat.getNodo());
                     nodeBorrat.setNodo(null);
                     Nodo index2 = vacia;
-                    
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
-                        
+
                         index2.setNodo(nodeBorrat);
                     } else {
                         vacia = nodeBorrat;
@@ -116,19 +116,20 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
 
     /**
      * Método que devuelve la longitud de la lista
-     * 
-     * @return 
+     *
+     * @return
      */
-    public int getSize(){
+    public int getSize() {
         Nodo aux = primero;
         int i = 0;
+
+        while (aux != null) {
+            i++;
+            aux = aux.getNodo();
+        }
         
-            while(aux != null){
-                i++;
-                aux = aux.getNodo();                
-            }         
-        return i;    
-    }    
+        return i;
+    }
 
     @Override
     public String getInfo(int pos) {

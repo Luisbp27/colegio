@@ -12,21 +12,21 @@ import Estudiante.Estudiante;
  * @author luisb
  */
 public class Lista_Ref_Estudiantes {
-    
+
     private Nodo cabecera;
     private Nodo vacia;
-    
+
     /**
      * Método constructor de la clase
-     * 
+     *
      */
     public Lista_Ref_Estudiantes() {
         cabecera = null;
     }
-    
+
     /**
      * Método que añande un nodo al final de la lista
-     * 
+     *
      * @param estudiante
      */
     public void addNodo(Estudiante estudiante) {
@@ -44,20 +44,21 @@ public class Lista_Ref_Estudiantes {
             cabecera = nuevo;
         }
     }
-    
+
     public void addObjectEstudiante(Nodo nodo) {
         Nodo aux = cabecera;
-        
+
         while (aux.getNodo() != null) {
             aux = aux.getNodo();
         }
-        
+
         aux.setNodo(nodo);
     }
+
     /**
      * Método que elimina el objeto pasado por parámetro de la lista
-     * 
-     * @param estudiante 
+     *
+     * @param estudiante
      */
     public void removeNodo(Estudiante estudiante) {
         if (cabecera != null) {
@@ -119,42 +120,42 @@ public class Lista_Ref_Estudiantes {
             System.out.println("Lista vacía\n");
         }
     }
-    
+
     /**
      * Método que devuelve el valor info del objeto
-     * 
+     *
      * @param i
-     * @return 
+     * @return
      */
     public Object getInfo(int i) {
         Nodo aux = cabecera;
         int j = 0;
-        
-        if (aux != null){
-            while(!aux.isEmpty() && j < i ){
+
+        if (aux != null) {
+            while (!aux.isEmpty() && j < i) {
                 j++;
-                if(aux.getNodo() != null) {
+                if (aux.getNodo() != null) {
                     aux = aux.getNodo();
                 }
             }
-            
+
             return aux.getInfo();
         } else {
             return null;
-        } 
+        }
     }
-    
+
     /**
      * Método que visualiza la lista por pantalla
-     * 
+     *
      */
     public void visualizarLista() {
         Nodo aux = cabecera;
-        
-        if (!aux.isEmpty()){
+
+        if (!aux.isEmpty()) {
             System.out.println(aux.getInfo().toString());
-            
-            while(aux.getNodo() != null){
+
+            while (aux.getNodo() != null) {
                 aux = aux.getNodo();
                 System.out.println(aux.getInfo().toString());
             }
@@ -162,72 +163,74 @@ public class Lista_Ref_Estudiantes {
             System.out.println("Vacía");
         }
     }
-    
+
     /**
-     * Recorre todos los campos info de la lista de nodos y devuelve si es una 
+     * Recorre todos los campos info de la lista de nodos y devuelve si es una
      * referencia a asignatura o estudiante el objeto referenciado en String.
-     * 
+     *
      * @return String de todos los objetos de la lista
      */
     public String getInfoTotal() {
         String s = "";
         Nodo aux = cabecera;
-        
-        if (!aux.isEmpty()){
+
+        if (!aux.isEmpty()) {
             s += (aux.getInfo().toString()) + "\n";
-            
-            while(aux.getNodo() != null){
+
+            while (aux.getNodo() != null) {
                 aux = aux.getNodo();
                 s += (aux.getInfo().toString()) + "\n";
             }
-            
+
         } else {
             return s; //Vacía
-        }return s;
-    } 
-    
-    /**
-     * Método que devuelve la longitud de la lista
-     * 
-     * @return 
-     */
-    public int getSize(){
-        Nodo aux = cabecera;
-        int i = 0;
-        
-            while(aux != null){
-                i++;
-                aux = aux.getNodo();                
-            }         
-        return i;    
-    }    
+        }
+        return s;
+    }
 
     /**
-     * Busca en la lista enlazada de referencias al objeto referencia a estudiante
-     * en la posición i pasada por argumento y devuelve el campo info de un
-     * objeto referencia estudiante, por tanto al estudiante.
-     * 
-     * Objeto referencia a estudiante -> Nodo Estudiante
-     * Nodo estudiante campo info es el Estudiante.
-     * 
+     * Método que devuelve la longitud de la lista
+     *
+     * @return
+     */
+    public int getSize() {
+        Nodo aux = cabecera;
+        int i = 0;
+
+        while (aux != null) {
+            i++;
+            aux = aux.getNodo();
+        }
+
+        return i;
+    }
+
+    /**
+     * Busca en la lista enlazada de referencias al objeto referencia a
+     * estudiante en la posición i pasada por argumento y devuelve el campo info
+     * de un objeto referencia estudiante, por tanto al estudiante.
+     *
+     * Objeto referencia a estudiante -> Nodo Estudiante Nodo estudiante campo
+     * info es el Estudiante.
+     *
      * @param i, indica la posición de un objeto referencia a estudiante(Nodo)
      * @return Nodo Estudiante-> Estudiante == (Estudiante)aux.getInfo();
      */
     public Estudiante getObject(int i) {
         Nodo aux = cabecera;
         int j = 0;
-        
-        if (aux != null){
-            while(!aux.isEmpty() && j < i ){
+
+        if (aux != null) {
+            while (!aux.isEmpty() && j < i) {
                 j++;
-                if(aux.getNodo() != null) {
+                if (aux.getNodo() != null) {
                     aux = aux.getNodo();
                 }
             }
-            
-            return (Estudiante)aux.getInfo();
+
+            return (Estudiante) aux.getInfo();
         } else {
             return null;
-        } 
+        }
     }
 }

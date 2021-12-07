@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
 import Lista.ListaEstudiantes;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class VentanaInicio extends JFrame {
 
@@ -23,8 +25,8 @@ public class VentanaInicio extends JFrame {
     //INICIALIZACIÓN VARIABLES GLOBALES
     //lista_global_asignaturas
     //Tamaño Pantalla
-    private static final int ALTURA = 300;
-    private static final int ANCHURA = 600;
+    private static final int ALTURA = 500;
+    private static final int ANCHURA = 400;
 
     //Componentes:
     private JPanel panelBotones;
@@ -35,6 +37,7 @@ public class VentanaInicio extends JFrame {
     private JButton bEstudiante;
 
     private JLabel titulo;
+    private JLabel imagen;
 
     //Ventanas para abrir
     VentanaAsignatura ventanaAsignatura;
@@ -43,7 +46,7 @@ public class VentanaInicio extends JFrame {
 
     //Constructor
     public VentanaInicio(VentanaCurso ventanaCurso, VentanaAsignatura ventanaAsignatura, VentanaEstudiante ventanaEstudiante, ListaCursos listaCurso, ListaAsignaturas listaAsignatura, ListaEstudiantes listaEstudiantes) {
-        super("Programa de Gestión de Datos Colegio");
+        super("Gestión Colegio");
         this.ventanaCurso = ventanaCurso;
         this.ventanaAsignatura = ventanaAsignatura;
         this.ventanaEstudiante = ventanaEstudiante;
@@ -51,6 +54,7 @@ public class VentanaInicio extends JFrame {
         lista_global_cursos = listaCurso;
         lista_global_asignaturas = listaAsignatura;
         lista_global_estudiantes = listaEstudiantes;
+        
         initComponents();
     }
 
@@ -59,38 +63,42 @@ public class VentanaInicio extends JFrame {
         this.setSize(ANCHURA, ALTURA);
         this.setLocationRelativeTo(null);
 
-        //Quitamos el Layout para ordenar los paneles
         this.getContentPane().setLayout(null);
-
-        //Cierre con la X de la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //No ensanchable
         this.setResizable(false);
 
         ////Componentes////
         //Paneles
         this.panelBotones = new JPanel();
         //new GridLayout(filas,columnas,espacio entre columnas, espacio entre filas)
-        panelBotones.setLayout(new GridLayout(1, 3, 20, 0));
+        panelBotones.setLayout(new GridLayout(3, 1, 0, 20));
         panelBotones.setVisible(true);
 
         this.panelTitulo = new JPanel();
         panelTitulo.setVisible(true);
 
         //Labels
-        this.titulo = new JLabel("GESTIÓN DE DATOS");
+        this.titulo = new JLabel("PROGRAMA PRINCIPAL");
         this.titulo.setFont(new Font("Arial", Font.PLAIN, 24));
         this.titulo.setVerticalAlignment(SwingConstants.CENTER);
+        
+        this.imagen = new JLabel();
+        ImageIcon img = new ImageIcon(this.getClass().getResource("/Imagenes/colegio.png"));
+        imagen.setIcon(new ImageIcon(img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
+        imagen.setVisible(true);
        
         //Botones
         this.bCurso = new JButton("Curso");
-        this.bCurso.setBackground(Color.BLACK);
+        this.bCurso.setForeground(Color.WHITE);
+        this.bCurso.setBackground(Color.GRAY);
 
         this.bAsignatura = new JButton("Asignatura");
-        this.bAsignatura.setBackground(Color.BLACK);
+        this.bAsignatura.setForeground(Color.WHITE);
+        this.bAsignatura.setBackground(Color.GRAY);
 
         this.bEstudiante = new JButton("Estudiante");
-        this.bEstudiante.setBackground(Color.BLACK);
+        this.bEstudiante.setForeground(Color.WHITE);
+        this.bEstudiante.setBackground(Color.GRAY);
 
         ///Actiones Botones///
         //Acciones al presionar el botón "Curso"
@@ -112,20 +120,21 @@ public class VentanaInicio extends JFrame {
         });
 
         //.setBounds(x,y,ancho,alto)
-        panelBotones.setBounds(27, VentanaInicio.ALTURA - 100, VentanaInicio.ANCHURA - 60, 30);
-        panelTitulo.setBounds(0 + 7, 20, VentanaInicio.ANCHURA - 20, VentanaInicio.ALTURA - 20);
+        panelBotones.setBounds(5 + 80, ALTURA - 200, ANCHURA - 175, 100);
+        panelTitulo.setBounds(7, 20, ANCHURA - 20, ALTURA - 20);
+        imagen.setBounds(ANCHURA/2, 25, 200, 200);
         //titulo.setBounds(this.ancho_MAX/2 - 50, 0,200,200);
 
         //Añadir componentes
         panelBotones.add(bCurso);
         panelBotones.add(bAsignatura);
         panelBotones.add(bEstudiante);
-
         panelTitulo.add(titulo);
 
         //Añadimos paneles a la ventana
         this.getContentPane().add(panelBotones);
         this.getContentPane().add(panelTitulo);
+        this.getContentPane().add(imagen);
 
     }
 

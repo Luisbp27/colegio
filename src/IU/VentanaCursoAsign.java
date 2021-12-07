@@ -188,10 +188,12 @@ public class VentanaCursoAsign extends JFrame {
 
         // Botones
         bajaAsignatura = new JButton("Baja");
-        bajaAsignatura.setBackground(Color.BLACK);
+        bajaAsignatura.setForeground(Color.WHITE);
+        bajaAsignatura.setBackground(Color.GRAY);
 
         altaAsignatura = new JButton("Alta");
-        altaAsignatura.setBackground(Color.BLACK);
+        altaAsignatura.setForeground(Color.WHITE);
+        altaAsignatura.setBackground(Color.GRAY);
 
         listaTipoAsignaturasJBox = new JComboBox();
         listaTipoAsignaturasJBox.addItem(asignaturaBox);

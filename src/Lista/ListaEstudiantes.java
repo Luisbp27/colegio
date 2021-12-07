@@ -5,7 +5,6 @@
  */
 package Lista;
 
-import Asignatura.Asignatura;
 import Estudiante.Estudiante;
 import Interfaz.InterfazLista;
 import java.util.ArrayList;
@@ -33,32 +32,30 @@ public class ListaEstudiantes implements InterfazLista {
     
     public String getInfoLista() {
         String infoTotal = "";
+        
         for (int i = 0; i < this.getSize(); i++) {
             infoTotal += estudiantes.get(i).toString() + "\n";
         }
+        
         return infoTotal;
     }
+    
     public int getIndice(Estudiante a){
-        return estudiantes.indexOf(a);
+        return estudiantes.size();
     }
     
     //METODOS DE GESTION DE LA LISTA
 
     public void removeObject(int i) {
         estudiantes.remove(i);
-
     }
 
     public void removeObject(String s) {
         for (int i = 0; i < this.getSize(); i++) {
-            if (estudiantes.get(i).getNombre() == s) {
+            if (estudiantes.get(i).getNombre().equals(s)) {
                 estudiantes.remove(i);
             }
         }
-    }
-    
-    public Asignatura getAsignatura(int i) {
-        return null;
     }
 
     public void removeObject(Object x) {
@@ -66,7 +63,11 @@ public class ListaEstudiantes implements InterfazLista {
     }
     
     public Estudiante getEstudiante(int i) {
+        // Si la lista de estudiantes no está vacía
         if(estudiantes.get(i) != null) {
+            System.out.println("hola 4");
+            System.out.println(estudiantes.get(i));
+            
             return estudiantes.get(i);
         } else {
             return null;
@@ -79,12 +80,12 @@ public class ListaEstudiantes implements InterfazLista {
 
     @Override
     public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
@@ -94,6 +95,6 @@ public class ListaEstudiantes implements InterfazLista {
 
     @Override
     public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }
