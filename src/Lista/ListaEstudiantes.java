@@ -15,37 +15,26 @@ import java.util.Collections;
  * @author luisb
  */
 public class ListaEstudiantes implements InterfazLista {
-    
+
     private ArrayList<Estudiante> estudiantes;
-    
+
     public ListaEstudiantes() {
         this.estudiantes = new ArrayList<>();
     }
-    
+
     public int getSize() {
         return estudiantes.size();
     }
-    
+
     public String getInfo(int i) {
         return estudiantes.get(i).toString();
     }
-    
-    public String getInfoLista() {
-        String infoTotal = "";
-        
-        for (int i = 0; i < this.getSize(); i++) {
-            infoTotal += estudiantes.get(i).toString() + "\n";
-        }
-        
-        return infoTotal;
-    }
-    
-    public int getIndice(Estudiante a){
-        return estudiantes.indexOf(a);
-    }
-    
-    //METODOS DE GESTION DE LA LISTA
 
+    public int getIndice(Estudiante a) {
+        return estudiantes.indexOf(a) + 1;
+    }
+
+    //METODOS DE GESTION DE LA LISTA
     public void removeObject(int i) {
         estudiantes.remove(i);
     }
@@ -61,13 +50,14 @@ public class ListaEstudiantes implements InterfazLista {
     public void removeObject(Object x) {
         estudiantes.remove(x);
     }
-    
+
     public Estudiante getEstudiante(int i) {
         // Si la lista de estudiantes no está vacía
-        if(estudiantes.get(i) != null) {
+        System.out.println(estudiantes.get(i));
+        if (estudiantes.get(i) != null) {
             System.out.println("hola 4");
             System.out.println(estudiantes.get(i));
-            
+
             return estudiantes.get(i);
         } else {
             return null;
@@ -80,21 +70,27 @@ public class ListaEstudiantes implements InterfazLista {
 
     @Override
     public String getInfoTotal() {
-        return null;
+        String infoTotal = "";
+
+        for (int i = 0; i < this.getSize(); i++) {
+            infoTotal += estudiantes.get(i).toString() + "\n";
+        }
+
+        return infoTotal;
     }
 
     @Override
     public Object getObject(int pos) {
-        return null;
+        return estudiantes.get(pos);
     }
 
     @Override
     public void setObject(Object o) {
-        estudiantes.add((Estudiante)o);
+        estudiantes.add((Estudiante) o);
     }
 
     @Override
     public void setObject(int i, Object o) {
-        
+        estudiantes.set(i, (Estudiante) o);
     }
 }

@@ -8,21 +8,19 @@ package Lista;
 import Curso.Curso;
 import Interfaz.InterfazLista;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
  * @author luisb
  */
 public class ListaCursos implements InterfazLista {
-    
+
     private ArrayList<Curso> cursos;
-    
+
     public ListaCursos() {
         this.cursos = new ArrayList<>();
     }
-    
+
     //Metodos GET
     public int getSize() {
         return cursos.size();
@@ -44,14 +42,6 @@ public class ListaCursos implements InterfazLista {
         String info;
         info = cursos.get(i).toString();
         return info;
-    }
-    
-    public String getInfoLista() {
-        String infoTotal = "";
-        for (int i = 0; i < this.getSize(); i++) {
-            infoTotal += cursos.get(i).toString() + "\n";
-        }
-        return infoTotal;
     }
 
     //METODOS DE GESTION DE LA LISTA
@@ -82,21 +72,27 @@ public class ListaCursos implements InterfazLista {
 
     @Override
     public String getInfoTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String infoTotal = "";
+
+        for (int i = 0; i < this.getSize(); i++) {
+            infoTotal += cursos.get(i).toString() + "\n";
+        }
+
+        return infoTotal;
     }
 
     @Override
     public Object getObject(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cursos.get(pos);
     }
 
     @Override
     public void setObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        cursos.add((Curso) o);
     }
 
     @Override
     public void setObject(int i, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        cursos.add(i, (Curso) o);
     }
 }

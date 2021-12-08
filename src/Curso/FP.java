@@ -8,8 +8,6 @@ package Curso;
 import Asignatura.Asignatura;
 import Lista.ListaAsignaturas;
 
-
-
 /**
  *
  * @author luisb
@@ -17,20 +15,20 @@ import Lista.ListaAsignaturas;
 public class FP extends Curso {
 
     private Especialidad especialidad;
-    
+
     public enum Especialidad {
         INFORMÁTICA, MECÁNICA, ELECTRÓNICA;
     }
-    
+
     public FP(String nombre, int codigo, Especialidad especialidad) {
         super(nombre, codigo);
-        
+
         this.especialidad = especialidad;
     }
-    
+
     @Override
     public String toString() {
-        return "FP: "+ codigo + " - " + nombre + " - " + especialidad;
+        return "FP: " + codigo + " - " + nombre + " - " + especialidad;
     }
 
     @Override
@@ -45,22 +43,22 @@ public class FP extends Curso {
 
     @Override
     public void setNombre(String name) {
-            this.nombre=name;
+        this.nombre = name;
     }
 
     @Override
     public void setCodigo(int cod) {
-        this.codigo=cod;
+        this.codigo = cod;
     }
-    
+
     @Override
     public ListaAsignaturas getListaAsignaturas() {
         return this.lista_curso_asignatura;
     }
-    
+
     @Override
     public Asignatura getAsignaturaRef(int i) {
-        return (Asignatura)lista_curso_asignatura.getObject(i);
+        return (Asignatura) lista_curso_asignatura.getObject(i);
     }
 
     @Override
@@ -70,14 +68,16 @@ public class FP extends Curso {
 
     @Override
     public void add(Object x) {
-        lista_curso_asignatura.add(x); 
+        lista_curso_asignatura.add(x);
     }
 
     @Override
     public void remove(Object x) {
         lista_curso_asignatura.removeAsignatura(x);
     }
-    
-    
-}
 
+    @Override
+    public void setListaAsignaturas(ListaAsignaturas listaAsignaturas) {
+        this.lista_curso_asignatura = listaAsignaturas;
+    }
+}

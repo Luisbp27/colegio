@@ -7,10 +7,6 @@ import IU.VentanaInicio;
 import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
 import Lista.ListaEstudiantes;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -27,22 +23,22 @@ public class GestionColegios {
 //        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 //            Logger.getLogger(GestionColegios.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
+
         ListaAsignaturas listaAsignaturas = new ListaAsignaturas();
         ListaCursos listaCursos = new ListaCursos();
         ListaEstudiantes listaEstudiantes = new ListaEstudiantes();
-        
+
         VentanaCurso vCurso = new VentanaCurso();
         VentanaAsignatura vAsign = new VentanaAsignatura();
         VentanaEstudiante vEstud = new VentanaEstudiante();
 
         VentanaInicio vInicio = new VentanaInicio(vCurso, vAsign, vEstud, listaCursos, listaAsignaturas, listaEstudiantes);
-        
+
         vCurso.setInicio(vInicio);
         vAsign.setInicio(vInicio);
         vEstud.setInicio(vInicio);
 
         vInicio.setVisible(true);
     }
-    
+
 }

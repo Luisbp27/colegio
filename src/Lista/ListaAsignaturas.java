@@ -42,11 +42,11 @@ public class ListaAsignaturas implements InterfazLista {
 
     public String getInfoLista() {
         String infoTotal = "";
-        
+
         for (int i = 0; i < this.getSize(); i++) {
             infoTotal += asignaturas.get(i).toString() + "\n";
         }
-        
+
         return infoTotal;
     }
 
@@ -79,14 +79,14 @@ public class ListaAsignaturas implements InterfazLista {
     public void removeObject(Object x) {
         asignaturas.remove(x);
     }
-    
+
     public int getSizeRef() {
         return l_Ref_Asign.getSize();
     }
 
     /**
      * Método que ordena la lista de menor a mayor asignatura segun su nombre
-     * 
+     *
      */
     public void ordenarLista() {
         Collections.sort(asignaturas, (Asignatura a1, Asignatura a2) -> ((a1.getNombre()).compareTo((a2.getNombre()))));
@@ -95,15 +95,17 @@ public class ListaAsignaturas implements InterfazLista {
     @Override
     public String getInfoTotal() {
         String s = "";
+
         for (int i = 0; i < getSize(); i++) {
             s += getObject(i).toString() + "\n";
         }
+
         return s;
     }
 
     @Override
     public Object getObject(int pos) {
-        return  asignaturas.get(pos);  
+        return asignaturas.get(pos);
     }
 
     @Override

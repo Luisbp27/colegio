@@ -31,9 +31,9 @@ public class JPanelTpAsign extends JPanel {
     // Especialidades de un curso FP:
     private final FP.Especialidad especialidades[] = {Especialidad.INFORMÁTICA, Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA};
     // Tipos de cursos de Bachiller: tBach
-    private final Bachiller.Año tBach[] = { Año.PRIMERO, Año.SEGUNDO };
+    private final Bachiller.Año tBach[] = {Año.PRIMERO, Año.SEGUNDO};
     // Tipos de creditos Asignaturas Obligatorias:
-    private final String creditos[] = { "Créditos", "6", "8", "9" };
+    private final String creditos[] = {"Créditos", "6", "8", "9"};
 
     private JLabel tTipo;
     private JLabel tAsignatura;
@@ -67,7 +67,7 @@ public class JPanelTpAsign extends JPanel {
     /**
      * Según el numero elegido no se va a visualizar lo siguiente: O Tipo 1
      * Especialidad 2 JComboBox
-     * 
+     *
      * @param ver
      */
     public JPanelTpAsign(int ver) {
@@ -281,7 +281,7 @@ public class JPanelTpAsign extends JPanel {
 
     /**
      * Retona el objeto selecionado en los cursos
-     * 
+     *
      * @return
      */
     public Object getSelectComboCurso() {
@@ -309,7 +309,7 @@ public class JPanelTpAsign extends JPanel {
 
     /**
      * Retona el objeto selecionado en las asignatuas
-     * 
+     *
      * @return
      */
     public Object getSelectComboAsig() {
@@ -355,8 +355,8 @@ public class JPanelTpAsign extends JPanel {
     }
 
     /**
-     * Metodo que retorna el tipo de atributo de un curso, es decir, el JComboBox
-     * selecionado de "Tipo:"
+     * Metodo que retorna el tipo de atributo de un curso, es decir, el
+     * JComboBox selecionado de "Tipo:"
      *
      * @return
      */

@@ -54,7 +54,7 @@ public class VentanaInicio extends JFrame {
         lista_global_cursos = listaCurso;
         lista_global_asignaturas = listaAsignatura;
         lista_global_estudiantes = listaEstudiantes;
-        
+
         initComponents();
     }
 
@@ -81,12 +81,12 @@ public class VentanaInicio extends JFrame {
         this.titulo = new JLabel("PROGRAMA PRINCIPAL");
         this.titulo.setFont(new Font("Arial", Font.PLAIN, 24));
         this.titulo.setVerticalAlignment(SwingConstants.CENTER);
-        
+
         this.imagen = new JLabel();
         ImageIcon img = new ImageIcon(this.getClass().getResource("/Imagenes/colegio.png"));
         imagen.setIcon(new ImageIcon(img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
         imagen.setVisible(true);
-       
+
         //Botones
         this.bCurso = new JButton("Curso");
         this.bCurso.setForeground(Color.WHITE);
@@ -122,7 +122,7 @@ public class VentanaInicio extends JFrame {
         //.setBounds(x,y,ancho,alto)
         panelBotones.setBounds(5 + 80, ALTURA - 200, ANCHURA - 175, 100);
         panelTitulo.setBounds(7, 20, ANCHURA - 20, ALTURA - 20);
-        imagen.setBounds(ANCHURA/2, 25, 200, 200);
+        imagen.setBounds(ANCHURA / 2, 25, 200, 200);
         //titulo.setBounds(this.ancho_MAX/2 - 50, 0,200,200);
 
         //Añadir componentes

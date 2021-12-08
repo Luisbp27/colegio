@@ -14,7 +14,7 @@ import Lista.ListaAsignaturas;
  */
 public class Bachiller extends Curso {
 
-    private Año año;
+    private final Año año;
 
     public enum Año {
         PRIMERO, SEGUNDO;
@@ -55,10 +55,10 @@ public class Bachiller extends Curso {
     public ListaAsignaturas getListaAsignaturas() {
         return this.lista_curso_asignatura;
     }
-    
+
     @Override
     public Asignatura getAsignaturaRef(int i) {
-        return (Asignatura)lista_curso_asignatura.getObject(i);
+        return (Asignatura) lista_curso_asignatura.getObject(i);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class Bachiller extends Curso {
 
     @Override
     public void add(Object x) {
-        lista_curso_asignatura.add(x); 
+        lista_curso_asignatura.add(x);
     }
 
     @Override
@@ -76,4 +76,8 @@ public class Bachiller extends Curso {
         lista_curso_asignatura.removeAsignatura(x);
     }
 
+    @Override
+    public void setListaAsignaturas(ListaAsignaturas listaAsignaturas) {
+        this.lista_curso_asignatura = listaAsignaturas;
+    }
 }

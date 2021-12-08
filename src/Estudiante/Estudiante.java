@@ -14,34 +14,34 @@ import Lista_Ref.Lista_Ref_Estudiantes_Asignaturas;
  * @author luisb
  */
 public class Estudiante implements InterfazDatos {
-    
+
     private String nombre;
     private String dni;
     private Lista_Ref_Estudiantes_Asignaturas lrea;
-    
+
     public Estudiante(String nombre, String dni) {
         this.nombre = nombre;
         this.dni = dni;
-        
+
         this.lrea = new Lista_Ref_Estudiantes_Asignaturas();
     }
-    
+
     public void addAsignatura(Asignatura asignatura) {
         lrea.addNodo(asignatura);
     }
-    
+
     public void remove(Asignatura asignatura) {
         lrea.removeNodo(asignatura);
     }
-    
+
     public Asignatura getRefAsignaturaEstudiante(int i) {
         return (Asignatura) lrea.getInfoNodo(i);
     }
-    
-    public Lista_Ref_Estudiantes_Asignaturas getListaRefEstudianteAsignatura(){
+
+    public Lista_Ref_Estudiantes_Asignaturas getListaRefEstudianteAsignatura() {
         return lrea;
     }
-    
+
     public int getSizeRef() {
         System.out.println("hola3");
         return lrea.getSize();
@@ -49,8 +49,8 @@ public class Estudiante implements InterfazDatos {
 
     /**
      * Método que devuelve el valor del atributo nombre
-     * 
-     * @return 
+     *
+     * @return
      */
     public String getNombre() {
         return nombre;
@@ -58,8 +58,8 @@ public class Estudiante implements InterfazDatos {
 
     /**
      * Método que devuelve el valor del atributo dni
-     * 
-     * @return 
+     *
+     * @return
      */
     public String getDni() {
         return dni;
@@ -71,14 +71,14 @@ public class Estudiante implements InterfazDatos {
     }
 
     @Override
-    public void setCodigo(int Codigo) {   
+    public void setCodigo(int Codigo) {
     }
 
     @Override
     public int getCodigo() {
         return 0;
     }
-    
+
     @Override
     public String toString() {
         return "Nombre: " + nombre + " DNI: " + dni;

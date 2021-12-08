@@ -87,6 +87,7 @@ public class VentanaCurso extends JFrame {
     private Bachiller bch, cb;
     private Object objeto, c, aEliminar;
     private int i;
+
     // listas auxiliaries
     private ListaCursos listaCursoAux = new ListaCursos();
     private ListaAsignaturas listaAuxiliarAsignatura;
@@ -94,9 +95,8 @@ public class VentanaCurso extends JFrame {
 
     public VentanaCurso() {
         super("Gestión Curso");
-        initComponents();
 
-        //listaCursoAux = vInicio.getListaGlobalCursos();
+        initComponents();
     }
 
     private void initComponents() {
@@ -129,11 +129,11 @@ public class VentanaCurso extends JFrame {
         botonAlta = new JButton("ALTA");
         botonAlta.setForeground(Color.WHITE);
         botonAlta.setBackground(Color.GRAY);
-        
+
         botonBaja = new JButton("BAJA");
         botonBaja.setForeground(Color.WHITE);
         botonBaja.setBackground(Color.GRAY);
-        
+
         botonEntrar = new JButton("ENTRAR");
         botonEntrar.setForeground(Color.WHITE);
         botonEntrar.setBackground(Color.GRAY);
@@ -220,7 +220,7 @@ public class VentanaCurso extends JFrame {
                 if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
                     // c sera nuestro objeto seleccionado
                     c = listaCursosJBox.getSelectedItem();
-                    vCrsAsg = new VentanaCursoAsign(vInicio, (Curso)c);
+                    vCrsAsg = new VentanaCursoAsign(vInicio, (Curso) c);
                     cerrarVentana();
                     vCrsAsg.setVisible(true);
 
@@ -355,9 +355,9 @@ public class VentanaCurso extends JFrame {
      */
     private void removeEstudiantes(Asignatura ass, Curso aux) {
         int size = ass.getListaEstudiantes().getSize();
-        Lista_Ref_Estudiantes lre=ass.getListaEstudiantes();
+        Lista_Ref_Estudiantes lre = ass.getListaEstudiantes();
         Estudiante es;
-        
+
         for (int k = 0; k < size; k++) {
             if (lre.getObject(k) != null) {
                 es = lre.getObject(i);

@@ -127,7 +127,7 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
             i++;
             aux = aux.getNodo();
         }
-        
+
         return i;
     }
 

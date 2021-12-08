@@ -14,7 +14,7 @@ import Lista_Ref.Lista_Ref_Estudiantes;
  * @author luisb
  */
 public class Obligatoria extends Asignatura {
-    
+
     private int creditos;
     private String stringCurso;
 
@@ -26,7 +26,7 @@ public class Obligatoria extends Asignatura {
 
     public int compareTo(Asignatura a) {
         int resultado = this.nombre.compareTo(a.nombre);
-        
+
         if (resultado < 0) {
             return -1;
         } else {
@@ -62,37 +62,36 @@ public class Obligatoria extends Asignatura {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
+
     @Override
-    public Lista_Ref_Estudiantes getListaEstudiantes(){
+    public Lista_Ref_Estudiantes getListaEstudiantes() {
         return this.lre;
     }
+
     @Override
-    public int getSizeRef(){
+    public int getSizeRef() {
         return lre.getSize();
     }
-    
+
     public String getStringCurso() {
         return stringCurso;
     }
 
     //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
-    
     public Estudiante getRefEstudiante(int i) {
         return lre.getObject(i);
     }
 
-   /*
+    /*
    public abstract int getSizeRef(); cada lista tiene su getSize
 
     public abstract void add(Estudiante e);
 
     public abstract void remove(Estudiante e);
-    */
-
+     */
     @Override
     public void add(Estudiante e) {
         lre.addNodo(e);
     }
-    
+
 }
