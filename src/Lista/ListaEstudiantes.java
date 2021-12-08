@@ -41,7 +41,7 @@ public class ListaEstudiantes implements InterfazLista {
     }
     
     public int getIndice(Estudiante a){
-        return estudiantes.size();
+        return estudiantes.indexOf(a);
     }
     
     //METODOS DE GESTION DE LA LISTA
