@@ -18,12 +18,6 @@ public class GestionColegios {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-//            Logger.getLogger(GestionColegios.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
         ListaAsignaturas listaAsignaturas = new ListaAsignaturas();
         ListaCursos listaCursos = new ListaCursos();
         ListaEstudiantes listaEstudiantes = new ListaEstudiantes();
@@ -40,5 +34,4 @@ public class GestionColegios {
 
         vInicio.setVisible(true);
     }
-
 }

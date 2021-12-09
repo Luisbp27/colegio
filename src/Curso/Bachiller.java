@@ -16,16 +16,32 @@ public class Bachiller extends Curso {
 
     private final Año año;
 
+    /**
+     * Método que contiene los posibles valores del enum Año
+     *
+     */
     public enum Año {
         PRIMERO, SEGUNDO;
     }
 
+    /**
+     * Método constructor de la clase
+     *
+     * @param nombre
+     * @param codigo
+     * @param año
+     */
     public Bachiller(String nombre, int codigo, Año año) {
         super(nombre, codigo);
 
         this.año = año;
     }
 
+    /**
+     * Método que devuelve el Curso en formato String
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "BACHILLER: " + codigo + " - " + nombre + " - " + año;
@@ -73,7 +89,7 @@ public class Bachiller extends Curso {
 
     @Override
     public void remove(Object x) {
-        lista_curso_asignatura.removeAsignatura(x);
+        lista_curso_asignatura.removeRefAsignatura(x);
     }
 
     @Override

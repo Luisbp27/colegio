@@ -16,11 +16,6 @@ public interface InterfazDatos {
 
     public int getCodigo();
 
-    /**
-     * Método para imprimir el nombre y el codigo de un elemento
-     *
-     * @return
-     */
     @Override
     public String toString();
 }

@@ -15,6 +15,13 @@ public abstract class Asignatura implements InterfazDatos {
     protected String stringCurso;
     protected Lista_Ref_Estudiantes lre;
 
+    /**
+     * Método constructor de la clase
+     *
+     * @param nombre
+     * @param codigo
+     * @param nombreCurso
+     */
     public Asignatura(String nombre, int codigo, String nombreCurso) {
         this.nombre = nombre;
         this.codigo = codigo;
@@ -44,11 +51,7 @@ public abstract class Asignatura implements InterfazDatos {
 
     public abstract String getStringCurso();
 
-    //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
     public abstract Estudiante getRefEstudiante(int i);
 
-    // public abstract int getSizeRef(); //cada lista tiene su getSize
     public abstract void add(Estudiante e);
-
-    // public abstract void remove(Estudiante e);
 }

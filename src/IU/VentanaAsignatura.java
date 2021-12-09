@@ -67,18 +67,30 @@ public class VentanaAsignatura extends JFrame {
     private JTextArea pantalla;
     private JScrollPane scrollPane;
 
-    // Constructores
+    /**
+     * Método constructor de la clase
+     *
+     */
     public VentanaAsignatura() {
         super("Gestión Asignaturas");
         initComponents();
     }
 
+    /**
+     * Método constructor de la clase
+     *
+     * @param inicio
+     */
     public VentanaAsignatura(VentanaInicio inicio) {
         super("Gestión Asignaturas");
         ventanaInicio = inicio;
         initComponents();
     }
 
+    /**
+     * Método que permite la gestión de los componentes de la clase
+     *
+     */
     private void initComponents() {
 
         this.setSize(ANCHURA, ALTURA);
@@ -189,7 +201,7 @@ public class VentanaAsignatura extends JFrame {
         panelTipoAsignatura.setBounds(10, 0, anchoPanelesIz, altoTipAsig);
         panelListaAsignatura.setBounds(10, altoTipAsig + 5, anchoPanelesIz, altoBtnAsig);
         panelBotonesAsignatura.setBounds(10, altoTipAsig + altoBotonesV, anchoPanelesIz, altoBtnAsig);
-        scrollPane.setBounds(anchoPanelesIz + 20, 0, anchoPanelesDr - 30, this.ALTURA - this.altoBotonesV);
+        scrollPane.setBounds(anchoPanelesIz + 20, 0, anchoPanelesDr - 30, VentanaAsignatura.ALTURA - this.altoBotonesV);
 
         // Añadimos componentes a los paneles
         panelBotonesAsignatura.add(actualizarA);
@@ -207,6 +219,10 @@ public class VentanaAsignatura extends JFrame {
     }
 
     /// ACCIONES DE LOS BOTONES///
+    /**
+     * Método que realiza la acción de actualizar el Curso
+     *
+     */
     private void accionActualizarCurso() {
         // Si combo NO box vacio
         if (!panelTipoAsignatura.isEmpty()) {
@@ -317,7 +333,8 @@ public class VentanaAsignatura extends JFrame {
     }
 
     /**
-     * Acción al presional el botón de Listar
+     * Método que realiza la acción al presional el botón de LISTAR
+     *
      */
     private void accionListarCurso() {
         //Lista auxiliar de alumnos
@@ -362,7 +379,8 @@ public class VentanaAsignatura extends JFrame {
     }
 
     /**
-     * Ponemos todos los campos en blanco
+     * Método que realiza la acción de poner todos los campos input de la
+     * pantalla en blanco
      */
     private void init() {
         this.pantalla.setText("");
@@ -370,12 +388,22 @@ public class VentanaAsignatura extends JFrame {
         this.listaAsignaturas.addItem(LISTA_ASIGNATURA);
     }
 
+    /**
+     * Método que modifica el contenido de la VentanaIncio con la ventana
+     * pasasda por parámetro
+     *
+     * @param ventanaInicio
+     */
     public void setInicio(VentanaInicio ventanaInicio) {
         this.ventanaInicio = ventanaInicio;
         this.ventanaEstudiante = this.ventanaInicio.getvEstudiante();
         this.ventanaCurso = this.ventanaInicio.getVentanaCurso();
     }
 
+    /**
+     * Método que permite cerrar la ventana
+     *
+     */
     private void cerrarVentana() {
         this.dispose();
     }

@@ -56,17 +56,23 @@ public class JPanelTpAsign extends JPanel {
     private boolean especialidadB;
     private boolean jComboBoxB;
 
+    /**
+     * Método constructor de la clase
+     *
+     */
     public JPanelTpAsign() {
-        tipoB = true;
-        especialidadB = true;
-        jComboBoxB = true;
+        this.tipoB = true;
+        this.especialidadB = true;
+        this.jComboBoxB = true;
+
         initComponents();
+
         this.setVisible(true);
     }
 
     /**
-     * Según el numero elegido no se va a visualizar lo siguiente: O Tipo 1
-     * Especialidad 2 JComboBox
+     * Método que según el numero elegido no se va a visualizar lo siguiente: O
+     * Tipo 1 Especialidad 2 JComboBox
      *
      * @param ver
      */
@@ -95,6 +101,10 @@ public class JPanelTpAsign extends JPanel {
         this.setVisible(true);
     }
 
+    /**
+     * Método que permite la gestión de los componentes de la ventana
+     *
+     */
     private void initComponents() {
         // Paneles
         panelAux = new JPanel();
@@ -215,7 +225,6 @@ public class JPanelTpAsign extends JPanel {
                 this.add(obligatoria);
             }
         }
-
     }
 
     ActionListener radioButtonActionListenerOpt = new java.awt.event.ActionListener() {
@@ -223,6 +232,7 @@ public class JPanelTpAsign extends JPanel {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             tipoAsig.removeAllItems();
             tipoAsig.addItem("Perfiles");
+
             for (int i = 0; i < perfiles.length; i++) {
                 tipoAsig.addItem(perfiles[i]);
             }
@@ -233,6 +243,7 @@ public class JPanelTpAsign extends JPanel {
         @Override
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             tipoAsig.removeAllItems();
+
             for (int i = 0; i < creditos.length; i++) {
                 tipoAsig.addItem(creditos[i]);
             }
@@ -244,6 +255,7 @@ public class JPanelTpAsign extends JPanel {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             tipoCurso.removeAllItems();
             tipoCurso.addItem("Especialidades");
+
             for (int i = 0; i < especialidades.length; i++) {
                 tipoCurso.addItem(especialidades[i]);
             }
@@ -255,6 +267,7 @@ public class JPanelTpAsign extends JPanel {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             tipoCurso.removeAllItems();
             tipoCurso.addItem("Año");
+
             for (int i = 0; i < tBach.length; i++) {
                 tipoCurso.addItem(tBach[i]);
             }
@@ -262,7 +275,8 @@ public class JPanelTpAsign extends JPanel {
     };
 
     /**
-     * Retorna con un valor númerico que botones están pulados: FP o Bachiller
+     * Método que devuelve con un valor númerico que botones están pulados: FP o
+     * Bachiller
      *
      * NADA = 0 || FP = 1 || BACHILLERATO = 2
      *
@@ -280,7 +294,7 @@ public class JPanelTpAsign extends JPanel {
     }
 
     /**
-     * Retona el objeto selecionado en los cursos
+     * Método que devuelve el objeto selecionado en los cursos
      *
      * @return
      */
@@ -289,8 +303,8 @@ public class JPanelTpAsign extends JPanel {
     }
 
     /**
-     * Retorna con un valor númerico que botones están pulados: Optativa o
-     * Obligatoria
+     * Método que devuelve con un valor númerico que botones están pulados:
+     * Optativa o Obligatoria
      *
      * NADA = 0 || Optativa = 1 || Obligatoria = 2
      *
@@ -308,7 +322,7 @@ public class JPanelTpAsign extends JPanel {
     }
 
     /**
-     * Retona el objeto selecionado en las asignatuas
+     * Método que devuelve el objeto selecionado en las asignatuas
      *
      * @return
      */
@@ -317,7 +331,7 @@ public class JPanelTpAsign extends JPanel {
     }
 
     /**
-     * Retorna con un valor númerico que botones están pulados:
+     * Método que devuelve con un valor númerico que botones están pulados:
      *
      * NADA = 0
      *
@@ -347,6 +361,11 @@ public class JPanelTpAsign extends JPanel {
         return select;
     }
 
+    /**
+     * Método que devuelve el entero correspondiente a la especialidad
+     *
+     * @return
+     */
     public int getEspecialidad() {
         if (!isEmpty()) {
             return (int) getAsignatura();
@@ -355,7 +374,7 @@ public class JPanelTpAsign extends JPanel {
     }
 
     /**
-     * Metodo que retorna el tipo de atributo de un curso, es decir, el
+     * Método que devuelve el tipo de atributo de un curso, es decir, el
      * JComboBox selecionado de "Tipo:"
      *
      * @return
@@ -365,7 +384,7 @@ public class JPanelTpAsign extends JPanel {
     }
 
     /**
-     * Metodo que retorna el tipo de atributo de una Asignatura, es decir, el
+     * Método que devuelve el tipo de atributo de una Asignatura, es decir, el
      * JComboBox selecionado de "Asignatura:"
      *
      * @return
@@ -374,6 +393,11 @@ public class JPanelTpAsign extends JPanel {
         return tipoAsig;
     }
 
+    /**
+     * Método que verifica si el panel está vacío
+     *
+     * @return
+     */
     public boolean isEmpty() {
         boolean empty = true;
         if (getSelect() != 0) {
@@ -387,14 +411,7 @@ public class JPanelTpAsign extends JPanel {
                 }
             }
         }
+
         return empty;
     }
-
-    private void boxInit() {
-        tipoCurso.removeAllItems();
-        tipoAsig.removeAllItems();
-        tipoCurso.addItem(sBoxIn);
-        tipoAsig.addItem(sBoxIn);
-    }
-
 }

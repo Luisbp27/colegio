@@ -85,7 +85,7 @@ public class VentanaCurso extends JFrame {
     private final String listaCursos = "Lista Cursos";
     private FP fp;
     private Bachiller bch, cb;
-    private Object objeto, c, aEliminar;
+    private Object c, aEliminar;
     private int i;
 
     // listas auxiliaries
@@ -93,12 +93,20 @@ public class VentanaCurso extends JFrame {
     private ListaAsignaturas listaAuxiliarAsignatura;
     private ListaEstudiantes listaAuxAlumnos;
 
+    /**
+     * Método constructor de la clase
+     *
+     */
     public VentanaCurso() {
         super("Gestión Curso");
 
         initComponents();
     }
 
+    /**
+     * Método que permite la gestión de los componentes de la clase
+     *
+     */
     private void initComponents() {
         this.setSize(ancho_MAX, alto_MAX);
         this.setLocationRelativeTo(null);
@@ -184,77 +192,56 @@ public class VentanaCurso extends JFrame {
         scrollPane.setVisible(true);
 
         // Acciones al presionar el botón "ALTA"
-        botonAlta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (areaNombre.getText().equals("")) {
-                    pantalla.setText("Escribe un nombre para el curso");
-                } else if (areaCodigo.getText().equals("")) {
-                    pantalla.setText("Escribe un código para el curso");
-                } else {
-                    accionAlta();
-                }
+        botonAlta.addActionListener((ActionEvent ae) -> {
+            if (areaNombre.getText().equals("")) {
+                pantalla.setText("Escribe un nombre para el curso");
+            } else if (areaCodigo.getText().equals("")) {
+                pantalla.setText("Escribe un código para el curso");
+            } else {
+                accionAlta();
             }
         });
         // Acciones al presionar el botón "BAJA"
-        botonBaja.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        botonBaja.addActionListener((ActionEvent ae) -> {
+            if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
 
-                if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
+                aEliminar = listaCursosJBox.getSelectedItem();
+                accionBaja();
 
-                    aEliminar = listaCursosJBox.getSelectedItem();
-                    accionBaja();
-
-                } else {
-                    pantalla.setText("Selecciona un curso");
-                }
-
+            } else {
+                pantalla.setText("Selecciona un curso");
             }
         });
         // Acciones al presionar el botón "ENTRAR"
-        botonEntrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        botonEntrar.addActionListener((ActionEvent ae) -> {
+            if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
+                // c sera nuestro objeto seleccionado
+                c = listaCursosJBox.getSelectedItem();
+                vCrsAsg = new VentanaCursoAsign(vInicio, (Curso) c);
+                cerrarVentana();
+                vCrsAsg.setVisible(true);
 
-                if (!listaCursosJBox.getSelectedItem().equals(listaCursos)) {
-                    // c sera nuestro objeto seleccionado
-                    c = listaCursosJBox.getSelectedItem();
-                    vCrsAsg = new VentanaCursoAsign(vInicio, (Curso) c);
-                    cerrarVentana();
-                    vCrsAsg.setVisible(true);
-
-                } else {
-                    pantalla.setText("Selecciona un curso");
-                }
+            } else {
+                pantalla.setText("Selecciona un curso");
             }
         });
 
         // Acciones al presionar el botón de la barra de menú "Menú Principal"
-        ventanaPrin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cerrarVentana();
-                vInicio.setVisible(true);
-            }
+        ventanaPrin.addActionListener((ActionEvent ae) -> {
+            cerrarVentana();
+            vInicio.setVisible(true);
         });
 
         // Acciones al presionar el botón de la barra de menú "Gestión AAsignaturas"
-        ventanaAsign.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cerrarVentana();
-                vAsignatura.setVisible(true);
-            }
+        ventanaAsign.addActionListener((ActionEvent ae) -> {
+            cerrarVentana();
+            vAsignatura.setVisible(true);
         });
 
         // Acciones al presionar el botón de la barra de menú "Gestión Estudiantes"
-        ventanaEstudiante.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cerrarVentana();
-                vEstudiante.setVisible(true);
-            }
+        ventanaEstudiante.addActionListener((ActionEvent ae) -> {
+            cerrarVentana();
+            vEstudiante.setVisible(true);
         });
 
         // Acciones al cambiar un panel
@@ -306,13 +293,11 @@ public class VentanaCurso extends JFrame {
 
     /// ACCIONES DE LOS BOTONES///
     /**
-     * Dar de alta un curso
+     * Método que realiza la acción de dar de alta un Curso
      */
     private void accionAlta() {
-        // conseguimos la listaCursoAux "global" de cursos
-        //listaCursoAux = vInicio.getListaGlobalCursos();
-
         i = panelTipo.getSelectTCurso();
+
         // 1 = fp 2 = bach
         switch (i) {
             case 1:
@@ -325,7 +310,6 @@ public class VentanaCurso extends JFrame {
                         listaCursosJBox.addItem(fp);
                         this.pantalla.setText(fp.toString());
                     }
-
                 }
 
                 break;
@@ -351,9 +335,9 @@ public class VentanaCurso extends JFrame {
     }
 
     /**
-     * Dar de baja un curso
+     * Método que realiza la acción de dar de baja un Curso
      */
-    private void removeEstudiantes(Asignatura ass, Curso aux) {
+    private void removeEstudiantes(Asignatura ass) {
         int size = ass.getListaEstudiantes().getSize();
         Lista_Ref_Estudiantes lre = ass.getListaEstudiantes();
         Estudiante es;
@@ -362,10 +346,9 @@ public class VentanaCurso extends JFrame {
             if (lre.getObject(k) != null) {
                 es = lre.getObject(i);
                 listaAuxAlumnos.removeObject(es);
-                es.remove(ass);
+                es.removeRefAsingatura(ass);
                 listaAuxAlumnos.setObject(es);
             }
-
         }
     }
 
@@ -373,20 +356,23 @@ public class VentanaCurso extends JFrame {
         if (aEliminar.getClass() == FP.class) {
             FP aux_fp = (FP) aEliminar;
             int size_lista_ref = aux_fp.getSizeRef();
+
             for (int k = 0; k < size_lista_ref; k++) {
                 if (aux_fp.getAsignaturaRef(k) != null) {
-                    removeEstudiantes(aux_fp.getAsignaturaRef(k), aux_fp);
+                    removeEstudiantes(aux_fp.getAsignaturaRef(k));
                     listaAuxiliarAsignatura.removeObject(aux_fp.getAsignaturaRef(k));
                 }
             }
         } else if (aEliminar.getClass() == Bachiller.class) {
             Bachiller aux_bch = (Bachiller) aEliminar;
             int size_lista_ref = aux_bch.getSizeRef();
+
             for (int k = 0; k < size_lista_ref; k++) {
-                removeEstudiantes(aux_bch.getAsignaturaRef(k), aux_bch);
+                removeEstudiantes(aux_bch.getAsignaturaRef(k));
                 listaAuxiliarAsignatura.removeObject(aux_bch.getAsignaturaRef(k));
             }
         }
+
         // Eliminamos el objeto seleccionado
         listaCursoAux.removeObject(aEliminar);
         // Lo quitamos del JCombobox
@@ -398,7 +384,7 @@ public class VentanaCurso extends JFrame {
     }
 
     /**
-     * Ponemos todos los campos en blanco
+     * Método que pone todos los campos input en blanco
      */
     private void inIt() {
         this.areaNombre.setText("");
@@ -415,16 +401,19 @@ public class VentanaCurso extends JFrame {
     }
 
     /**
-     * Cerrar la ventana
+     * Método que nos permite cerrar la ventana
+     *
      */
     private void cerrarVentana() {
         this.dispose();
     }
 
-    public Object get_Selected() {
-        return objeto;
-    }
-
+    /**
+     * Método que modifica el valor de VentanaIncio por la ventana apsada por
+     * parámetro
+     *
+     * @param vI
+     */
     public void setInicio(VentanaInicio vI) {
         vInicio = vI;
         vAsignatura = vInicio.getvAsignatura();
@@ -435,8 +424,12 @@ public class VentanaCurso extends JFrame {
         listaAuxAlumnos = vInicio.getListaGlobalEstudiantes();
     }
 
+    /**
+     * Método que devuelve el valor de la ventana
+     *
+     * @return
+     */
     public VentanaCurso getVentanaCurso() {
         return this;
     }
-
 }

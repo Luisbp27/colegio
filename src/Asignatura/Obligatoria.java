@@ -18,12 +18,27 @@ public class Obligatoria extends Asignatura {
     private int creditos;
     private String stringCurso;
 
+    /**
+     * Método constructor de la clase
+     *
+     * @param nombre
+     * @param codigo
+     * @param creditos
+     * @param curso
+     */
     public Obligatoria(String nombre, int codigo, int creditos, Curso curso) {
         super(nombre, codigo, curso.getNombre());
         this.creditos = creditos;
         this.stringCurso = curso.getNombre();
     }
 
+    /**
+     * Método que compara el nombre del Curso con el nombre de la Asignatura
+     * pasada por parámetro
+     *
+     * @param a
+     * @return
+     */
     public int compareTo(Asignatura a) {
         int resultado = this.nombre.compareTo(a.nombre);
 
@@ -73,22 +88,16 @@ public class Obligatoria extends Asignatura {
         return lre.getSize();
     }
 
+    @Override
     public String getStringCurso() {
         return stringCurso;
     }
 
-    //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
+    @Override
     public Estudiante getRefEstudiante(int i) {
         return lre.getObject(i);
     }
 
-    /*
-   public abstract int getSizeRef(); cada lista tiene su getSize
-
-    public abstract void add(Estudiante e);
-
-    public abstract void remove(Estudiante e);
-     */
     @Override
     public void add(Estudiante e) {
         lre.addNodo(e);

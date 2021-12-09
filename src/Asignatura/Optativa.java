@@ -9,38 +9,45 @@ import Curso.Curso;
 import Estudiante.Estudiante;
 import Lista_Ref.Lista_Ref_Estudiantes;
 
-/**F
+/**
+ * F
  *
  * @author luisb
  */
 public class Optativa extends Asignatura {
 
-    @Override
-    public void add(Estudiante e) {
-        lre.addNodo(e);
-    }
-
+    /**
+     * Método que contiene los posibles valores del enum Tipo
+     *
+     */
     public enum Tipo {
         TEÓRICA, PRÁCTICA;
     }
-    
-    private Tipo tipo;
-    private int creditos;
-    private String stringCurso;
 
-    public Optativa(String nombre, int codigo, int creditos, Tipo tipo, Curso curso) {
-        super(nombre, codigo, curso.getNombre());
-        this.creditos = creditos;
-        this.tipo = tipo;
-        this.stringCurso = curso.getNombre();
-    }
-    
+    private Tipo tipo;
+    private String strCurso;
+
+    /**
+     * Método constructor de la clase
+     *
+     * @param nombre
+     * @param codigo
+     * @param tipo
+     * @param curso
+     */
     public Optativa(String nombre, int codigo, Tipo tipo, Curso curso) {
         super(nombre, codigo, curso.getNombre());
         this.tipo = tipo;
-        this.stringCurso = curso.getNombre();
+        this.strCurso = curso.getNombre();
     }
 
+    /**
+     * Método que compara el nombre del Curso con el nombre de la Asignatura
+     * pasada por parámetro
+     *
+     * @param a
+     * @return
+     */
     public int compareTo(Asignatura a) {
         int resultado = this.nombre.compareTo(a.nombre);
 
@@ -57,7 +64,7 @@ public class Optativa extends Asignatura {
 
     @Override
     public String toString() {
-        return nombre + " CODIGO: " + codigo + " PERFIL: " + tipo;
+        return nombre + " Código: " + codigo + " Tipo: " + tipo;
     }
 
     @Override
@@ -84,19 +91,24 @@ public class Optativa extends Asignatura {
     public Lista_Ref_Estudiantes getListaEstudiantes() {
         return this.lre;
     }
-    
+
     @Override
-    public int getSizeRef(){
+    public int getSizeRef() {
         return lre.getSize();
     }
-    
+
     @Override
     public String getStringCurso() {
-        return this.stringCurso;
+        return this.strCurso;
     }
-    
+
+    @Override
+    public void add(Estudiante e) {
+        lre.addNodo(e);
+    }
+
     //MÉTODOS EXPUESTOS A CONTINUACIÓN LO HARÁN LAS RESPECTIVAS LISTAS REF EN PRINCIPIO
-    
+    @Override
     public Estudiante getRefEstudiante(int i) {
         return lre.getObject(i);
     }

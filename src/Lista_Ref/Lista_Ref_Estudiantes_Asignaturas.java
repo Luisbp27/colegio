@@ -17,10 +17,19 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
     private Nodo cabecera;
     private Nodo vacia;
 
+    /**
+     * Método constructor de la clase
+     *
+     */
     public Lista_Ref_Estudiantes_Asignaturas() {
         this.cabecera = null;
     }
 
+    /**
+     * Método que añade el nodo, pasado por parámetro, a la lista de nodos
+     *
+     * @param asignatura
+     */
     public void addNodo(Asignatura asignatura) {
         Nodo nuevo = new Nodo(asignatura, null);
 
@@ -37,6 +46,11 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
         }
     }
 
+    /**
+     * Método que elimina el nodo, pasado por parámetro, de la lista de nodos
+     *
+     * @param asignatura
+     */
     public void removeNodo(Asignatura asignatura) {
         if (cabecera != null) {
             if (cabecera.getInfo().equals(asignatura)) {
@@ -45,10 +59,12 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
                     cabecera = null;
                     nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
+
                         index2.setNodo(nodoBorrado);
                     } else {
                         vacia = nodoBorrado;
@@ -57,10 +73,12 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
                     cabecera = cabecera.getNodo();
                     nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
+
                         index2.setNodo(nodoBorrado);
                     } else {
                         vacia = nodoBorrado;
@@ -69,6 +87,7 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
             } else {
                 boolean encontrado = false;
                 Nodo index = cabecera;
+
                 while (!encontrado && index.getNodo() != null) {
                     if (index.getNodo().getInfo().equals(asignatura)) {
                         encontrado = true;
@@ -76,11 +95,13 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
                         index = index.getNodo();
                     }
                 }
+
                 Nodo nodoBorrado = index.getNodo();
                 if (encontrado) {
                     index.setNodo(nodoBorrado.getNodo());
                     nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
@@ -98,6 +119,13 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
         }
     }
 
+    /**
+     * Método que devuelve el valor info del nodo referente a la posición pasada
+     * por parámetro de la lista de nodos
+     *
+     * @param i
+     * @return
+     */
     public Object getInfoNodo(int i) {
         Nodo aux = cabecera;
         int j = 0;
@@ -116,6 +144,10 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
         }
     }
 
+    /**
+     * Método que visualiza la lista
+     *
+     */
     public void visualizarLista() {
         Nodo aux = cabecera;
 
@@ -136,6 +168,7 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
      *
      * @return
      */
+    @Override
     public int getSize() {
         Nodo aux = cabecera;
         int i = 0;
@@ -149,33 +182,37 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
     }
 
     @Override
+    public String getInfo(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public String getInfoTotal() {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Object getObject(int pos) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setObject(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setObject(int i, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void removeObject(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void removeObject(int i) {
-    }
-
-    @Override
-    public String getInfo(int pos) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -114,6 +114,10 @@ public class VentanaEstudiante extends JFrame {
         initComponents();
     }
 
+    /**
+     * Método que permite la gestión de los componentes de la clase
+     *
+     */
     private void initComponents() {
         this.setSize(ANCHURA, ALTURA);
         this.setLocationRelativeTo(null);
@@ -362,7 +366,7 @@ public class VentanaEstudiante extends JFrame {
     }
 
     /**
-     * Acción al pulsar el boton actualizar
+     * Método que realiza la acción al pulsar el boton ACTUALIZAR
      *
      */
     private void actualizarLista() {
@@ -463,7 +467,7 @@ public class VentanaEstudiante extends JFrame {
     }
 
     /**
-     * Verifica si estan vacios los campos
+     * Método que verifica si estan vacíos los campos
      *
      * @return
      */
@@ -489,7 +493,7 @@ public class VentanaEstudiante extends JFrame {
     }
 
     /**
-     * Método que realiza la acción de dar de alta a un estudiante
+     * Método que realiza la acción de dar de ALTA a un estudiante
      *
      */
     private void accionAlta() {
@@ -563,7 +567,7 @@ public class VentanaEstudiante extends JFrame {
     }
 
     /**
-     * Método que realiza la acción al presionar el botón de listar. Indica de
+     * Método que realiza la acción al presionar el botón de LISTAR. Indica de
      * que asignaturas (con el tipo, perfil y credits de cada una de ellos) está
      * matriculado el estudiante seleccionado en el JComboBox y a que curso
      * (indicando el tipo y especialidad del curso) pertenece cada asignatura.
@@ -614,7 +618,7 @@ public class VentanaEstudiante extends JFrame {
     }
 
     /**
-     * Metodo que muestra automaticamente la lista global de los estudiantes
+     * Metodo que muestra automáticamente la lista global de los estudiantes
      *
      */
     private void actualizarListaEstudiantesAuto() {
@@ -696,24 +700,48 @@ public class VentanaEstudiante extends JFrame {
 
     }
 
+    /**
+     * Método que verifica si el JComboBox de asignaturas está vacío o no
+     *
+     * @return
+     */
     private boolean jComboBoxAsigIsEmpety() {
         return listaTipoAsignaturasJBox.getSelectedItem().equals(lAsignatura);
     }
 
+    /**
+     * Método que verifica si el JComboBox de estudiantes está vacío o no
+     *
+     * @return
+     */
     private boolean jComboBoxEstIsEmpety() {
         return estudiantesJBox.getSelectedItem().equals(lEstudiantes);
     }
 
+    /**
+     * Método que nos permite cerrar la ventana
+     *
+     */
     private void cerrarVentana() {
         this.dispose();
     }
 
+    /**
+     * Método que modifica el valor de la ventanaInicio de esta clase
+     *
+     * @param vI
+     */
     public void setInicio(VentanaInicio vI) {
         ventanaInicio = vI;
         ventanaAsignatura = ventanaInicio.getvAsignatura();
         ventanaCurso = ventanaInicio.getVentanaCurso();
     }
 
+    /**
+     * Método que devuelve el contenido de la lista de Estudiantes
+     *
+     * @return
+     */
     public ListaEstudiantes getListaEstudiantes() {
         return listaEstudiantes;
     }

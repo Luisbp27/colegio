@@ -18,9 +18,14 @@ public abstract class Curso implements InterfazDatos {
     protected String nombre;
     protected int codigo;
 
-    // Apuntador a la lista asignaturas del curso
     protected ListaAsignaturas lista_curso_asignatura;
 
+    /**
+     * Método constructor de la clase
+     * 
+     * @param nombre
+     * @param codigo 
+     */
     public Curso(String nombre, int codigo) {
         this.nombre = nombre;
         this.codigo = codigo;

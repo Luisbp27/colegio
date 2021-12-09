@@ -89,7 +89,12 @@ public class VentanaCursoAsign extends JFrame {
     private ListaAsignaturas listaAuxiliarAsignatura;
     private ListaEstudiantes listaAuxEstudiantes;
 
-    // Constructores
+    /**
+     * Método constructor de la clase
+     *
+     * @param inicio
+     * @param seleccionado
+     */
     public VentanaCursoAsign(VentanaInicio inicio, Curso seleccionado) {
         // super("Gestión Asignaturas - Curso" + nombreCurso);
         super("Gestión Asignaturas - " + seleccionado.getNombre());
@@ -122,6 +127,11 @@ public class VentanaCursoAsign extends JFrame {
         initComponents(seleccionado);
     }
 
+    /**
+     * Método que permite la gestión de los componentes de la clase
+     *
+     * @param seleccionado
+     */
     private void initComponents(Curso seleccionado) {
         this.setSize(ANCHURA, alto_MAX);
         this.setLocationRelativeTo(null);
@@ -285,14 +295,20 @@ public class VentanaCursoAsign extends JFrame {
     }
 
     /**
-     * Actualiza el Jcombobox con la asignaturas que ya exisitian
+     * Método que actualiza el JComboBox con la asignaturas que ya exisitian
+     *
      */
     private void actualizar_lista_asignaturas(ListaAsignaturas lista) {
-        for (int i = 0; i < lista.getSize(); i++) {
-            listaTipoAsignaturasJBox.addItem(lista.getObject(i));
+        for (int j = 0; j < lista.getSize(); j++) {
+            listaTipoAsignaturasJBox.addItem(lista.getObject(j));
         }
     }
 
+    /**
+     * Método que realiza la acción de dar de alta a una Asignatura
+     *
+     * @param seleccionado
+     */
     private void accionAltaAsignatura(Curso seleccionado) {
         //Vemos si la opcion es obligatoria (2) u optativa (1)
         asig_option = panelTipoAsignatura.getSelectEspAsignatura();
@@ -348,7 +364,6 @@ public class VentanaCursoAsign extends JFrame {
         }
         //Actualizamos la slistas
         ventanaInicio.setListaAsignaturas(listaAuxiliarAsignatura);
-        //vInicio.setListaGlobalCursos(listaAuxiliarCurso);
     }
 
     /**
@@ -357,12 +372,12 @@ public class VentanaCursoAsign extends JFrame {
      */
     private void accionListarEstudiantes() {
         String estudiantes = "";
-        //vemos que tipo de asignatura es
-        if (listaTipoAsignaturasJBox.getSelectedItem().getClass() == Obligatoria.class) {
 
+        // Comprobamos que tipo de asignatura es
+        if (listaTipoAsignaturasJBox.getSelectedItem().getClass() == Obligatoria.class) {
             Obligatoria aux_obli;
             aux_obli = (Obligatoria) listaTipoAsignaturasJBox.getSelectedItem();
-            //vamos añadiendo todos sus alumnos al string
+            // Añadimos todos sus alumnos al string
             int size = aux_obli.getListaEstudiantes().getSize();
             Lista_Ref_Estudiantes are = aux_obli.getListaEstudiantes();
 
@@ -373,26 +388,27 @@ public class VentanaCursoAsign extends JFrame {
             }
 
         } else if (listaTipoAsignaturasJBox.getSelectedItem().getClass() == Optativa.class) {
-
-            Optativa aux_opt = null;
-            aux_opt = (Optativa) listaTipoAsignaturasJBox.getSelectedItem();
+            Optativa aux_opt = (Optativa) listaTipoAsignaturasJBox.getSelectedItem();
             int size = aux_opt.getListaEstudiantes().getSize();
             Lista_Ref_Estudiantes are = aux_opt.getListaEstudiantes();
+
             for (int p = 0; p < size; p++) {
                 if (are.getObject(p) != null) {
-                    //vamos añadiendo todos sus alumnos al string
+                    // Añadimos todos sus alumnos al string
                     estudiantes += are.getObject(p).toString() + "\n";
                 }
             }
         }
-        //Visualizamos el contenido en la "pantalla"
+
+        // Visualizamos el contenido en la "pantalla"
         this.pantalla.setText(estudiantes);
     }
 
-    // este método como  estaba implementado creo que no hace lo que queremos
-    // supongo que nos interes eliminar de una asignatura sus estudiantes, por tanto 
-    //basta eliminar la lista de refencias a estudiantes de esa asignatura no de
-    //la lista global, aunque tb hay que actualizar esa lista de estudiantes global
+    /**
+     * Método que elimina los Estudiantes de una Asignatura pasada por parámetro
+     *
+     * @param asignatura
+     */
     private void removeEstudiantes(Asignatura asignatura) {
         int size = asignatura.getListaEstudiantes().getSize();
         Estudiante es;
@@ -405,13 +421,18 @@ public class VentanaCursoAsign extends JFrame {
                 listaAuxEstudiantes.removeObject(es);
                 //aquí en teoría elimina la lista de referéncia estudiante asignatura
                 //y así quita la relación del estudiante con esa asignatura
-                es.remove(asignatura);
+                es.removeRefAsingatura(asignatura);
                 //aquí vuelve a añadirlo a la lista global, creo que no importa
                 listaAuxEstudiantes.setObject(es);
             }
         }
     }
 
+    /**
+     * Método que realiza la acción de dar de baja una Asignatura
+     *
+     * @param seleccionado
+     */
     private void accionBajaAsignatura(Curso seleccionado) {
         if (!listaTipoAsignaturasJBox.getSelectedItem().equals(ASIGNATURABOX)) {
             Asignatura aEliminar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
@@ -450,15 +471,31 @@ public class VentanaCursoAsign extends JFrame {
         }
     }
 
+    /**
+     * Método que comprubea si el JComboBox de Asingaturas está vacío o no
+     *
+     * @return
+     */
     private boolean jComboBoxAsigIsEmpety() {
         return listaTipoAsignaturasJBox.getSelectedItem().equals(ASIGNATURABOX);
     }
 
-    public void setInicio(VentanaInicio vig) {
-        this.ventanaInicio = vig;
+    /**
+     * Método que modifica el contenido de la VentanaIncicio de esta clase, con
+     * la ventana pasada por parámetro
+     *
+     * @param vI
+     */
+    public void setInicio(VentanaInicio vI) {
+        this.ventanaInicio = vI;
         this.ventanaCurso = ventanaInicio.getVentanaCurso();
     }
 
+    /**
+     * Método que incializa los inputs de la ventana
+     *
+     * @param seleccionado
+     */
     private void init(Curso seleccionado) {
         this.atNombre.setText("");
         this.atCodigo.setText("");
@@ -469,6 +506,10 @@ public class VentanaCursoAsign extends JFrame {
         actualizar_lista_asignaturas(seleccionado.getListaAsignaturas());
     }
 
+    /**
+     * Método que nos permite cerrar la ventana
+     *
+     */
     private void cerrarVentana() {
         this.dispose();
     }

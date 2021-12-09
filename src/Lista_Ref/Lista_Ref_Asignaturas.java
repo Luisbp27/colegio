@@ -17,11 +17,20 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
     private Nodo primero;
     private Nodo vacia;
 
+    /**
+     * Método constructor de la clase
+     *
+     */
     public Lista_Ref_Asignaturas() {
         this.primero = null;
     }
 
-    public void addNodo(Asignatura asignatura) {
+    /**
+     * Método que añade un nodo al final de la lista de nodos Asignatura
+     *
+     * @param asignatura
+     */
+    public void addNodoAsignatura(Asignatura asignatura) {
         Nodo nuevo = new Nodo(asignatura, null);
 
         if (primero != null) {
@@ -37,11 +46,13 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
         }
     }
 
-    public void addAsignatura(Nodo asignatura) {
-
-    }
-
-    public void removeAsignatura(Asignatura asignatura) {
+    /**
+     * Método que elimina un nodo, pasado por parámetro, de la lista de nodos
+     * Asignatura
+     *
+     * @param asignatura
+     */
+    public void removeNodoAsignatura(Asignatura asignatura) {
         if (primero != null) {
             if (primero.getInfo().equals(asignatura)) {
                 Nodo nodeBorrado = primero;
@@ -110,15 +121,12 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
         }
     }
 
-    public Asignatura getInfoAsignatura() {
-        return null;
-    }
-
     /**
-     * Método que devuelve la longitud de la lista
+     * Método que devuelve la longitud de la lista de nodos Asignatura
      *
      * @return
      */
+    @Override
     public int getSize() {
         Nodo aux = primero;
         int i = 0;
@@ -133,32 +141,36 @@ public class Lista_Ref_Asignaturas implements InterfazLista {
 
     @Override
     public String getInfo(int pos) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getInfoTotal() {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Object getObject(int pos) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setObject(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setObject(int i, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void removeObject(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void removeObject(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

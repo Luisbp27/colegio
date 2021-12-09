@@ -25,7 +25,7 @@ public class Lista_Ref_Estudiantes {
     }
 
     /**
-     * Método que añande un nodo al final de la lista
+     * Método que añande un nodo al final de la lista de nodos Estudiante
      *
      * @param estudiante
      */
@@ -45,7 +45,12 @@ public class Lista_Ref_Estudiantes {
         }
     }
 
-    public void addObjectEstudiante(Nodo nodo) {
+    /**
+     * Método que añade un nodo al final de la lista de nodos Estudiante
+     *
+     * @param nodo
+     */
+    public void addNodoEstudiante(Nodo nodo) {
         Nodo aux = cabecera;
 
         while (aux.getNodo() != null) {
@@ -56,11 +61,12 @@ public class Lista_Ref_Estudiantes {
     }
 
     /**
-     * Método que elimina el objeto pasado por parámetro de la lista
+     * Método que elimina el nodo, pasado por parámetro, de la lista de nodos
+     * Estudiante
      *
      * @param estudiante
      */
-    public void removeNodo(Estudiante estudiante) {
+    public void removeNodoEstudiante(Estudiante estudiante) {
         if (cabecera != null) {
             if (cabecera.getInfo().equals(estudiante)) {
                 Nodo nodoBorrado = cabecera;
@@ -68,10 +74,12 @@ public class Lista_Ref_Estudiantes {
                     cabecera = null;
                     nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
+
                         index2.setNodo(nodoBorrado);
                     } else {
                         vacia = nodoBorrado;
@@ -80,10 +88,12 @@ public class Lista_Ref_Estudiantes {
                     cabecera = cabecera.getNodo();
                     nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();
                         }
+
                         index2.setNodo(nodoBorrado);
                     } else {
                         vacia = nodoBorrado;
@@ -92,6 +102,7 @@ public class Lista_Ref_Estudiantes {
             } else {
                 boolean encontrado = false;
                 Nodo index = cabecera;
+
                 while (!encontrado && index.getNodo() != null) {
                     if (index.getNodo().getInfo().equals(estudiante)) {
                         encontrado = true;
@@ -99,11 +110,13 @@ public class Lista_Ref_Estudiantes {
                         index = index.getNodo();
                     }
                 }
+
                 Nodo nodoBorrado = index.getNodo();
                 if (encontrado) {
                     index.setNodo(nodoBorrado.getNodo());
                     nodoBorrado.setNodo(null);
                     Nodo index2 = vacia;
+
                     if (index2 != null) {
                         while (index2.getNodo() != null) {
                             index2 = index2.getNodo();

@@ -44,7 +44,16 @@ public class VentanaInicio extends JFrame {
     VentanaEstudiante ventanaEstudiante;
     VentanaCurso ventanaCurso;
 
-    //Constructor
+    /**
+     * Método constructor de la clase
+     *
+     * @param ventanaCurso
+     * @param ventanaAsignatura
+     * @param ventanaEstudiante
+     * @param listaCurso
+     * @param listaAsignatura
+     * @param listaEstudiantes
+     */
     public VentanaInicio(VentanaCurso ventanaCurso, VentanaAsignatura ventanaAsignatura, VentanaEstudiante ventanaEstudiante, ListaCursos listaCurso, ListaAsignaturas listaAsignatura, ListaEstudiantes listaEstudiantes) {
         super("Gestión Colegio");
         this.ventanaCurso = ventanaCurso;
@@ -58,6 +67,10 @@ public class VentanaInicio extends JFrame {
         initComponents();
     }
 
+    /**
+     * Método que gestiona los componentes de la clase
+     *
+     */
     private void initComponents() {
         //+35 por los botones de la ventana y +5 para las separaciones Horitzontales
         this.setSize(ANCHURA, ALTURA);
@@ -138,47 +151,95 @@ public class VentanaInicio extends JFrame {
 
     }
 
+    /**
+     * Método que permite cerrar la ventana
+     *
+     */
     private void cerrarVentana() {
         this.dispose();
     }
 
+    /**
+     * Método que devuelve el contenido de la VentanaCurso
+     *
+     * @return
+     */
     public VentanaCurso getVentanaCurso() {
         return ventanaCurso;
     }
 
+    /**
+     * Método que modifica el contenido de la lista global de cursos con la
+     * lista pasada por parámetro
+     *
+     * @param lc
+     */
     public void setListaGlobalCursos(ListaCursos lc) {
         this.lista_global_cursos = lc;
     }
 
+    /**
+     * Método que devuelve el contenido de la lista global de cursos
+     *
+     * @return
+     */
     public ListaCursos getListaGlobalCursos() {
         return this.lista_global_cursos;
     }
 
+    /**
+     * Método que devuelve el contenido de la lista global de asignaturas
+     *
+     * @return
+     */
     public ListaAsignaturas getListaGlobalAsignaturas() {
         return this.lista_global_asignaturas;
     }
 
+    /**
+     * Método que devuelve el contenido de la lista global de estudiantes
+     *
+     * @return
+     */
     public ListaEstudiantes getListaGlobalEstudiantes() {
         return this.lista_global_estudiantes;
     }
 
+    /**
+     * Método que modifica el contenido de la lista global de estudiantes por la
+     * lista pasada por parámetro
+     *
+     * @param le
+     */
     public void setListaGlobalEstudiantes(ListaEstudiantes le) {
         this.lista_global_estudiantes = le;
     }
 
+    /**
+     * Método que modifica el valor la lista global de asignaturas por la lista
+     * pasada por parámetro
+     *
+     * @param la
+     */
     public void setListaAsignaturas(ListaAsignaturas la) {
         this.lista_global_asignaturas = la;
     }
 
+    /**
+     * Método que devuelve el contenido de la VentanaAsignatura
+     *
+     * @return
+     */
     public VentanaAsignatura getvAsignatura() {
         return ventanaAsignatura;
     }
 
+    /**
+     * Método que devuelve el contenido de la VentanaEstudiante
+     *
+     * @return
+     */
     public VentanaEstudiante getvEstudiante() {
         return ventanaEstudiante;
-    }
-
-    private VentanaInicio getInicio() {
-        return this;
     }
 }
