@@ -645,10 +645,9 @@ public class VentanaEstudiante extends JFrame {
             
             //Se busca el indice de esta asignatura en la lista global de asignaturas
             int indice = ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
-            //Se calcula el numero de estudiantes matriculados de esta asignatura
-            int size = ventanaInicio.getListaGlobalAsignaturas().getSizeRef();
              //buscar asignatura en lista global y mostrar su lista de referencia a estudiantes
             Asignatura asignatura_seleccionada= ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice);
+            //Se calcula el numero de estudiantes matriculados de esta asignatura
             Lista_Ref_Estudiantes lre=asignatura_seleccionada.getListaEstudiantes();
             
 
@@ -656,7 +655,6 @@ public class VentanaEstudiante extends JFrame {
             if (lre.getSize() > 0) {
                 for (int i = 0; i < lre.getSize(); i++) {
                     lista_auxiliar.setObject(lre.getObject(i));
-                    estudiantesJBox.addItem(lre.getObject(i));
                 }
 
                 //Se ordena la lista
