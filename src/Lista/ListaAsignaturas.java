@@ -195,7 +195,23 @@ public class ListaAsignaturas implements InterfazLista {
     public Object getObject(int pos) {
         return asignaturas.get(pos);
     }
-
+    
+    /**
+     * Método que devuelve la Asignatura de la lista gobal de asignaturas que
+     * coincide con el parámetro nombre pasado como argumento
+     * @param nombre
+     * @return Asignatura
+     */
+    public Asignatura getObjectPorNombre(String nombre){
+        Asignatura aux=null;
+        for (int i = 0; i < asignaturas.size(); i++) {
+            if(asignaturas.get(i).toString().equals(nombre)){
+               aux=asignaturas.get(i);
+            }
+        }
+        return aux;
+    }
+    
     /**
      * Método que añade una Asignatura, pasada por parámetro, a la lista de
      * Asignaturas
