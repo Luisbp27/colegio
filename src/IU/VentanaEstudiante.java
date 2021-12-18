@@ -610,10 +610,10 @@ public class VentanaEstudiante extends JFrame {
 
                 //Se ordenada la lista
                 lista_auxiliar.ordenarLista();
-
+                System.out.println(String.valueOf(lista_auxiliar.getSize()));
                 String listado = "";
                 for (int i = 0; i < lista_auxiliar.getSize(); i++) {
-                    listado += listado + lista_auxiliar.getAsignatura(i).toString() + "\n" + "Curso: "
+                    listado += lista_auxiliar.getAsignatura(i).toString() + "\n" + "Curso: "
                             + lista_auxiliar.getAsignatura(i).getStringCurso() + "\n";
                 }
 
