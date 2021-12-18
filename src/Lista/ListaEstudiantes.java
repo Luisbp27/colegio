@@ -56,9 +56,15 @@ public class ListaEstudiantes implements InterfazLista {
      * @return
      */
     public int getIndice(Estudiante a) {
-        return estudiantes.indexOf(a) + 1;
+        return estudiantes.indexOf(a);
     }
-
+    
+      public int getIndicePorNombre(String nombre){
+        int i=0;
+         while(!(estudiantes.get(i).getNombre().equals(nombre))){
+             i++;
+         }return i;
+    }
     //METODOS DE GESTION DE LA LISTA
     /**
      * Método que elimina un Estudiante de la posición de la lista pasada por

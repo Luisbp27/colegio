@@ -508,7 +508,9 @@ public class VentanaEstudiante extends JFrame {
             } else {
                 //Asignatura auxiliar, se crea a partir del objeto seleccionado en la lista, haciendo cast porque devuelve Object
                 Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
-                Lista_Ref_Estudiantes lre = auxiliar.getListaEstudiantes();
+                int indice=ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
+                Asignatura asignatura_seleccionada=ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice);
+                Lista_Ref_Estudiantes lre = asignatura_seleccionada.getListaEstudiantes();
 
                 //Alumno nuevo, se crea a partir de los campos 
                 Estudiante es = new Estudiante(areaNombre.getText(), areaDNI.getText());
@@ -532,26 +534,29 @@ public class VentanaEstudiante extends JFrame {
                         if (estudianteAuxiliar.getNombre().equals(es.getNombre())
                                 && estudianteAuxiliar.getDni().equals(es.getDni())) {
                             original = false;
+                            //USAR MISMA INSTANCIA NO OTRA QUE TENÍAMOS EN LA LISTA GLOBAL DE ESTUDIANTES
+                            es=ventanaInicio.getListaGlobalEstudiantes().getEstudiante(i);
                         }
                     }
 
                     // No matriculado en la asignatura y nuevo alumno del curso
                     if (original) {
-                        auxiliar.getListaEstudiantes().addNodo(es);
+                        lre.addNodo(es);
 
                         // Añadimos la asignatura a las respectivas listas
+                        ListaEstudiantes borrar= ventanaInicio.getListaGlobalEstudiantes();
                         ventanaInicio.getListaGlobalEstudiantes().setObject(es);
-                        es.getListaRefEstudianteAsignatura().addNodo(auxiliar);
+                        es.getListaRefEstudianteAsignatura().addNodo(asignatura_seleccionada);
 
-                        this.pantalla.setText("Se ha matriculado:\nAlumno " + es);
+                        this.pantalla.setText("Se ha matriculado:\nAlumno " + es.toString());
                         System.out.println("No matriculado en la asignatura y nuevo alumno del curso");
 
                         // No matriculado de la asignatura y no es nuevo alumno del curso
                     } else {
-                        auxiliar.getListaEstudiantes().addNodo(es);
+                        asignatura_seleccionada.getListaEstudiantes().addNodo(es);
 
                         // Añadimos la asignatura a las respectivas listas
-                        es.getListaRefEstudianteAsignatura().addNodo(auxiliar);
+                        es.getListaRefEstudianteAsignatura().addNodo(asignatura_seleccionada);
 
                         this.pantalla.setText("Se ha matriculado:\nAlumno " + es);
                         System.out.println("No matriculado de la asignatura y no es nuevo alumno del curso");
@@ -584,10 +589,12 @@ public class VentanaEstudiante extends JFrame {
             Estudiante estudianteAuxiliar = (Estudiante) estudiantesJBox.getSelectedItem();
             //Se busca el indice de este alumno en la lista global de alumnos
             System.out.println("Contenido lista estuidantes" + ventanaInicio.getListaGlobalEstudiantes().getInfoTotal());
-            int indice = ventanaInicio.getListaGlobalEstudiantes().getIndice(estudianteAuxiliar);
+            ListaEstudiantes le=ventanaInicio.getListaGlobalEstudiantes();
+            int indice = ventanaInicio.getListaGlobalEstudiantes().getIndicePorNombre(estudianteAuxiliar.getNombre());
+            estudianteAuxiliar=ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indice);
             System.out.println("Post" + indice);
             //Se calcula el tamaño de la lista de referncia de dicho alumno
-            int size = ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indice).getSizeRef();
+            int size = estudianteAuxiliar.getSizeRef();
 
             System.out.println("hola2");
 
@@ -598,7 +605,7 @@ public class VentanaEstudiante extends JFrame {
                 System.out.println(size);
                 //Se añaden a la lista auxiliar de asignaturas
                 for (int i = 0; i < size; i++) {
-                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalEstudiantes().getEstudiante(indice).getRefAsignaturaEstudiante(i));
+                    lista_auxiliar.addObject(estudianteAuxiliar.getListaRefEstudianteAsignatura().getInfoNodo(i));
                 }
 
                 //Se ordenada la lista
@@ -606,7 +613,7 @@ public class VentanaEstudiante extends JFrame {
 
                 String listado = "";
                 for (int i = 0; i < lista_auxiliar.getSize(); i++) {
-                    listado = listado + lista_auxiliar.getAsignatura(i).toString() + "\n" + "Curso: "
+                    listado += listado + lista_auxiliar.getAsignatura(i).toString() + "\n" + "Curso: "
                             + lista_auxiliar.getAsignatura(i).getStringCurso() + "\n";
                 }
 
@@ -625,23 +632,31 @@ public class VentanaEstudiante extends JFrame {
         //Se resetea el estudianteJBox
         estudiantesJBox.removeAllItems();
         estudiantesJBox.addItem(lEstudiantes);
+        
         //Lista auxiliar de alumnos
         ListaEstudiantes lista_auxiliar = new ListaEstudiantes();
-
+        
         //Si el objeto seleccionado del JBox es perteneciente a Optativa o a Obligatoria
         if (listaTipoAsignaturasJBox.getSelectedItem().getClass() == Optativa.class || listaTipoAsignaturasJBox.getSelectedItem().getClass() == Obligatoria.class) {
             //Se crea una asignatura auxiliar, igual a la seleccioanda en el Jbox
             Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
 
+            //buscar asignatura en lista global y mostrar su lista de referencia a estudiantes
+            
             //Se busca el indice de esta asignatura en la lista global de asignaturas
             int indice = ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
             //Se calcula el numero de estudiantes matriculados de esta asignatura
             int size = ventanaInicio.getListaGlobalAsignaturas().getSizeRef();
+             //buscar asignatura en lista global y mostrar su lista de referencia a estudiantes
+            Asignatura asignatura_seleccionada= ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice);
+            Lista_Ref_Estudiantes lre=asignatura_seleccionada.getListaEstudiantes();
+            
 
             //Si hay algun estudiante matriculado
-            if (size > 0) {
-                for (int i = 0; i < size; i++) {
-                    lista_auxiliar.setObject(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
+            if (lre.getSize() > 0) {
+                for (int i = 0; i < lre.getSize(); i++) {
+                    lista_auxiliar.setObject(lre.getObject(i));
+                    estudiantesJBox.addItem(lre.getObject(i));
                 }
 
                 //Se ordena la lista
@@ -686,8 +701,10 @@ public class VentanaEstudiante extends JFrame {
 
             this.estudiantesJBox.addItem(lEstudiantes);
             Asignatura auxiliar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
+            int indice= ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
+            Asignatura asignatura_seleccionada=ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice);
             System.out.println(auxiliar);
-            Lista_Ref_Estudiantes lre = auxiliar.getListaEstudiantes();
+            Lista_Ref_Estudiantes lre = asignatura_seleccionada.getListaEstudiantes();
 
             for (int i = 0; i < lre.getSize(); i++) {
                 if (lre.getSize() != 0) {
