@@ -333,7 +333,7 @@ public class VentanaAsignatura extends JFrame {
     }
 
     /**
-     * Método que realiza la acción al presional el botón de LISTAR
+     * Método que realiza la acción al presionar el botón de LISTAR
      *
      */
     private void accionListarCurso() {

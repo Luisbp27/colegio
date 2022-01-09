@@ -418,12 +418,10 @@ public class VentanaCursoAsign extends JFrame {
             if (lre.getObject(k) != null) {
                 es = lre.getObject(k);
                 //aquí se elimina el estudiante lista global
-                listaAuxEstudiantes.removeObject(es);
+                lre.removeNodoEstudiante(es);
                 //aquí en teoría elimina la lista de referéncia estudiante asignatura
                 //y así quita la relación del estudiante con esa asignatura
                 es.removeRefAsingatura(asignatura);
-                //aquí vuelve a añadirlo a la lista global, creo que no importa
-                listaAuxEstudiantes.setObject(es);
             }
         }
     }
@@ -436,23 +434,23 @@ public class VentanaCursoAsign extends JFrame {
     private void accionBajaAsignatura(Curso seleccionado) {
         if (!listaTipoAsignaturasJBox.getSelectedItem().equals(ASIGNATURABOX)) {
             Asignatura aEliminar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
-
+            
             // Actualizamos la lista de referencias del curso en cuestion
             if (i == 1) {
-                listaAuxiliarCurso.removeObject(sel_fp);
-                sel_fp.remove(aEliminar);
-                listaAuxiliarCurso.addObject(sel_fp);
+               // listaAuxiliarCurso.removeObject(sel_fp);
+                 seleccionado.getListaAsignaturas().removeObject(aEliminar);
+               // listaAuxiliarCurso.addObject(sel_fp);
 
             } else if (i == 2) {
-                listaAuxiliarCurso.removeObject(sel_bachiller);
-                sel_bachiller.remove(aEliminar);
-                listaAuxiliarCurso.addObject(sel_bachiller);
+               // listaAuxiliarCurso.removeObject(sel_bachiller);
+                seleccionado.getListaAsignaturas().removeObject(aEliminar);
+               // listaAuxiliarCurso.addObject(sel_bachiller);
             }
 
             // Eliminamos objeto del combobox
             removeEstudiantes(aEliminar);
             listaAuxiliarAsignatura.removeObject(aEliminar);
-            seleccionado.setListaAsignaturas(listaAuxiliarAsignatura);
+            //seleccionado.setListaAsignaturas(listaAuxiliarAsignatura);
             //eliminamos asignatura de la lista de asignaturas
             listaTipoAsignaturasJBox.removeItem(aEliminar);
 
