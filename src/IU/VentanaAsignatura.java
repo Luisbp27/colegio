@@ -23,6 +23,10 @@ import Curso.FP;
 import Lista.ListaEstudiantes;
 import Lista.ListaAsignaturas;
 
+/**
+ * 
+ * @author luisb
+ */
 public class VentanaAsignatura extends JFrame {
 
     // Constantes
@@ -58,7 +62,7 @@ public class VentanaAsignatura extends JFrame {
 
     // Panel Izquierdo
     // private JButton indicarC;
-    private JComboBox listaAsignaturas;
+    private JComboBox<Asignatura> listaAsignaturas;
     private JButton actualizarA;
     private JButton listarC;
 
@@ -97,14 +101,14 @@ public class VentanaAsignatura extends JFrame {
         this.setLocationRelativeTo(null);
 
         // Quitamos el Layout para ordenar los paneles
-        this.getContentPane().setLayout(null);
+        this.setLayout(null);
 
         // Cierre con la X de la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // No ensanchable
         this.setResizable(false);
 
-        // Componentes:
+        // Componentes //
         // Barra
         barraMenu = new JMenuBar();
         menu = new JMenu("Menú");
@@ -138,12 +142,13 @@ public class VentanaAsignatura extends JFrame {
         pantalla.setVisible(true);
 
         // Scroll Pane
-        scrollPane = new JScrollPane(pantalla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane = new JScrollPane(pantalla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVisible(true);
 
-        // Botones
-        listaAsignaturas = new JComboBox();
-        listaAsignaturas.addItem(LISTA_ASIGNATURA);
+        // Botones //
+        listaAsignaturas = new JComboBox<>();
+        // listaAsignaturas.addItem(LISTA_ASIGNATURA);
 
         actualizarA = new JButton("Actualizar");
         actualizarA.setForeground(Color.WHITE);
@@ -211,10 +216,10 @@ public class VentanaAsignatura extends JFrame {
 
         // Añadir componentes
         this.setJMenuBar(barraMenu);
-        this.getContentPane().add(panelTipoAsignatura);
-        this.getContentPane().add(panelListaAsignatura);
-        this.getContentPane().add(panelBotonesAsignatura);
-        this.getContentPane().add(scrollPane);
+        this.add(panelTipoAsignatura);
+        this.add(panelListaAsignatura);
+        this.add(panelBotonesAsignatura);
+        this.add(scrollPane);
 
     }
 
@@ -227,7 +232,7 @@ public class VentanaAsignatura extends JFrame {
         // Si combo NO box vacio
         if (!panelTipoAsignatura.isEmpty()) {
             listaAsignaturas.removeAllItems();
-            listaAsignaturas.addItem(LISTA_ASIGNATURA);
+            // listaAsignaturas.addItem(LISTA_ASIGNATURA);
 
             ListaAsignaturas lista_auxiliar = new ListaAsignaturas();
 
@@ -242,8 +247,10 @@ public class VentanaAsignatura extends JFrame {
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro,
                             // se añaden al JBox.
                             for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
-                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Obligatoria.class) {
-                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j)
+                                        .getClass() == Obligatoria.class) {
+                                    lista_auxiliar.addObject(
+                                            ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
                                 }
                             }
                         }
@@ -265,8 +272,10 @@ public class VentanaAsignatura extends JFrame {
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro,
                             // se añaden al JBox.
                             for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
-                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Optativa.class) {
-                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j)
+                                        .getClass() == Optativa.class) {
+                                    lista_auxiliar.addObject(
+                                            ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
                                 }
                             }
                         }
@@ -288,8 +297,10 @@ public class VentanaAsignatura extends JFrame {
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro,
                             // se añaden al JBox.
                             for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
-                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Obligatoria.class) {
-                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j)
+                                        .getClass() == Obligatoria.class) {
+                                    lista_auxiliar.addObject(
+                                            ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
                                 }
                             }
                         }
@@ -311,8 +322,10 @@ public class VentanaAsignatura extends JFrame {
                             // Recorremos su lista de referencia de asignaturas, las que cumplan el filtro,
                             // se añaden al JBox.
                             for (int j = 0; j < ventanaInicio.getListaGlobalCursos().getCurso(i).getSizeRef(); j++) {
-                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j).getClass() == Optativa.class) {
-                                    lista_auxiliar.addObject(ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
+                                if (ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j)
+                                        .getClass() == Optativa.class) {
+                                    lista_auxiliar.addObject(
+                                            ventanaInicio.getListaGlobalCursos().getCurso(i).getAsignaturaRef(j));
                                 }
                             }
                         }
@@ -337,30 +350,35 @@ public class VentanaAsignatura extends JFrame {
      *
      */
     private void accionListarCurso() {
-        //Lista auxiliar de alumnos
+        // Lista auxiliar de alumnos
         ListaEstudiantes lista_auxiliar = new ListaEstudiantes();
 
-        //Si el tipo de asignatura seleccionado no esta vacio
+        // Si el tipo de asignatura seleccionado no esta vacio
         if (!panelTipoAsignatura.isEmpty()) {
-            //Y si el elemento seleccionado del Jbox no es la cabecera
+            // Y si el elemento seleccionado del Jbox no es la cabecera
             if (!listaAsignaturas.getSelectedItem().equals(LISTA_ASIGNATURA)) {
-                //Se crea una asignatura auxiliar que es igual a la seleccionada en el Jbox
+                // Se crea una asignatura auxiliar que es igual a la seleccionada en el Jbox
                 Asignatura auxiliar = (Asignatura) listaAsignaturas.getSelectedItem();
-                //Indice de la asignatura seleccionada en la lista global de asignaturas
+                // Indice de la asignatura seleccionada en la lista global de asignaturas
                 int indice = ventanaInicio.getListaGlobalAsignaturas().getIndice(auxiliar);
-                //Numero de alumnos matriculados en esta asignatura
+                // Numero de alumnos matriculados en esta asignatura
                 int size = ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getSizeRef();
 
-                //Si hay alguno matriculado
+                // Si hay alguno matriculado
                 if (size != 0) {
 
                     for (int i = 0; i < size; i++) {
-                        lista_auxiliar.setObject(ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
+                        lista_auxiliar.setObject(
+                                ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getRefEstudiante(i));
                     }
 
                     lista_auxiliar.ordenarLista();
-                    String listado = "CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
-                    //String listado = "CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n" + "ESTUDIANTES" + "\n\n";
+                    String listado = "CURSO: "
+                            + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\n\n"
+                            + "ESTUDIANTES" + "\n\n";
+                    // String listado = "CURSO: " +
+                    // ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso()
+                    // + "\n\n" + "ESTUDIANTES" + "\n\n";
 
                     for (int i = 0; i < lista_auxiliar.getSize(); i++) {
                         listado = listado + lista_auxiliar.getEstudiante(i).toString() + "\n\n";
@@ -368,7 +386,9 @@ public class VentanaAsignatura extends JFrame {
 
                     this.pantalla.setText(listado);
                 } else {
-                    this.pantalla.setText("CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso() + "\nEn esta asigantura \nno hay ningún alumno matriculado");
+                    this.pantalla.setText(
+                            "CURSO: " + ventanaInicio.getListaGlobalAsignaturas().getAsignatura(indice).getStringCurso()
+                                    + "\nEn esta asigantura \nno hay ningún alumno matriculado");
                 }
             } else {
                 this.pantalla.setText("Selecciona una asignatura");
@@ -385,7 +405,7 @@ public class VentanaAsignatura extends JFrame {
     private void init() {
         this.pantalla.setText("");
         this.listaAsignaturas.removeAllItems();
-        this.listaAsignaturas.addItem(LISTA_ASIGNATURA);
+        // this.listaAsignaturas.addItem(LISTA_ASIGNATURA);
     }
 
     /**

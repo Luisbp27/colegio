@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Curso;
 
 import Asignatura.Asignatura;
@@ -33,7 +28,6 @@ public class Bachiller extends Curso {
      */
     public Bachiller(String nombre, int codigo, Año año) {
         super(nombre, codigo);
-
         this.año = año;
     }
 
@@ -80,16 +74,6 @@ public class Bachiller extends Curso {
     @Override
     public int getSizeRef() {
         return lista_curso_asignatura.getSize();
-    }
-
-    @Override
-    public void add(Object x) {
-        lista_curso_asignatura.add(x);
-    }
-
-    @Override
-    public void remove(Object x) {
-        lista_curso_asignatura.removeRefAsignatura(x);
     }
 
     @Override

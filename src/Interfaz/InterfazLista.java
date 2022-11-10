@@ -1,8 +1,3 @@
-/*
-Una interfaz proporciona todas las operaciones básicas sobre cualquier lista in_
-dependientemente el tipo de elementos de esta. Es como una librería de operaciones
-Especifican el comportamiento no la implementación, eso lo hará cada clase lista.
- */
 package Interfaz;
 
 /**

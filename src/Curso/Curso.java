@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Curso;
 
 import Asignatura.Asignatura;
@@ -30,7 +25,6 @@ public abstract class Curso implements InterfazDatos {
         this.nombre = nombre;
         this.codigo = codigo;
 
-        // Inicilamente lista y apuntador vacíos
         this.lista_curso_asignatura = new ListaAsignaturas();
     }
 
@@ -56,8 +50,5 @@ public abstract class Curso implements InterfazDatos {
     public abstract Asignatura getAsignaturaRef(int i);
 
     public abstract int getSizeRef();
-
-    public abstract void add(Object x);
-
-    public abstract void remove(Object x);
+    
 }

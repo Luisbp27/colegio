@@ -29,6 +29,10 @@ import Lista.ListaCursos;
 import Lista_Ref.Lista_Ref_Estudiantes;
 import java.awt.event.ItemEvent;
 
+/**
+ * 
+ * @author luisb
+ */
 public class VentanaCursoAsign extends JFrame {
 
     // Constantes
@@ -41,7 +45,8 @@ public class VentanaCursoAsign extends JFrame {
     private final int altoListaScroll = 180;
     private final int altoBotonesV = 50;
 
-    private final int alto_MAX = 70 + altoDtsAsignatura + altoTipAsig + altoListaAsignatura + altoListaScroll + altoBotonesV + (6 * 5);
+    private final int alto_MAX = 70 + altoDtsAsignatura + altoTipAsig + altoListaAsignatura + altoListaScroll
+            + altoBotonesV + (6 * 5);
 
     // Variables
     private VentanaInicio ventanaInicio;
@@ -82,7 +87,7 @@ public class VentanaCursoAsign extends JFrame {
     private Bachiller sel_bachiller;
     private Obligatoria obligatoria;
     private Optativa optativa;
-    private final Optativa.Tipo[] tipos = {Optativa.Tipo.TEÓRICA, Optativa.Tipo.PRÁCTICA};
+    private final Optativa.Tipo[] tipos = { Optativa.Tipo.TEÓRICA, Optativa.Tipo.PRÁCTICA };
     private int asig_option, i, size_lista_ref;
     private static final String ASIGNATURABOX = "Asignaturas";
     private ListaCursos listaAuxiliarCurso;
@@ -101,7 +106,7 @@ public class VentanaCursoAsign extends JFrame {
         ventanaInicio = inicio;
         ventanaCurso = ventanaInicio.getVentanaCurso();
 
-        //conseguimos las listas "globales"
+        // conseguimos las listas "globales"
         listaAuxiliarCurso = ventanaInicio.getListaGlobalCursos();
         listaAuxiliarAsignatura = ventanaInicio.getListaGlobalAsignaturas();
         listaAuxEstudiantes = ventanaInicio.getListaGlobalEstudiantes();
@@ -116,11 +121,11 @@ public class VentanaCursoAsign extends JFrame {
         // Segun si es bachiller o fp llenamos el objeto correspondiente
         if (this.i == 1) {
             this.sel_fp = (FP) seleccionado;
-            //tamaño de la lista con referencias a asignatura
+            // tamaño de la lista con referencias a asignatura
             size_lista_ref = sel_fp.getSizeRef();
         } else if (this.i == 2) {
             this.sel_bachiller = (Bachiller) seleccionado;
-            //tamaño de la lista con referencias a asignatura
+            // tamaño de la lista con referencias a asignatura
             size_lista_ref = sel_bachiller.getSizeRef();
         }
 
@@ -137,7 +142,7 @@ public class VentanaCursoAsign extends JFrame {
         this.setLocationRelativeTo(null);
 
         // Quitamos el Layout para ordenar los paneles
-        this.getContentPane().setLayout(null);
+        this.setLayout(null);
 
         // Cierre con la X de la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,7 +162,7 @@ public class VentanaCursoAsign extends JFrame {
         barraMenu.add(menu);
 
         // Paneles
-        //0 = NO Tipo
+        // 0 = NO Tipo
         panelTipoAsignatura = new JPanelTpAsign(0);
 
         // Panel "Tipo asignatura"
@@ -190,7 +195,8 @@ public class VentanaCursoAsign extends JFrame {
         pantalla.setVisible(true);
 
         // Scroll Pane
-        scrollPane = new JScrollPane(pantalla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane = new JScrollPane(pantalla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVisible(true);
 
         // Labels
@@ -244,22 +250,19 @@ public class VentanaCursoAsign extends JFrame {
         // Escuchador panel
         panelBotonesAsignatura.addAncestorListener(
                 new AncestorListener() {
-            @Override
-            public void ancestorAdded(AncestorEvent event
-            ) {
-                init(seleccionado);
-            }
+                    @Override
+                    public void ancestorAdded(AncestorEvent event) {
+                        init(seleccionado);
+                    }
 
-            @Override
-            public void ancestorRemoved(AncestorEvent ae
-            ) {
-            }
+                    @Override
+                    public void ancestorRemoved(AncestorEvent ae) {
+                    }
 
-            @Override
-            public void ancestorMoved(AncestorEvent ae
-            ) {
-            }
-        });
+                    @Override
+                    public void ancestorMoved(AncestorEvent ae) {
+                    }
+                });
 
         listaTipoAsignaturasJBox.addItemListener((ItemEvent ie) -> {
             if (ie.getStateChange() == ItemEvent.SELECTED) {
@@ -273,8 +276,11 @@ public class VentanaCursoAsign extends JFrame {
         panelDatosAsignatura.setBounds(10, 5, ANCHURA - 30, altoDtsAsignatura);
         panelTipoAsignatura.setBounds(10, altoDtsAsignatura + 5, ANCHURA - 30, altoTipAsig);
         panelListaAsignaturas.setBounds(10, altoTipAsig + 5 + altoDtsAsignatura + 5, ANCHURA - 30, altoListaAsignatura);
-        scrollPane.setBounds(10, altoTipAsig + 5 + altoDtsAsignatura + 5 + altoListaAsignatura + 5, ANCHURA - 30, altoListaScroll);
-        panelBotonesAsignatura.setBounds(10, altoTipAsig + 5 + altoDtsAsignatura + 5 + altoListaAsignatura + 5 + altoListaScroll + 5, ANCHURA - 30, altoBotonesV);
+        scrollPane.setBounds(10, altoTipAsig + 5 + altoDtsAsignatura + 5 + altoListaAsignatura + 5, ANCHURA - 30,
+                altoListaScroll);
+        panelBotonesAsignatura.setBounds(10,
+                altoTipAsig + 5 + altoDtsAsignatura + 5 + altoListaAsignatura + 5 + altoListaScroll + 5, ANCHURA - 30,
+                altoBotonesV);
 
         // Añadimos componentes a los paneles
         panelBotonesAsignatura.add(altaAsignatura);
@@ -287,11 +293,11 @@ public class VentanaCursoAsign extends JFrame {
 
         // Añadir componentes
         this.setJMenuBar(barraMenu);
-        this.getContentPane().add(panelTipoAsignatura);
-        this.getContentPane().add(panelBotonesAsignatura);
-        this.getContentPane().add(panelDatosAsignatura);
-        this.getContentPane().add(panelListaAsignaturas);
-        this.getContentPane().add(scrollPane);
+        this.add(panelTipoAsignatura);
+        this.add(panelBotonesAsignatura);
+        this.add(panelDatosAsignatura);
+        this.add(panelListaAsignaturas);
+        this.add(scrollPane);
     }
 
     /**
@@ -310,14 +316,14 @@ public class VentanaCursoAsign extends JFrame {
      * @param seleccionado
      */
     private void accionAltaAsignatura(Curso seleccionado) {
-        //Vemos si la opcion es obligatoria (2) u optativa (1)
+        // Vemos si la opcion es obligatoria (2) u optativa (1)
         asig_option = panelTipoAsignatura.getSelectEspAsignatura();
 
         switch (asig_option) {
             // Obligatoria
             case 2:
                 if (!panelTipoAsignatura.getSelectComboAsig().equals("Créditos")) {
-                    //crear asignatura del curso específico
+                    // crear asignatura del curso específico
                     int codigo = Integer.parseInt(atCodigo.getText());
                     int creditos = Integer.parseInt(panelTipoAsignatura.getSelectComboAsig().toString());
                     Obligatoria obl = new Obligatoria(atNombre.getText(), codigo, creditos, seleccionado);
@@ -325,10 +331,10 @@ public class VentanaCursoAsign extends JFrame {
                     listaAuxiliarAsignatura.addObject(obl);
                     listaAuxiliarAsignatura.ordenarLista();
                     ventanaInicio.setListaAsignaturas(listaAuxiliarAsignatura);
-                    //añadir a la lista de asignaturas del curso en concreto
+                    // añadir a la lista de asignaturas del curso en concreto
                     seleccionado.getListaAsignaturas().addObject(obl);
                     seleccionado.getListaAsignaturas().ordenarLista();
-                    //añadimos la asignatura en el JComboBox
+                    // añadimos la asignatura en el JComboBox
                     listaTipoAsignaturasJBox.addItem(obl);
                     this.pantalla.setText(obl.toString());
                 } else {
@@ -336,20 +342,20 @@ public class VentanaCursoAsign extends JFrame {
                             + "Por favor, revise su selección");
                 }
                 break;
-            //Optativa
+            // Optativa
             case 1:
                 if (!panelTipoAsignatura.getSelectComboAsig().equals("Perfiles")) {
                     int codigo = Integer.parseInt(atCodigo.getText());
                     Optativa.Tipo tipo = (Optativa.Tipo) panelTipoAsignatura.getSelectComboAsig();
                     Optativa opt = new Optativa(atNombre.getText(), codigo, tipo, seleccionado);
-                    //añadir lista global asignaturas
+                    // añadir lista global asignaturas
                     listaAuxiliarAsignatura.addObject(opt);
                     listaAuxiliarAsignatura.ordenarLista();
                     ventanaInicio.setListaAsignaturas(listaAuxiliarAsignatura);
-                    //añadir a lista concreta de un curso
+                    // añadir a lista concreta de un curso
                     seleccionado.getListaAsignaturas().addObject(opt);
                     seleccionado.getListaAsignaturas().ordenarLista();
-                    //añadirlo por orden a JComboBox  de opción
+                    // añadirlo por orden a JComboBox de opción
                     listaTipoAsignaturasJBox.addItem(opt);
                     this.pantalla.setText(opt.toString());
                 } else {
@@ -362,7 +368,7 @@ public class VentanaCursoAsign extends JFrame {
                         + "Por favor, revise su selección");
                 break;
         }
-        //Actualizamos la slistas
+        // Actualizamos la slistas
         ventanaInicio.setListaAsignaturas(listaAuxiliarAsignatura);
     }
 
@@ -417,10 +423,10 @@ public class VentanaCursoAsign extends JFrame {
         for (int k = 0; k < size; k++) {
             if (lre.getObject(k) != null) {
                 es = lre.getObject(k);
-                //aquí se elimina el estudiante lista global
+                // aquí se elimina el estudiante lista global
                 lre.removeNodoEstudiante(es);
-                //aquí en teoría elimina la lista de referéncia estudiante asignatura
-                //y así quita la relación del estudiante con esa asignatura
+                // aquí en teoría elimina la lista de referéncia estudiante asignatura
+                // y así quita la relación del estudiante con esa asignatura
                 es.removeRefAsingatura(asignatura);
             }
         }
@@ -434,24 +440,24 @@ public class VentanaCursoAsign extends JFrame {
     private void accionBajaAsignatura(Curso seleccionado) {
         if (!listaTipoAsignaturasJBox.getSelectedItem().equals(ASIGNATURABOX)) {
             Asignatura aEliminar = (Asignatura) listaTipoAsignaturasJBox.getSelectedItem();
-            
+
             // Actualizamos la lista de referencias del curso en cuestion
             if (i == 1) {
-               // listaAuxiliarCurso.removeObject(sel_fp);
-                 seleccionado.getListaAsignaturas().removeObject(aEliminar);
-               // listaAuxiliarCurso.addObject(sel_fp);
+                // listaAuxiliarCurso.removeObject(sel_fp);
+                seleccionado.getListaAsignaturas().removeObject(aEliminar);
+                // listaAuxiliarCurso.addObject(sel_fp);
 
             } else if (i == 2) {
-               // listaAuxiliarCurso.removeObject(sel_bachiller);
+                // listaAuxiliarCurso.removeObject(sel_bachiller);
                 seleccionado.getListaAsignaturas().removeObject(aEliminar);
-               // listaAuxiliarCurso.addObject(sel_bachiller);
+                // listaAuxiliarCurso.addObject(sel_bachiller);
             }
 
             // Eliminamos objeto del combobox
             removeEstudiantes(aEliminar);
             listaAuxiliarAsignatura.removeObject(aEliminar);
-            //seleccionado.setListaAsignaturas(listaAuxiliarAsignatura);
-            //eliminamos asignatura de la lista de asignaturas
+            // seleccionado.setListaAsignaturas(listaAuxiliarAsignatura);
+            // eliminamos asignatura de la lista de asignaturas
             listaTipoAsignaturasJBox.removeItem(aEliminar);
 
             // Set de las listas
@@ -497,7 +503,7 @@ public class VentanaCursoAsign extends JFrame {
     private void init(Curso seleccionado) {
         this.atNombre.setText("");
         this.atCodigo.setText("");
-        //this.pantalla.setText("");
+        // this.pantalla.setText("");
         this.pantalla.setText("Selecciona una asignatura para ver sus estudiantes");
         listaTipoAsignaturasJBox.removeAllItems();
         listaTipoAsignaturasJBox.addItem("Asignaturas");

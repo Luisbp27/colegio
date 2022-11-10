@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Asignatura;
 
 import Curso.Curso;
@@ -10,7 +5,6 @@ import Estudiante.Estudiante;
 import Lista_Ref.Lista_Ref_Estudiantes;
 
 /**
- * F
  *
  * @author luisb
  */
@@ -39,27 +33,6 @@ public class Optativa extends Asignatura {
         super(nombre, codigo, curso.getNombre());
         this.tipo = tipo;
         this.strCurso = curso.getNombre();
-    }
-
-    /**
-     * Método que compara el nombre del Curso con el nombre de la Asignatura
-     * pasada por parámetro
-     *
-     * @param a
-     * @return
-     */
-    public int compareTo(Asignatura a) {
-        int resultado = this.nombre.compareTo(a.nombre);
-
-        if (resultado < 0) {
-            return -1;
-        } else {
-            if (resultado == 0) {
-                return 0;
-            } else {
-                return 1;
-            }
-        }
     }
 
     @Override

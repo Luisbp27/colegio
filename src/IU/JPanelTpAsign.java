@@ -1,6 +1,3 @@
-/**
- * Panel el cual podremos elegir que tipo de asignatura. "Filtro"
- */
 package IU;
 
 import Asignatura.Optativa;
@@ -22,18 +19,19 @@ import javax.swing.event.AncestorListener;
 
 /**
  *
- * @author Jorge
+ * @author luisb
  */
 public class JPanelTpAsign extends JPanel {
 
     private final String sBoxIn = "Seleciona";
-    private final Optativa.Tipo perfiles[] = {Tipo.TEÓRICA, Tipo.PRÁCTICA};
-    // Especialidades de un curso FP:
-    private final FP.Especialidad especialidades[] = {Especialidad.INFORMÁTICA, Especialidad.MECÁNICA, Especialidad.ELECTRÓNICA};
-    // Tipos de cursos de Bachiller: tBach
-    private final Bachiller.Año tBach[] = {Año.PRIMERO, Año.SEGUNDO};
-    // Tipos de creditos Asignaturas Obligatorias:
-    private final String creditos[] = {"Créditos", "6", "8", "9"};
+    private final Optativa.Tipo perfiles[] = { Tipo.TEÓRICA, Tipo.PRÁCTICA };
+    // Especialidades de un curso FP
+    private final FP.Especialidad especialidades[] = { Especialidad.INFORMÁTICA, Especialidad.MECÁNICA,
+            Especialidad.ELECTRÓNICA };
+    // Tipos de cursos de Bachiller
+    private final Bachiller.Año tBach[] = { Año.PRIMERO, Año.SEGUNDO };
+    // Tipos de creditos Asignaturas Obligatorias
+    private final String creditos[] = { "Créditos", "6", "8", "9" };
 
     private JLabel tTipo;
     private JLabel tAsignatura;
@@ -400,16 +398,10 @@ public class JPanelTpAsign extends JPanel {
      */
     public boolean isEmpty() {
         boolean empty = true;
-        if (getSelect() != 0) {
-            if (!getTipo().equals("Tipos de Cursos")) {
-                if (!getTipo().equals("Especialidades")) {
-                    if (!getAsignatura().equals("Créditos")) {
-                        if (!getAsignatura().equals("Perfiles")) {
-                            empty = false;
-                        }
-                    }
-                }
-            }
+        
+        if (getSelect() != 0 && !getTipo().equals("Tipos de Cursos") && !getTipo().equals("Especialidades")
+                && !getAsignatura().equals("Créditos") && !getAsignatura().equals("Perfiles")) {
+            empty = false;
         }
 
         return empty;

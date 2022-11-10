@@ -15,20 +15,21 @@ import Lista.ListaEstudiantes;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
+/**
+ *
+ * @author luisb
+ */
 public class VentanaInicio extends JFrame {
 
-    //VARIABLES GLOBALES
     private ListaAsignaturas lista_global_asignaturas;
     private ListaCursos lista_global_cursos;
     private ListaEstudiantes lista_global_estudiantes;
 
-    //INICIALIZACIÓN VARIABLES GLOBALES
-    //lista_global_asignaturas
-    //Tamaño Pantalla
+    // Tamaño Pantalla
     private static final int ALTURA = 500;
     private static final int ANCHURA = 400;
 
-    //Componentes:
+    // Componentes
     private JPanel panelBotones;
     private JPanel panelTitulo;
 
@@ -39,7 +40,7 @@ public class VentanaInicio extends JFrame {
     private JLabel titulo;
     private JLabel imagen;
 
-    //Ventanas para abrir
+    // Ventanas
     VentanaAsignatura ventanaAsignatura;
     VentanaEstudiante ventanaEstudiante;
     VentanaCurso ventanaCurso;
@@ -54,7 +55,9 @@ public class VentanaInicio extends JFrame {
      * @param listaAsignatura
      * @param listaEstudiantes
      */
-    public VentanaInicio(VentanaCurso ventanaCurso, VentanaAsignatura ventanaAsignatura, VentanaEstudiante ventanaEstudiante, ListaCursos listaCurso, ListaAsignaturas listaAsignatura, ListaEstudiantes listaEstudiantes) {
+    public VentanaInicio(VentanaCurso ventanaCurso, VentanaAsignatura ventanaAsignatura,
+            VentanaEstudiante ventanaEstudiante, ListaCursos listaCurso, ListaAsignaturas listaAsignatura,
+            ListaEstudiantes listaEstudiantes) {
         super("Gestión Colegio");
         this.ventanaCurso = ventanaCurso;
         this.ventanaAsignatura = ventanaAsignatura;
@@ -72,35 +75,35 @@ public class VentanaInicio extends JFrame {
      *
      */
     private void initComponents() {
-        //+35 por los botones de la ventana y +5 para las separaciones Horitzontales
+        // +35 por los botones de la ventana y +5 para las separaciones Horitzontales
         this.setSize(ANCHURA, ALTURA);
         this.setLocationRelativeTo(null);
 
-        this.getContentPane().setLayout(null);
+        this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        ////Componentes////
-        //Paneles
+        //// Componentes////
+        // Paneles
         this.panelBotones = new JPanel();
-        //new GridLayout(filas,columnas,espacio entre columnas, espacio entre filas)
+        // new GridLayout(filas,columnas,espacio entre columnas, espacio entre filas)
         panelBotones.setLayout(new GridLayout(3, 1, 0, 20));
         panelBotones.setVisible(true);
 
         this.panelTitulo = new JPanel();
         panelTitulo.setVisible(true);
 
-        //Labels
+        // Labels
         this.titulo = new JLabel("PROGRAMA PRINCIPAL");
         this.titulo.setFont(new Font("Arial", Font.PLAIN, 24));
         this.titulo.setVerticalAlignment(SwingConstants.CENTER);
 
         this.imagen = new JLabel();
-        ImageIcon img = new ImageIcon(this.getClass().getResource("/Imagenes/colegio.png"));
+        ImageIcon img = new ImageIcon("src/Imagenes/colegio.png");
         imagen.setIcon(new ImageIcon(img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
         imagen.setVisible(true);
 
-        //Botones
+        // Botones
         this.bCurso = new JButton("Curso");
         this.bCurso.setForeground(Color.WHITE);
         this.bCurso.setBackground(Color.GRAY);
@@ -113,42 +116,40 @@ public class VentanaInicio extends JFrame {
         this.bEstudiante.setForeground(Color.WHITE);
         this.bEstudiante.setBackground(Color.GRAY);
 
-        ///Actiones Botones///
-        //Acciones al presionar el botón "Curso"
+        /// Actiones Botones///
+        // Acciones al presionar el botón "Curso"
         bCurso.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
             ventanaCurso.setVisible(true);
         });
 
-        //Acciones al presionar el botón "Asignatura"
+        // Acciones al presionar el botón "Asignatura"
         bAsignatura.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
             ventanaAsignatura.setVisible(true);
         });
 
-        //Acciones al presionar el botón "Estudiante"
+        // Acciones al presionar el botón "Estudiante"
         bEstudiante.addActionListener((ActionEvent ae) -> {
             cerrarVentana();
             ventanaEstudiante.setVisible(true);
         });
 
-        //.setBounds(x,y,ancho,alto)
+        // .setBounds(x,y,ancho,alto)
         panelBotones.setBounds(5 + 80, ALTURA - 200, ANCHURA - 175, 100);
         panelTitulo.setBounds(7, 20, ANCHURA - 20, ALTURA - 20);
-        imagen.setBounds(ANCHURA / 2, 25, 200, 200);
-        //titulo.setBounds(this.ancho_MAX/2 - 50, 0,200,200);
+        imagen.setBounds((ANCHURA - 200) / 2, 50, 200, 200);
 
-        //Añadir componentes
+        // Añadir componentes
         panelBotones.add(bCurso);
         panelBotones.add(bAsignatura);
         panelBotones.add(bEstudiante);
         panelTitulo.add(titulo);
 
-        //Añadimos paneles a la ventana
-        this.getContentPane().add(panelBotones);
-        this.getContentPane().add(panelTitulo);
-        this.getContentPane().add(imagen);
-
+        // Añadimos paneles a la ventana
+        this.add(imagen);
+        this.add(panelBotones);
+        this.add(panelTitulo);
     }
 
     /**

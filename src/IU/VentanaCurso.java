@@ -10,7 +10,6 @@ import Estudiante.Estudiante;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -30,6 +29,10 @@ import Lista.ListaAsignaturas;
 import Lista.ListaCursos;
 import Lista_Ref.Lista_Ref_Estudiantes;
 
+/**
+ *
+ * @author luisb
+ */
 public class VentanaCurso extends JFrame {
 
     // Tamaño Pantalla
@@ -358,22 +361,22 @@ public class VentanaCurso extends JFrame {
             FP aux_fp = (FP) aEliminar;
             int size_lista_ref = aux_fp.getSizeRef();
             ListaAsignaturas lac= aux_fp.getListaAsignaturas();
-           
+
             for (; size_lista_ref>0;size_lista_ref = aux_fp.getSizeRef()) {
                 if (aux_fp.getAsignaturaRef(0) != null) {
-                    removeEstudiantes(aux_fp.getAsignaturaRef(0)); 
-                    lac.removeObject(0); 
-                }  
+                    removeEstudiantes(aux_fp.getAsignaturaRef(0));
+                    lac.removeObject(0);
+                }
             }
         } else if (aEliminar.getClass() == Bachiller.class) {
             Bachiller aux_bch = (Bachiller) aEliminar;
             int size_lista_ref = aux_bch.getSizeRef();
             ListaAsignaturas lac= aux_bch.getListaAsignaturas();
- 
+
             for (; size_lista_ref>0;size_lista_ref = aux_bch.getSizeRef()) {
                 if (aux_bch.getAsignaturaRef(0) != null) {
-                    removeEstudiantes(aux_bch.getAsignaturaRef(0)); 
-                    lac.removeObject(0);  
+                    removeEstudiantes(aux_bch.getAsignaturaRef(0));
+                    lac.removeObject(0);
                 }
         }
          }
@@ -385,7 +388,7 @@ public class VentanaCurso extends JFrame {
         vInicio.setListaGlobalEstudiantes(listaAuxAlumnos);
         vInicio.setListaGlobalCursos(listaCursoAux);
         vInicio.setListaAsignaturas(listaAuxiliarAsignatura);
-   
+
     }
 
     /**

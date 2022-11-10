@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Curso;
 
 import Asignatura.Asignatura;
@@ -33,7 +28,6 @@ public class FP extends Curso {
      */
     public FP(String nombre, int codigo, Especialidad especialidad) {
         super(nombre, codigo);
-
         this.especialidad = especialidad;
     }
 
@@ -119,27 +113,6 @@ public class FP extends Curso {
     @Override
     public int getSizeRef() {
         return lista_curso_asignatura.getSize();
-    }
-
-    /**
-     * Método que añade una Asignatura a la lista de Asignaturas del Curso
-     *
-     * @param x
-     */
-    @Override
-    public void add(Object x) {
-        lista_curso_asignatura.add(x);
-    }
-
-    /**
-     * Método que elimina una referencia de una Asignatura de la lista de
-     * referencias del Curso
-     *
-     * @param x
-     */
-    @Override
-    public void remove(Object x) {
-        lista_curso_asignatura.removeRefAsignatura(x);
     }
 
     /**

@@ -5,8 +5,8 @@ package Interfaz;
  * @author luisb
  */
 public interface InterfazDatos {
-    //TODOS LOS DATOS TIENEN EN COMUN UN NOMBRE Y CÓDIGO
 
+    //TODOS LOS DATOS TIENEN EN COMUN UN NOMBRE Y CÓDIGO
     //OPERACIONES BÁSICAS COMUNES
     public void setNombre(String nombre);
 

@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Lista;
 
 import Asignatura.Asignatura;
 import Interfaz.InterfazLista;
-import Lista_Ref.Lista_Ref_Asignaturas;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -18,7 +12,6 @@ import java.util.Collections;
 public class ListaAsignaturas implements InterfazLista {
 
     private ArrayList<Asignatura> asignaturas;
-    private Lista_Ref_Asignaturas l_Ref_Asign = new Lista_Ref_Asignaturas();
 
     /**
      * Método constructor de la lista
@@ -122,34 +115,6 @@ public class ListaAsignaturas implements InterfazLista {
         }
     }
 
-    // MÉTODOS RELACIONADOS CON LA LISTA DE REF_ASIG
-    /**
-     * Método que añade una Asignatura a la lista de referencias
-     *
-     * @param x
-     */
-    public void add(Object x) {
-        l_Ref_Asign.addNodoAsignatura((Asignatura) x);
-    }
-
-    /**
-     * Método que elimina una Asginatura de la lista de referencias
-     *
-     * @param x
-     */
-    public void removeRefAsignatura(Object x) {
-        l_Ref_Asign.removeNodoAsignatura((Asignatura) x);
-    }
-
-    /**
-     * Método que devuelve la longitud de la lista de referencias
-     *
-     * @return
-     */
-    public int getSizeRef() {
-        return l_Ref_Asign.getSize();
-    }
-
     /**
      * Método que elimina una Asignatura de la lista de Asignaturas
      *
@@ -195,7 +160,7 @@ public class ListaAsignaturas implements InterfazLista {
     public Object getObject(int pos) {
         return asignaturas.get(pos);
     }
-    
+
     /**
      * Método que añade una Asignatura, pasada por parámetro, a la lista de
      * Asignaturas
