@@ -105,11 +105,7 @@ public class ListaEstudiantes implements InterfazLista {
      */
     public Estudiante getEstudiante(int i) {
         // Si la lista de estudiantes no está vacía
-        System.out.println(estudiantes.get(i));
         if (estudiantes.get(i) != null) {
-            System.out.println("hola 4");
-            System.out.println(estudiantes.get(i));
-
             return estudiantes.get(i);
         } else {
             return null;

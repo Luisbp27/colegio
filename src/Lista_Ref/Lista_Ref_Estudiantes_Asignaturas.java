@@ -105,13 +105,9 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
                     } else {
                         vacia = nodoBorrado;
                     }
-                } else {
-                    System.out.println("Elemento no encontrado");
                 }
             }
-        } else {
-            System.out.println("Lista vacía\n");
-        }
+        } 
     }
 
     /**
@@ -147,15 +143,10 @@ public class Lista_Ref_Estudiantes_Asignaturas implements InterfazLista {
         Nodo aux = cabecera;
 
         if (!aux.isEmpty()) {
-            System.out.println(aux.getInfo().toString());
-
             while (aux.getNodo() != null) {
                 aux = aux.getNodo();
-                System.out.println(aux.getInfo().toString());
             }
-        } else {
-            System.out.println("Vacía");
-        }
+        } 
     }
 
     /**

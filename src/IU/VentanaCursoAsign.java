@@ -465,10 +465,6 @@ public class VentanaCursoAsign extends JFrame {
             ventanaInicio.setListaGlobalCursos(listaAuxiliarCurso);
             ventanaInicio.setListaGlobalEstudiantes(listaAuxEstudiantes);
 
-            System.out.println("Asignaturas: " + listaAuxiliarAsignatura.getInfoTotal());
-            System.out.println("Curso: " + listaAuxiliarCurso.getInfoTotal());
-            System.out.println("Estudiantes: " + listaAuxEstudiantes.getInfoTotal());
-
             this.pantalla.setText("");
         } else {
             this.pantalla.setText("Selecciona una asignatura");
